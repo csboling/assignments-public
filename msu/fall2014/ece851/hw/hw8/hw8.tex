@@ -305,6 +305,7 @@ $
 $
 and therefore a transformation to unobservable form given by
 $$
+Q =
 \left[\begin{array}{r r r}
   1 & 0 & -1 \\
   0 & 1 &  1 \\
@@ -313,14 +314,24 @@ $$
 $$
 so that
 $$
-\hat{\mathcal{O}} =
+\hat{A} = Q^{-1} A Q =
 \left[\begin{array}{r r r}
-  2 & 1 & 0 \\
-  2 & 2 & 0 \\
-  4 & 4 & 0
+  0 &  0 &  0 \\
+  2 &  2 &  0 \\
+ -1 & -2 & -2
 \end{array}\right]
 $$
-which means the eigenvalues 2 and 0 are observable. The system is
+where $A_1$ has rank $2 = \mathrm{rank}(\mathcal{O})$, so
+we have the observable matrix
+$$
+A_1 =
+\left[\begin{array}{r r}
+  0 &  0 \\
+  2 &  2
+\end{array}\right]
+$$
+which has eigenvalues 2 and 0.
+This means the eigenvalues 2 and 0 are observable. The system is
 therefore controllable and detectable, so it is possible to stabilize
 it with output feedback.
 }

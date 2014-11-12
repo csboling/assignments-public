@@ -1,0 +1,175 @@
+\documentclass{article}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{enumerate}
+\usepackage{mathtools}
+\usepackage[lastexercise]{exercise}
+
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+
+\newcounter{Problem}
+\newenvironment{Problem}{\begin{Exercise}[name={Problem},
+                                          counter={Problem}]}
+                        {\end{Exercise}}
+\title{MATH 818 Homework \#4}
+\date{November 19, 2014}
+\author{Sam Boling}
+
+\begin{document}
+
+\begin{titlepage}
+\maketitle
+\end{titlepage}
+
+\begin{Problem}
+Show that if $P$ is a $p$-Sylow subgroup of a finite group $G$, then
+$N_G(N_G(P)) = N_G(P)$, where $N_G(H)$ denotes the normalizer of $H$
+in $G$.
+\end{Problem}
+
+\begin{Answer}
+Let $|P| = p^k$ and $|G| = p^k m$, where $p \not\vert m$.
+Note that $P$ is a subgroup of $N_G(P)$, so $|P| =
+p^k$ divides $|N_G(P)|$. But $p^k$ is the maximal power of $p$ that
+occurs in $|G|$, so it must be that $|N_G(P)| = p^k n$ for some $n$
+such that $p \not\vert n$. Furthermore $N_G(P) < G$, so $n \vert m$.
+
+ Show that $\#Orb_{N_G(N_G(P))}(N_G(P)) = [N_G(N_G(P)) : N_G(P)] = 1$
+
+\end{Answer}
+
+\pagebreak
+
+\begin{Problem}
+Let $G$ be a finite group. Consider the sequence of subgroups of $G$
+defined inductively by
+$$
+Z_0(G) = \{ 1 \}, \quad
+Z_{i+1}(G) = \pi^{-1}(Z(G/Z_i(G)))
+$$
+where $\pi : G \to G / Z_i(G)$ is the natural quotient map. Then $G$
+is called \emph{nilpotent} if $G_n = G$ for some $n \geq 0$.
+
+\begin{enumerate}[(a)]
+  \item{
+    Show that for $i \geq 0$,
+    $$
+    Z_{i+1}(G) = \{ x \in G
+                   \mid
+                   xyx^{-1}y^{-1} \in Z_i(G), \forall y \in G
+                \}.
+    $$
+  }
+  \item{
+    Show that if $G$ is nilpotent then $G$ is solvable.
+  }
+  \item{
+    Show that a $p$-group, where $p$ is prime, is always nilpotent.
+  }
+  \item{
+    Give an example of a group which is not nilpotent.
+  }
+  \item{
+    Assume $G$ is nilpotent. Show that if $H$ is a proper subgroup of $G$, then
+    the normalizer of $H$ in $G$ is always strictly larger than $H$.
+  }
+  \item{
+    Suppose that $G$ is nilpotent and $P$ a $p$-Sylow subgroup of
+    $G$. Show that $P$ is normal in $G$. (Hint: Use problem 1.)
+  }
+  \item{
+    Show that $G$ is nilpotent if and only if it is isomorphic to the
+    direct product of its $p$-Sylow subgroups. (Hint: recall that if
+    $P$ and $Q$ are both normal in $G$ and $P \cap Q = \{ 1 \}$, then
+    $ab = ba$ for all $a \in P$, $b \in Q$.
+  }
+\end{enumerate}
+\end{Problem}
+
+\begin{Answer}
+
+\end{Answer}
+
+\pagebreak
+
+\begin{Problem}
+Consider the group given by generators and relations as follows:
+$$
+G = \langle
+      x, y, z
+    \mid
+      x^3 = y^7 = z^{13} = 1,
+      x^{-1} y x = y^4,
+      x^{-1} z x = z^{-1},
+      yz = zy
+    \rangle.
+$$
+What can you say about the order of $G$?
+\end{Problem}
+
+\begin{Answer}
+First note that the condition $x^3 = y^7 = z^{13} = 1$ implies that
+$G$ is no larger than the free product of cyclic groups
+$\mathbb{Z}_3 \ast \mathbb{Z}_7 \ast \mathbb{Z}_{13}$. Furthermore
+note that
+\end{Answer}
+
+\pagebreak
+
+\begin{Problem}
+The \emph{braid group} $B_3$ in 3 strings is given by generators and
+relations as
+$$
+B_3 = \langle x, y \mid xyx = yxy \rangle.
+$$
+
+\begin{enumerate}[(a)]
+  \item{
+    Show that $xyxyxy$ is in the center of $B_3$.
+  }
+  \item{
+    Prove that there exists a surjective homomorphism
+    $\varphi : B_3 \to S_3$ such that $\varphi(x) = (12)$,
+    $\varphi(y) = (23)$.
+  }
+  \item{
+    Show that the kernel of $\varphi$ contains a group isomorphic to
+    the free group with two generators $F(u,v)$.
+  }
+  \item{
+    Show that there is a group homomorphism
+    $$
+    \psi : B_3
+       \to \mathrm{PSL}_2(\mathbb{Z})
+         = \mathrm{SL}_2(\mathbb{Z}) / \{ \pm I \}
+    $$
+    with
+    $$
+    \psi(x) =
+    \left(\begin{array}{r r}
+      1 & 1 \\
+      0 & 1
+    \end{array}\right), \quad
+    \psi(y) =
+    \left(\begin{array}{r r}
+      1 & 0 \\
+     -1 & 1
+    \end{array}\right)
+    $$
+  }
+  \item{
+    Show that $\psi$ is surjective.
+  }
+\end{enumerate}
+
+\end{Problem}
+
+\begin{Answer}
+
+\end{Answer}
+
+\pagebreak
+
+\end{document}
