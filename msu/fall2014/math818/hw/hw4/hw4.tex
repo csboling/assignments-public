@@ -5,6 +5,7 @@
 \usepackage{amssymb}
 \usepackage{enumerate}
 \usepackage{mathtools}
+\usepackage{xfrac}
 \usepackage[lastexercise]{exercise}
 
 \DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
@@ -30,19 +31,26 @@ in $G$.
 \end{Problem}
 
 \begin{Answer}
-Note that $[G : N_G(P)] = |G . P|$, where
+Note that
 $$
-G . P = \{ H \mid H < G, H = gPg^{-1}, g \in G \},
+  N_G(S)
+= \{ g \in G \mid g S g^{-1} = S \}
+= \{ g \in G \mid g . S = S \}
 $$
-the orbit of the action of $G$ on its subgroup $P$ by conjugation.
+gives the stabilizer of the group action $.$ of $G$ on its subgroups by
+conjugation, and so $[G : N_G(P)] = |G . P|$, where
+$$
+G . P = \{ H < G \mid \exists g \in G, H = gPg^{-1} \},
+$$
+is the orbit of $P$ under this action.
 All conjugates have the same order, so each $gPg^{-1}$ has the order
 $|P|$ and is thus a $p$-Sylow since $P$ is. But all $p$-Sylows are
-conjugate to $P$, and so $P$ has exactly one orbit under this
-conjugation. Then $[G : N_G(P)] = |G . P| = 1$.
+conjugate to $P$, and so $P$ has exactly one orbit under
+conjugation of subgroups. Then $[G : N_G(P)] = |G . P| = 1$.
 
 Since $N_G(P) < N_G(N_G(P))$,
 $[G : N_G(P)] \geq [G : N_G(N_G(P))]$. But if
-$[G : N_G(P)] > [G : N_G(N_G(P))]$ then $[G : N_G(N_G(P))] = 0$, which
+$[G : N_G(P)] > [G : N_G(N_G(P))]$ then this means $[G : N_G(N_G(P))] = 0$, which
 is not possible. Therefore $[G : N_G(P)] = [G : N_G(N_G(P))]$ and so
 $|N_G(N_G(P))| = |N_G(P)|$, and since $N_G(P)$ is a subgroup of
 $N_G(N_G(P))$ we must have $N_G(N_G(P)) = N_G(P)$.
@@ -99,15 +107,46 @@ is called \emph{nilpotent} if $Z_n(G) = G$ for some $n \geq 0$.
 \begin{Answer}
 \begin{enumerate}[(a)]
   \item{
+    Let $g \in Z_{i+1}(G)$ and let $h \in G$. Then
+    $\pi(g) = g Z_{i}(G) \in Z(G / Z_i(G))$,
+    so $\pi(g) \pi(h) = \pi(h) \pi(g)$. But then
+    $\pi(g)\pi(h)\pi(g)^{-1}\pi(h)^{-1} = \pi(1)$, and since $\pi$ is
+    a homomorphism this means
+    $$
+      \pi(ghg^{-1}h^{-1})
+    = ghg^{-1}h^{-1} Z_i(G)
+    = \pi(1)
+    = Z_i(G),
+    $$
+    and therefore $ghg^{-1}h^{-1} \in Z_i(G)$ for any $h \in
+    G$. Therefore
+    $$
+    Z_{i+1}(G) \subset \{ x \in G
+                         \mid
+                         xyx^{-1}y^{-1} \in Z_i(G), \forall y \in G
+                      \}.
+    $$
+    This argument reverses completely and so
+    $$
+    Z_{i+1}(G) =\{ x \in G
+                  \mid
+                  xyx^{-1}y^{-1} \in Z_i(G), \forall y \in G
+               \}
+    $$
+    as desired.
   }
   \item{
+    $\pi(Z_{i+1})$ is a subgroup of $G / Z_i$, so by definition
+    $\ker \pi = Z_i$. The restriction
+    $\left.\pi\right|_{Z_{i+1}}$ is then a homomorphism with
+    $Z_{i+1}$  as its domain and $Z_i$ as its kernel, so
+    $Z_i$ must be normal in $Z_{i+1}$.
 
-
-    Then $Z_{i}(G) \triangleleft Z_{i+1}(G)$, and so we have
+    Then we have
     $$
-      Z\left(\sfrac{G}{Z_{i}(G)}\right)
+      Z(G / Z_{i}(G))
     = \pi(Z_{i+1}(G))
-    = \sfrac{Z_{i+1}(G)}{Z_{i}(G)}.
+    = Z_{i+1}(G) / Z_{i}(G).
     $$
     Since $Z_{i+1}(G) / Z_{i}(G)$ is the center of a group, it is
     abelian. Since $G$ is nilpotent by assumption, $G = Z_n(G)$ for
@@ -120,6 +159,54 @@ is called \emph{nilpotent} if $Z_n(G) = G$ for some $n \geq 0$.
     \triangleright Z_0(G) = \{ 1 \}.
     $$
     Therefore $G$ is solvable.
+  }
+  \item{
+    Let $P$ be a $p$-group, where $p$ is a prime.
+    Then $|P| = p^n$ for some $n > 0$.
+
+    We claim that $Z_k(P)$ is a $p$-group for any $k > 0$.
+    For $k = 1$ the claim holds since $Z(P)$ has a nontrivial order
+    that divides $|P|$ and so $Z(P)$ is a $p$-group.
+    Suppose $Z_{k-1}(P)$ is a $p$-group. Then (unless $P =
+    Z_{k-1}(P)$) $P / Z_{k-1}(P)$ is as
+    well and so
+    $$
+      |Z_k(P)|
+    = \left|\pi^{-1}\left(Z\left(\frac{P}{Z_{k-1}(P)}\right)\right)\right|
+    = \left|Z\left(\frac{P}{Z_{k-1}(P)}\right)\right|,
+    $$
+    and the center of $P / Z_{k-1}(P)$ is nontrivial and divides a
+    power of $p$. Therefore $Z_k(P)$ is a $p$-group.
+
+    Now consider
+    $$
+    \frac{Z_k(P)}{Z_{k-1}(P)} = Z\left(\frac{P}{Z_{k-1}(P)}\right).
+    $$
+    If $|P / Z_{k-1}(P)| = 1$, then $Z_{m}(P) = P$ for all $m \geq
+    k-1$, as desired. Otherwise $P / Z_{k-1}(P)$ is a $p$-group,
+    so it has nontrivial center and then
+    $\left|\frac{Z_k(P)}{Z_{k-1}(P)}\right| > 1$. But then
+    $|P / Z_k(P)| < |P / Z_{k-1}(P)|$. Since $P$ is finite this
+    process must terminate eventually with $|P / Z_n(P)| = 1$ for some
+    $n$, so that $P = Z_n(P)$ as desired.
+
+%    If $n = 1$ then $|P|$ is prime, so $P$ is cyclic
+%    and $Z_1(P) = Z(P) = P$ so $P$ is nilpotent.
+%
+%    Suppose any $p$-group of order less than $p^n$ is nilpotent.
+%    Since any $p$-group has nontrivial center, $|Z(P)|$ is not 1 and
+%    must divide $|P|$, so $P / Z(P)$ is a $p$-group with order less
+%    than $p^n$. By inductive hypothesis $P / Z(P)$ is nilpotent, so
+%    $P / Z(P) = Z_m(P)$ for some $m$.
+  }
+  \item{
+  }
+  \item{
+    Let $P$ be a $p$-Sylow. Then from problem 1, $N_G(N_G(P)) =
+    N_G(P)$. Therefore from part (e), it cannot be the case that
+    $N_G(P)$ is a proper subgroup of $G$, since in this case
+    $|N_G(N_G(P))| > |N_G(P)|$. But then $N_G(P) = G$, so $gP = Pg$
+    for every $g \in G$. Thus $P$ is normal in $G$.
   }
 \end{enumerate}
 \end{Answer}
@@ -142,6 +229,23 @@ What can you say about the order of $G$?
 \end{Problem}
 
 \begin{Answer}
+We have
+\begin{align*}
+   y
+&= y \cdot y^7
+ = (y^4)^2
+ = x^{-1} y x x^{-1} y x
+ = x^{-1} y^2 x
+\end{align*}
+so that $x = y^2 x y^{-1}$ and
+\begin{align*}
+   1
+&= x^3
+ = y^2 x y^{-1} y^2 x y^{-1} y^2 x y^{-1}
+ = y^2 x y x y x y^{-1}
+\end{align*}
+and then $yxyxyx = 1$.
+
 First note that the condition $x^3 = y^7 = z^{13} = 1$ implies that
 $G$ is no larger than the free product of cyclic groups
 $\mathbb{Z}_3 \ast \mathbb{Z}_7 \ast \mathbb{Z}_{13}$. Furthermore
