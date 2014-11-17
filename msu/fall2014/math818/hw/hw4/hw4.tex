@@ -136,13 +136,15 @@ is called \emph{nilpotent} if $Z_n(G) = G$ for some $n \geq 0$.
     as desired.
   }
   \item{
-    $\pi(Z_{i+1})$ is a subgroup of $G / Z_i$, so by definition
-    $\ker \pi = Z_i$. The restriction
-    $\left.\pi\right|_{Z_{i+1}}$ is then a homomorphism with
-    $Z_{i+1}$  as its domain and $Z_i$ as its kernel, so
-    $Z_i$ must be normal in $Z_{i+1}$.
+    First we show that $Z_{i}(G) \triangleleft Z_{i+1}(G)$ for any
+    $i$. Let $x \in Z_{i+1}(G)$. Then we know $xyx^{-1}y^{-1} \in
+    Z_i(G)$ for any $y \in G$. Let $g \in x Z_{i}(G) x^{-1}$. Then
+    $g = xzx^{-1}$ for some $z \in Z_{i}(G)$, so we have
+    $gz^{-1} = xzx^{-1}z^{-1} \in Z_{i}(G)$. But then $g \in
+    Z_{i}(G)$, so $x Z_{i}(G) x^{-1} \subset Z_{i}(G)$ and therefore
+    $Z_{i}(G) \triangleleft Z_{i+1}(G)$.
 
-    Then we have
+    Next we have
     $$
       Z(G / Z_{i}(G))
     = \pi(Z_{i+1}(G))
@@ -185,21 +187,41 @@ is called \emph{nilpotent} if $Z_n(G) = G$ for some $n \geq 0$.
     If $|P / Z_{k-1}(P)| = 1$, then $Z_{m}(P) = P$ for all $m \geq
     k-1$, as desired. Otherwise $P / Z_{k-1}(P)$ is a $p$-group,
     so it has nontrivial center and then
-    $\left|\frac{Z_k(P)}{Z_{k-1}(P)}\right| > 1$. But then
-    $|P / Z_k(P)| < |P / Z_{k-1}(P)|$. Since $P$ is finite this
-    process must terminate eventually with $|P / Z_n(P)| = 1$ for some
-    $n$, so that $P = Z_n(P)$ as desired.
-
-%    If $n = 1$ then $|P|$ is prime, so $P$ is cyclic
-%    and $Z_1(P) = Z(P) = P$ so $P$ is nilpotent.
-%
-%    Suppose any $p$-group of order less than $p^n$ is nilpotent.
-%    Since any $p$-group has nontrivial center, $|Z(P)|$ is not 1 and
-%    must divide $|P|$, so $P / Z(P)$ is a $p$-group with order less
-%    than $p^n$. By inductive hypothesis $P / Z(P)$ is nilpotent, so
-%    $P / Z(P) = Z_m(P)$ for some $m$.
+    $\left|\frac{Z_k(P)}{Z_{k-1}(P)}\right| > 1$, which means
+    $|Z_k(P)| > |Z_{k-1}(P)|$. But then
+    $|P / Z_k(P)|$ is strictly less than $|P / Z_{k-1}(P)|$, so the
+    order of each such quotient is a strictly smaller power of
+    $p$ than the last. Therefore this process must terminate in at
+    most $n$ steps so that $|P / Z_n(P)| = 1$,
+    and then $P = Z_n(P)$ as desired.
   }
   \item{
+    Any nontrivial group $G$ with trivial center fails to be nilpotent.
+    In this case
+    $$
+    Z_1(G) = \pi^{-1}(Z(G / Z(G))) = Z(G) = \{ 1 \},
+    $$
+    and similarly if
+    $Z_i(G) = \{ 1 \}$ then $Z_{i+1}(G) = \{ 1 \}$. The free group in
+    two generators is an example of such a group, as is the symmetric
+    group $S_3$.
+  }
+  \item{
+    Let $G$ be nilpotent and let $H < G$ such that $H \neq G$.
+    Then $G = Z_n(G)$ and $\{ 1 \} = Z_0(G)$, so there is some
+    $k \in \{0, 1, \dots, n-1\}$ such that
+    $Z_k(G) \subset H \subset Z_{k+1}(G)$ and $H \neq Z_{k+1}(G)$.
+
+    Then $Z_{k+1}(G) - H$ is nonempty, so let $x \in Z_{k+1}(G) - H$.
+    Since $x \in Z_{k+1}(G)$, the commutator
+    $[x, y] \in Z_{k}(G) \subset H$ for all $y$. In particular this means
+    $[x, h] \in H$ for any $h \in H$. But then
+    $x h x^{-1} h^{-1} \in H$, so multiplying by $h$ on the right we
+    have $x h x^{-1} \in H$, or $x h x^{-1} = h^\prime$ for some
+    $h^\prime \in H$. But then $x h = h^\prime x$, and since $h$ is an
+    arbitrary element of $H$ this means $x H = H x$. Therefore
+    $x \in N_G(H)$, and since $x \notin H$ this means
+    $N_G(H) \gneq H$.
   }
   \item{
     Let $P$ be a $p$-Sylow. Then from problem 1, $N_G(N_G(P)) =
@@ -207,6 +229,8 @@ is called \emph{nilpotent} if $Z_n(G) = G$ for some $n \geq 0$.
     $N_G(P)$ is a proper subgroup of $G$, since in this case
     $|N_G(N_G(P))| > |N_G(P)|$. But then $N_G(P) = G$, so $gP = Pg$
     for every $g \in G$. Thus $P$ is normal in $G$.
+  }
+  \item{
   }
 \end{enumerate}
 \end{Answer}
@@ -229,7 +253,13 @@ What can you say about the order of $G$?
 \end{Problem}
 
 \begin{Answer}
-We have
+The condition $x^3 = y^7 = z^{13} = 1$ implies that
+$G$ is a subgroup of the free product of cyclic groups
+$\mathbb{Z}_3 \ast \mathbb{Z}_7 \ast \mathbb{Z}_{13}$. Indeed,
+since $yz = zy$, $G$ is a subgroup of
+$\mathbb{Z}_3 \ast (\mathbb{Z}_7 \times \mathbb{Z}_{13})$.
+
+From the relations $y^7 = 1$ and $x^{-1} y x = y^4$ we have
 \begin{align*}
    y
 &= y \cdot y^7
@@ -237,19 +267,14 @@ We have
  = x^{-1} y x x^{-1} y x
  = x^{-1} y^2 x
 \end{align*}
-so that $x = y^2 x y^{-1}$ and
+so that $x = y^2 x y^{-1}$. Then
 \begin{align*}
    1
 &= x^3
  = y^2 x y^{-1} y^2 x y^{-1} y^2 x y^{-1}
  = y^2 x y x y x y^{-1}
 \end{align*}
-and then $yxyxyx = 1$.
-
-First note that the condition $x^3 = y^7 = z^{13} = 1$ implies that
-$G$ is no larger than the free product of cyclic groups
-$\mathbb{Z}_3 \ast \mathbb{Z}_7 \ast \mathbb{Z}_{13}$. Furthermore
-note that
+so $yxyxyx = 1$.
 \end{Answer}
 
 \pagebreak
@@ -303,7 +328,7 @@ $$
 \end{Problem}
 
 \begin{Answer}
-\begin{enumerate}
+\begin{enumerate}[(a)]
   \item{
     Assume that $xyx = yxy$. The following inductive arguments show
     that $xyx \cdot y^n = x^n \cdot xyx$ for any $n \in \mathbb{Z}$.
@@ -356,6 +381,17 @@ $$
     and it follows that $xyxyxy$ commutes with every element of $G$.
   }
   \item{
+    We have that
+    $$
+    (12)(23)(12) = (13) = (23)(12)(23),
+    $$
+    so
+    $\bar{\varphi}(xyx) = \bar{\varphi}(yxy)$, and thus the
+    homomorphism $\varphi : B_3 \to S_3$ that extends
+    $\varphi(x) = (12)$, $\varphi(y) = (23)$
+    is well-defined.  Since $(12), (23), (13)$ are all the
+    transpositions in $S_3$, these generate $S_3$,
+    and so $\varphi$ is surjective.
   }
   \item{
     Note that
@@ -374,6 +410,91 @@ $$
     $f : F(a,b) \to \langle x^2, y^2 \rangle$ such that
     $f(a) = x^2$, $f(b) = y^2$. Since $\langle x^2, y^2 \rangle$ is
     generated by $x^2, y^2$ by construction, $f$ is surjective.
+    Let $z \in \ker(f)$. Then $f(z) = 1$, so either
+    $z = 1$ or $f(z) = xyxy^{-1}x^{-1}y^{-1}$. But the latter case is
+    not possible, since the image of $f$ contains only even powers of
+    $x$ and $y$ and their products. Therefore $f$ is injective, so
+    $F(a, b) \simeq \langle x^2, y^2 \rangle$.
+  }
+  \item{
+    \begin{align*}
+    \psi(x)\psi(y)\psi(x)
+    &=
+    \left(\begin{array}{r r}
+      1 & 1 \\
+      0 & 1
+    \end{array}\right)
+    \left(\begin{array}{r r}
+      1 & 0 \\
+     -1 & 1
+    \end{array}\right)
+    \left(\begin{array}{r r}
+      1 & 1 \\
+      0 & 1
+    \end{array}\right)
+    =
+    \left(\begin{array}{r r}
+      1 & 1 \\
+      0 & 1
+    \end{array}\right)
+     \left(\begin{array}{r r}
+      1 & 1 \\
+     -1 & 0
+    \end{array}\right)
+    \\ &=
+    \left(\begin{array}{r r}
+      0 & 1 \\
+     -1 & 0
+    \end{array}\right)
+    \end{align*}
+    while
+    \begin{align*}
+    \psi(y) \psi(x) \psi(y)
+    &=
+    \left(\begin{array}{r r}
+      1 & 0 \\
+     -1 & 1
+    \end{array}\right)
+    \left(\begin{array}{r r}
+      1 & 1 \\
+      0 & 1
+    \end{array}\right)
+    \left(\begin{array}{r r}
+      1 & 0 \\
+     -1 & 1
+    \end{array}\right)
+    =
+    \left(\begin{array}{r r}
+      1 & 0 \\
+     -1 & 1
+    \end{array}\right)
+    \left(\begin{array}{r r}
+      0 & 1 \\
+     -1 & 1
+    \end{array}\right)
+    \\ &=
+    \left(\begin{array}{r r}
+      0 & 1 \\
+     -1 & 0
+    \end{array}\right)
+    \end{align*}
+    Thus the homomorphism $\psi : B_3 \to \mathrm{PSL}_2(\mathbb{Z})$
+    that extends
+    $$
+    \psi(x) =
+    \left(\begin{array}{r r}
+      1 & 1 \\
+      0 & 1
+    \end{array}\right), \quad
+    \psi(y) =
+    \left(\begin{array}{r r}
+      1 & 0 \\
+     -1 & 1
+    \end{array}\right)
+    $$
+    is well-defined.
+  }
+  \item{
   }
 \end{enumerate}
 \end{Answer}
