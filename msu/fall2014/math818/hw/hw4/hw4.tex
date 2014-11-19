@@ -418,6 +418,22 @@ $y^6$. This means the order of the group is at most $2 \cdot 6 + 1 = 13$,
 accounting for the 2 possible powers of $x$, the 6 possible powers of
 $y$, and the identity. But then $G$ has prime order and so
 $G \simeq \mathbb{Z}_{13}$.
+
+Notice that
+$$
+  \langle x, y, z \mid yz = zy \rangle
+= (\mathbb{Z}_7 \times \mathbb{Z}_{13}) \ast \mathbb{Z}_3.
+$$
+Since we have $yx = xy^4$ we have a semidirect product
+$$
+\mathbb{Z}_3 \to \mathrm{Aut}(\mathbb{Z}_7 \times \mathbb{Z}_{13}).
+$$
+We can confirm that this is compatible with the condition $x^3 =
+1$. However there is no semidirect product $\psi(x)^3 = \mathrm{id}$
+corresponding to the condition $x^{-1} z x = z^{-1}$ so we must have
+$z = 1$. This gives $G = \mathbb{Z}_{3} \rtimes \mathbb{Z}_7$ which
+has order 21.
+
 \end{Answer}
 
 \pagebreak
