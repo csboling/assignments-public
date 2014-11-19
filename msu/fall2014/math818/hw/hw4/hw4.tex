@@ -376,12 +376,6 @@ What can you say about the order of $G$?
 \end{Problem}
 
 \begin{Answer}
-The condition $x^3 = y^7 = z^{13} = 1$ implies that
-$G$ is a subgroup of the free product of cyclic groups
-$\mathbb{Z}_3 \ast \mathbb{Z}_7 \ast \mathbb{Z}_{13}$. Indeed,
-since $yz = zy$, $G$ is a subgroup of
-$\mathbb{Z}_3 \ast (\mathbb{Z}_7 \times \mathbb{Z}_{13})$.
-
 From the relations $y^7 = 1$ and $x^{-1} y x = y^4$ we have
 \begin{align*}
    y
@@ -390,14 +384,30 @@ From the relations $y^7 = 1$ and $x^{-1} y x = y^4$ we have
  = x^{-1} y x x^{-1} y x
  = x^{-1} y^2 x
 \end{align*}
-so that $x = y^2 x y^{-1}$. Then
+so that $x = y^2 x y^{-1}$ or $xy = y^2 x$.
+We also have that $x^{-1}zx = z^{-1}$ which gives
+$xz = z^{-1}x$. This yields
 \begin{align*}
-   1
-&= x^3
- = y^2 x y^{-1} y^2 x y^{-1} y^2 x y^{-1}
- = y^2 x y x y x y^{-1}
+(xy)^2 &= y^6 x^2 = y^{-1} x^{-1} = (xy)^{-1}, \\
+(xy)^3 &= y^7 x^3 = 1, \\
+(xz)^2 &= x^2 = x^{-1}, \\
+(xz)^3 &= x^3z = z, \\
+(xz)^4 &= zxz = x, \\
+(xz)^5 &= xzx = z^{-1} x^2 = z^{-1} x^{-1} = (xz)^{-1}, \\
+(xz)^6 &= 1.
 \end{align*}
-so $yxyxyx = 1$.
+From $(xz)^3 = z$ and $(xz)^6 = 1$ we conclude that $z^2 = 1$, so
+$z = z^{-1} = 1$. Therefore the representation reduces to
+$$
+\langle x, y \mid x^3 = y^7 = 1, yx = xy^4 \rangle.
+$$
+Note also that the rewriting rule $yx = xy^4$ means an arbitrary term
+in $G$ can be rearranged into the form $x^k x^l$ for some exponents
+$k, l$. After cancelling powers of
+$x^3$ and $y^7$, such a term can contain at most $x^2$ and at most
+$y^6$. This means the order of the group is at most $2 \cdot 6 + 1 = 13$,
+accounting for the 2 possible powers of $x$, the 6 possible powers of
+$y$, and the identity. But then $G \simeq \mathbb{Z}_{13}$.
 \end{Answer}
 
 \pagebreak
@@ -447,7 +457,6 @@ $$
     Show that $\psi$ is surjective.
   }
 \end{enumerate}
-
 \end{Problem}
 
 \begin{Answer}
@@ -622,11 +631,40 @@ $$
     $$
     is well-defined.
   }
-  \item{
-  }
+% \item{
+%   Observing that the map
+%   $\bar{\gamma} : \mathrm{PSL}_2(\mathbb{Z}) \to (\mathbb{C} \to \mathbb{C})$ given by
+%   $$
+%   \bar{\gamma}\left(
+%   \left[\begin{array}{c c}
+%     a & b \\
+%     c & d
+%   \end{array}\right]
+%   \right)(z)
+%   =
+%   \frac{a z + b}{c z + d}
+%   $$
+%   is injective when $ad - bc = 1$, letting $\Gamma =
+%   \mathrm{Im}(\bar{\gamma})$ we have an isomorphism
+%   $\gamma : \mathrm{PSL}_2(\mathbb{Z}) \to \Gamma$. Therefore showing that
+%   $\psi$ is surjective is equivalent to showing that the maps
+%   $$
+%   \gamma\left(
+%   \left[\begin{array}{r r}
+%     1 & 1 \\
+%     0 & 1
+%   \end{array}\right]\right)(z)
+%   = 1 + z, \quad
+%   \gamma\left(
+%   \left[\begin{array}{r r}
+%     1 & 0 \\
+%    -1 & 1
+%   \end{array}\right]\right)(z)
+%   = \frac{1}{1 - z}
+%   $$
+%   generate the group $\Gamma$.
+% }
 \end{enumerate}
 \end{Answer}
-
-\pagebreak
 
 \end{document}
