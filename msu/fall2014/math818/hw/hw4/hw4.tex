@@ -99,7 +99,7 @@ is called \emph{nilpotent} if $Z_n(G) = G$ for some $n \geq 0$.
     Show that $G$ is nilpotent if and only if it is isomorphic to the
     direct product of its $p$-Sylow subgroups. (Hint: recall that if
     $P$ and $Q$ are both normal in $G$ and $P \cap Q = \{ 1 \}$, then
-    $ab = ba$ for all $a \in P$, $b \in Q$.
+    $ab = ba$ for all $a \in P$, $b \in Q$.)
   }
 \end{enumerate}
 \end{Problem}
@@ -107,18 +107,18 @@ is called \emph{nilpotent} if $Z_n(G) = G$ for some $n \geq 0$.
 \begin{Answer}
 \begin{enumerate}[(a)]
   \item{
-    Let $g \in Z_{i+1}(G)$ and let $h \in G$. Then
-    $\pi(g) = g Z_{i}(G) \in Z(G / Z_i(G))$,
-    so $\pi(g) \pi(h) = \pi(h) \pi(g)$. But then
-    $\pi(g)\pi(h)\pi(g)^{-1}\pi(h)^{-1} = \pi(1)$, and since $\pi$ is
+    Let $x \in Z_{i+1}(G)$ and let $y \in G$. Then
+    $\pi(x) = x Z_{i}(G) \in Z(G / Z_i(G))$,
+    so $\pi(x) \pi(y) = \pi(y) \pi(x)$. But then
+    $\pi(x)\pi(y)\pi(x)^{-1}\pi(y)^{-1} = \pi(1)$, and since $\pi$ is
     a homomorphism this means
     $$
-      \pi(ghg^{-1}h^{-1})
-    = ghg^{-1}h^{-1} Z_i(G)
+      \pi(xyx^{-1}y^{-1})
+    = xyx^{-1}y^{-1} Z_i(G)
     = \pi(1)
     = Z_i(G),
     $$
-    and therefore $ghg^{-1}h^{-1} \in Z_i(G)$ for any $h \in
+    and therefore $xyx^{-1}y^{-1} \in Z_i(G)$ for any $y \in
     G$. Therefore
     $$
     Z_{i+1}(G) \subset \{ x \in G
@@ -170,7 +170,7 @@ is called \emph{nilpotent} if $Z_n(G) = G$ for some $n \geq 0$.
     For $k = 1$ the claim holds since $Z(P)$ has a nontrivial order
     that divides $|P|$ and so $Z(P)$ is a $p$-group.
     Suppose $Z_{k-1}(P)$ is a $p$-group. Then (unless $P =
-    Z_{k-1}(P)$) $P / Z_{k-1}(P)$ is as
+    Z_{k-1}(P)$, and then $Z_k(P) = P$) $P / Z_{k-1}(P)$ is as
     well and so
     $$
       |Z_k(P)|
@@ -202,9 +202,9 @@ is called \emph{nilpotent} if $Z_n(G) = G$ for some $n \geq 0$.
     Z_1(G) = \pi^{-1}(Z(G / Z(G))) = Z(G) = \{ 1 \},
     $$
     and similarly if
-    $Z_i(G) = \{ 1 \}$ then $Z_{i+1}(G) = \{ 1 \}$. The free group in
-    two generators is an example of such a group, as is the symmetric
-    group $S_3$.
+    $Z_i(G) = \{ 1 \}$ then $Z_{i+1}(G) = Z(G) = \{ 1 \}$. The free group in
+    two generators is an example of such a group. A finite example is
+    the symmetric group $S_3$.
   }
   \item{
     Let $G$ be nilpotent and let $H < G$ such that $H \neq G$.
@@ -221,16 +221,139 @@ is called \emph{nilpotent} if $Z_n(G) = G$ for some $n \geq 0$.
     $h^\prime \in H$. But then $x h = h^\prime x$, and since $h$ is an
     arbitrary element of $H$ this means $x H = H x$. Therefore
     $x \in N_G(H)$, and since $x \notin H$ this means
-    $N_G(H) \gneq H$.
+    $N_G(H)$ properly contains $H$.
   }
   \item{
-    Let $P$ be a $p$-Sylow. Then from problem 1, $N_G(N_G(P)) =
+    Let $P$ be a $p$-Sylow of $G$. Then from problem 1, $N_G(N_G(P)) =
     N_G(P)$. Therefore from part (e), it cannot be the case that
     $N_G(P)$ is a proper subgroup of $G$, since in this case
     $|N_G(N_G(P))| > |N_G(P)|$. But then $N_G(P) = G$, so $gP = Pg$
     for every $g \in G$. Thus $P$ is normal in $G$.
   }
   \item{
+    Let $G$ be a group, and let its order have prime factorization
+    $|G| = p_1^{k_1} p_2^{k_2} \cdots p_n^{k_n}$.
+    \begin{itemize}
+      \item[$\implies$]{
+        Suppose $G$ is nilpotent. Then from part (f) we have that each
+        of its Sylow subgroups is normal, and therefore there is a
+        unique $p_i$-Sylow for each prime factor $p_i$.
+
+        Let $P_i$ and $P_j$ be distinct Sylow subgroups of $G$, so that $P_i$
+        is a $p_i$-Sylow and $P_j$ is a $p_j$-Sylow, with $i \neq j$.
+        Then $P_i \cap P_j$ is a subgroup of both $P_i$ and $P_j$, so
+        $|P_i \cap P_j|$ divides $|P_i| = p_i^{k_i}$ and divides
+        $|P_j| = p_j^{k_j}$, but since $p_i, p_j$ are distinct primes
+        this is only possible of $|P_i \cap P_j| = 1$.
+
+        Therefore $P_i$ and
+        $P_j$ are normal in $G$ and have trivial intersection, so
+        for any $p \in P_i$, $q \in P_j$ the commutator
+        $p q p^{-1} q^{-1} \in P_i \cap P_j$ is 1, which means $pq =
+        qp$.
+
+        Note also that each $p_i$-Sylow has order
+        $p_i^{k_i}$. Letting $P_i$ denote the unique $p_i$-Sylow, we have
+        $$
+          |P_1 P_2 \cdots P_n|
+        = \frac{|P_1||P_2|\cdots|P_n|}
+               {\left|\bigcap_{i=1}^n P_i\right|}
+        = p_1^{k_1} p_2^{k_2} \cdots p_n^{k_n}
+        = |G|,
+        $$
+        so we must have $P_1 P_2 \cdots P_n = G$. Therefore the
+        following conditions are met for the Sylow subgroups of $G$:
+        \begin{itemize}
+          \item{$G = P_1 P_2 \cdots P_n$, i.e. each element in $G$ can
+                be written as a product of elements
+                $g_1, g_2, \dots, g_n$ drawn from $P_1, P_2, \dots,
+                P_n$ respectively.
+               }
+          \item{$P_i \cap P_j = \{ 1 \}$ pairwise for every
+                $i \neq j$.}
+          \item{$P_i \triangleleft G$ for each Sylow subgroup $P_i$.}
+        \end{itemize}
+        Therefore we can write $G$ as the semidirect product
+        $$
+                            P_1
+        \rtimes_{\psi_{1,2}}   P_2
+        \rtimes_{\psi_{2,3}}   \cdots
+        \rtimes_{\psi_{n-1, n}} P_n,
+        $$
+        where $\psi_{i,j} : P_i \to \mathrm{Inn}(P_j)$ is the
+        conjugation action of $P_i$ on $P_j$ given by
+        $\psi_{i,j}(g_i)(g_j) = g_i g_j g_i^{-1}$.
+
+        Note however that for each such pair $i, j$ we have
+        $g_i g_j = g_j g_i$ for all $g_i \in P_i$, $g_j \in P_j$, so
+        this means $\psi_{i,j}(g_i) = \mathrm{id}_{P_j}$
+        uniformly. But in this case the semidirect product is simply
+        the direct product, so
+        $$
+        G = \prod_{i=1}^n P_i.
+        $$
+      }
+      \item[$\impliedby$]{
+        Suppose $G$ is isomorphic to the direct product of its Sylow
+        subgroups. Each such subgroup is then a $p_i$-group for some
+        $i$, so from part (c) we have that each Sylow subgroup is
+        nilpotent. Therefore we show that the direct product of
+        nilpotent groups is nilpotent, concluding that $G$ is nilpotent.
+
+        Let $G$ and $H$ be nilpotent groups so that $G = Z_m(G)$,
+        $H = Z_n(H)$ for some $m, n \in \mathbb{N}$. Note however
+        that, for instance,
+        \begin{align*}
+          Z_{m+1}(G)
+       &= \pi^{-1}\left(Z\left(\frac{G}{Z_{m}(G)}\right)\right)
+        = \pi^{-1}\left(Z\left(\frac{Z_m(G)}{Z_m(G)}\right)\right) \\
+       &= \pi^{-1}\left(Z(\{ 1 \})\right)
+        = \pi^{-1}(1) \\
+       &= \ker(\pi)
+        = Z_{m}(G)
+        \end{align*}
+        and therefore $Z_k(G) = Z_m(G) = G$ for all $k \geq m$.
+        Without loss of generality then let $m < n$ and write
+        $G = Z_n(G)$, $H = Z_n(H)$.
+
+        Next we show the following: for any groups $G$ and $H$ and
+        any natural number $n$, if $G$ and $H$ are nilpotent of order
+        at least $n$, then
+        $G \times H = Z_n(G) \times Z_n(H) = Z_n(G \times H)$.
+
+        Suppose $n = 0$. We have
+        $$
+          Z_0(G \times H)
+        = \{ (1_G, 1_H) \}
+        = \{ 1_G \} \times \{ 1_H \}
+        = Z_0(G) \times Z_0(H)
+        = G \times H.
+        $$
+
+        Suppose the claim holds for some $k$, and suppose
+        $G$ and $H$ are nilpotent of order $k+1$.
+        Let $(g, h) \in G \times H$.
+        Then $g \in G = Z_{k+1}(G)$
+        and $h \in H = Z_{k+1}(H)$ so
+        $$
+        g x g^{-1} x^{-1} \in Z_{k}(G), \quad
+        h y h^{-1} y^{-1} \in Z_{k}(G), \quad
+        \forall x, y \in H.
+        $$
+        Let $(x, y) \in G \times H$. Then
+        \begin{align*}
+             (g, h) (x, y) (g, h)^{-1} (x, y)^{-1}
+         &=  (g x g^{-1} x^{-1}, h y h^{-1} y^{-1}) \\
+        &\in Z_k(G) \times Z_k(H) = Z_k(G \times H)
+        \end{align*}
+        which means
+        $(g, h)(x, y)(g, h)^{-1}(x, y)^{-1} \in Z_k(G \times H)$ and
+        so $(g, h) \in Z_{k+1}(G \times H)$. Certainly
+        $Z_{k+1}(G \times H) \subset G \times H$. Therefore
+        $G \times H = Z_{k+1}(G \times H)$ and so $G \times H$ is
+        nilpotent, as desired.
+      }
+    \end{itemize}
   }
 \end{enumerate}
 \end{Answer}
@@ -335,7 +458,7 @@ $$
     If $n = 0$, then $xyx \cdot y^0 = x^0 \cdot xyx$. Let $k \in \mathbb{Z}_+$.
     \begin{itemize}
       \item{
-        Suppose $xyx \cdot y^{k-1} = x^{k-1} xyx$. Then
+        Suppose $xyx \cdot y^{k-1} = x^{k-1} \cdot xyx$. Then
         \begin{align*}
              xyx \cdot y^k
           &= xyx \cdot y \cdot y^{k-1}
@@ -347,22 +470,22 @@ $$
         as desired.
       }
       \item{
-        Suppose $xyx \cdot y^{-(k-1)} = x^{-(k-1)} xyx$.
+        Suppose $xyx \cdot y^{-(k-1)} = x^{-(k-1)} \cdot xyx$.
         Then
         \begin{align*}
-             xyx \cdot y^{-(m-1)}
-          &= x^{-(m-1)} \cdot xyx
-           = x^{-m} \cdot x \cdot xyx \\
-           = x^{-m} \cdot x \cdot yxy \\
-          &= x^{-m} \cdot xyx \cdot y.
+             xyx \cdot y^{-(k-1)}
+          &= x^{-(k-1)} \cdot xyx
+           = x^{-k} \cdot x \cdot xyx \\
+          &= x^{-k} \cdot x \cdot yxy
+           = x^{-k} \cdot xyx \cdot y.
         \end{align*}
-        But $xyx \cdot y^{-(m-1)} = xyx \cdot y^{-m} \cdot y$, so we
+        But $xyx \cdot y^{-(k-1)} = xyx \cdot y^{-k} \cdot y$, so we
         have
         $$
-        xyx \cdot y^{-m} \cdot y = x^{-m} \cdot xyx \cdot y
+        xyx \cdot y^{-k} \cdot y = x^{-k} \cdot xyx \cdot y
         $$
-        so it must be the case that $xyx \cdot y^{-m} = x^{-m} \cdot
-        xyx$ as desired.
+        so it must be the case that
+        $xyx \cdot y^{-k} = x^{-k} \cdot xyx$ as desired.
       }
     \end{itemize}
     Therefore $xyx \cdot y^n = x^n \cdot xyx$. Replacing every $x$ by
@@ -381,14 +504,19 @@ $$
     and it follows that $xyxyxy$ commutes with every element of $G$.
   }
   \item{
+    Let $\bar{\varphi} : \{ x, y \in B_3 \} \to S_3$ be the map given by
+    $$
+    \bar{\varphi}(x) = (12), \quad
+    \bar{\varphi}(y) = (23).
+    $$
     We have that
     $$
     (12)(23)(12) = (13) = (23)(12)(23),
     $$
     so
-    $\bar{\varphi}(xyx) = \bar{\varphi}(yxy)$, and thus the
-    homomorphism $\varphi : B_3 \to S_3$ that extends
-    $\varphi(x) = (12)$, $\varphi(y) = (23)$
+    $\bar{\varphi}(x)\bar{\varphi}(y)\bar{\varphi}(x) = \bar{\varphi}(y)\bar{\varphi}(x)\bar{\varphi}(y)$,
+    and thus the
+    homomorphism $\varphi : B_3 \to S_3$ that extends $\bar{\varphi}$
     is well-defined.  Since $(12), (23), (13)$ are all the
     transpositions in $S_3$, these generate $S_3$,
     and so $\varphi$ is surjective.
