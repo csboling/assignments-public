@@ -397,7 +397,11 @@ $xz = z^{-1}x$. This yields
 (xz)^6 &= 1.
 \end{align*}
 From $(xz)^3 = z$ and $(xz)^6 = 1$ we conclude that $z^2 = 1$, so
-$z = z^{-1} = 1$. Therefore the representation reduces to
+it follows from $z^{13} = 1$ that $z = z^{-1} = 1$
+(since
+$z^{12} = z^{-1} = z \implies z^{11} = 1 \implies z^{10} = z^{-1}
+\implies \cdots$).
+Therefore the representation reduces to
 $$
 \langle x, y \mid x^3 = y^7 = 1, yx = xy^4 \rangle.
 $$
@@ -631,39 +635,42 @@ $$
     $$
     is well-defined.
   }
-% \item{
-%   Observing that the map
-%   $\bar{\gamma} : \mathrm{PSL}_2(\mathbb{Z}) \to (\mathbb{C} \to \mathbb{C})$ given by
-%   $$
-%   \bar{\gamma}\left(
-%   \left[\begin{array}{c c}
-%     a & b \\
-%     c & d
-%   \end{array}\right]
-%   \right)(z)
-%   =
-%   \frac{a z + b}{c z + d}
-%   $$
-%   is injective when $ad - bc = 1$, letting $\Gamma =
-%   \mathrm{Im}(\bar{\gamma})$ we have an isomorphism
-%   $\gamma : \mathrm{PSL}_2(\mathbb{Z}) \to \Gamma$. Therefore showing that
-%   $\psi$ is surjective is equivalent to showing that the maps
-%   $$
-%   \gamma\left(
-%   \left[\begin{array}{r r}
-%     1 & 1 \\
-%     0 & 1
-%   \end{array}\right]\right)(z)
-%   = 1 + z, \quad
-%   \gamma\left(
-%   \left[\begin{array}{r r}
-%     1 & 0 \\
-%    -1 & 1
-%   \end{array}\right]\right)(z)
-%   = \frac{1}{1 - z}
-%   $$
-%   generate the group $\Gamma$.
-% }
+%\item{
+% Observing that the map
+% $\bar{\gamma} : \mathrm{PSL}_2(\mathbb{Z}) \to (\mathbb{C} \to \mathbb{C})$ given by
+% $$
+% \bar{\gamma}\left(
+% \left[\begin{array}{c c}
+%   a & b \\
+%   c & d
+% \end{array}\right]
+% \right)(z)
+% =
+% \frac{a z + b}{c z + d}
+% $$
+% is injective when $ad - bc = 1$. Let $\Gamma =
+% \mathrm{Im}(\bar{\gamma})$. Note that
+%
+% Therefore we have an isomorphism
+% $\gamma : \mathrm{PSL}_2(\mathbb{Z}) \to \Gamma$, with group
+% operation in $\Gamma$ given by composition of maps. Therefore showing that
+% $\psi$ is surjective is equivalent to showing that the maps
+% $$
+% \gamma\left(
+% \left[\begin{array}{r r}
+%   1 & 1 \\
+%   0 & 1
+% \end{array}\right]\right)(z)
+% = 1 + z, \quad
+% \gamma\left(
+% \left[\begin{array}{r r}
+%   1 & 0 \\
+%  -1 & 1
+% \end{array}\right]\right)(z)
+% = \frac{z}{1 - z}
+% $$
+% generate the group $\Gamma$.
+%}
 \end{enumerate}
 \end{Answer}
 
