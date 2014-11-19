@@ -169,16 +169,19 @@ is called \emph{nilpotent} if $Z_n(G) = G$ for some $n \geq 0$.
     We claim that $Z_k(P)$ is a $p$-group for any $k > 0$.
     For $k = 1$ the claim holds since $Z(P)$ has a nontrivial order
     that divides $|P|$ and so $Z(P)$ is a $p$-group.
-    Suppose $Z_{k-1}(P)$ is a $p$-group. Then (unless $P =
-    Z_{k-1}(P)$, and then $Z_k(P) = P$) $P / Z_{k-1}(P)$ is as
-    well and so
+    Suppose $Z_{k-1}(P)$ is a $p$-group. Then
+    $P / Z_{k-1}(P)$ is as well (unless $P = Z_{k-1}(P)$,
+    and then $Z_k(P) = P$ is a $p$-group), so $P / Z_{k-1}(P)$ has
+    nontrivial center and therefore
+    $
+      \frac{Z_k(P)}{Z_{k-1}(P)}
+    = Z\left(\frac{P}{Z_{k-1}(P)}\right)
+    $
+    is a $p$-group. But $Z_{k-1}(P)$ is a $p$-group by assumption so
     $$
-      |Z_k(P)|
-    = \left|\pi^{-1}\left(Z\left(\frac{P}{Z_{k-1}(P)}\right)\right)\right|
-    = \left|Z\left(\frac{P}{Z_{k-1}(P)}\right)\right|,
+    |Z_{k}(P)| = |Z_{k-1}(P)|\left|Z\left(\frac{P}{Z_{k-1}(P)}\right)\right|
     $$
-    and the center of $P / Z_{k-1}(P)$ is nontrivial and divides a
-    power of $p$. Therefore $Z_k(P)$ is a $p$-group.
+    is a power of $p$. Therefore $Z_k(P)$ is a $p$-group.
 
     Now consider
     $$
@@ -208,7 +211,8 @@ is called \emph{nilpotent} if $Z_n(G) = G$ for some $n \geq 0$.
   }
   \item{
     Let $G$ be nilpotent and let $H < G$ such that $H \neq G$.
-    Then $G = Z_n(G)$ and $\{ 1 \} = Z_0(G)$, so there is some
+    Then there is a $n$ such that $G = Z_n(G)$ and
+    $\{ 1 \} = Z_0(G)$, so there is some
     $k \in \{0, 1, \dots, n-1\}$ such that
     $Z_k(G) \subset H \subset Z_{k+1}(G)$ and $H \neq Z_{k+1}(G)$.
 
@@ -297,7 +301,7 @@ is called \emph{nilpotent} if $Z_n(G) = G$ for some $n \geq 0$.
         Suppose $G$ is isomorphic to the direct product of its Sylow
         subgroups. Each such subgroup is then a $p_i$-group for some
         $i$, so from part (c) we have that each Sylow subgroup is
-        nilpotent. Therefore we show that the direct product of
+        nilpotent. Therefore it suffices to show that the direct product of
         nilpotent groups is nilpotent, concluding that $G$ is nilpotent.
 
         Let $G$ and $H$ be nilpotent groups so that $G = Z_m(G)$,
@@ -338,7 +342,7 @@ is called \emph{nilpotent} if $Z_n(G) = G$ for some $n \geq 0$.
         $$
         g x g^{-1} x^{-1} \in Z_{k}(G), \quad
         h y h^{-1} y^{-1} \in Z_{k}(G), \quad
-        \forall x, y \in H.
+        \forall x, y \in G \times H.
         $$
         Let $(x, y) \in G \times H$. Then
         \begin{align*}
@@ -347,7 +351,8 @@ is called \emph{nilpotent} if $Z_n(G) = G$ for some $n \geq 0$.
         &\in Z_k(G) \times Z_k(H) = Z_k(G \times H)
         \end{align*}
         which means
-        $(g, h)(x, y)(g, h)^{-1}(x, y)^{-1} \in Z_k(G \times H)$ and
+        $(g, h)(x, y)(g, h)^{-1}(x, y)^{-1} \in Z_k(G \times H)$ for
+        any $(x, y) \in G \times H$ and
         so $(g, h) \in Z_{k+1}(G \times H)$. Certainly
         $Z_{k+1}(G \times H) \subset G \times H$. Therefore
         $G \times H = Z_{k+1}(G \times H)$ and so $G \times H$ is
@@ -397,21 +402,22 @@ $xz = z^{-1}x$. This yields
 (xz)^6 &= 1.
 \end{align*}
 From $(xz)^3 = z$ and $(xz)^6 = 1$ we conclude that $z^2 = 1$, so
-it follows from $z^{13} = 1$ that $z = z^{-1} = 1$
+$z = z^{-1}$ and it follows from $z^{13} = 1$ that $z = 1$
 (since
 $z^{12} = z^{-1} = z \implies z^{11} = 1 \implies z^{10} = z^{-1}
 \implies \cdots$).
 Therefore the representation reduces to
 $$
-\langle x, y \mid x^3 = y^7 = 1, yx = xy^4 \rangle.
+G = \langle x, y \mid x^3 = y^7 = 1, yx = xy^4 \rangle.
 $$
 Note also that the rewriting rule $yx = xy^4$ means an arbitrary term
-in $G$ can be rearranged into the form $x^k x^l$ for some exponents
+in $G$ can be rearranged into the form $x^k y^l$ for some exponents
 $k, l$. After cancelling powers of
 $x^3$ and $y^7$, such a term can contain at most $x^2$ and at most
 $y^6$. This means the order of the group is at most $2 \cdot 6 + 1 = 13$,
 accounting for the 2 possible powers of $x$, the 6 possible powers of
-$y$, and the identity. But then $G \simeq \mathbb{Z}_{13}$.
+$y$, and the identity. But then $G$ has prime order and so
+$G \simeq \mathbb{Z}_{13}$.
 \end{Answer}
 
 \pagebreak
@@ -456,9 +462,6 @@ $$
      -1 & 1
     \end{array}\right)
     $$
-  }
-  \item{
-    Show that $\psi$ is surjective.
   }
 \end{enumerate}
 \end{Problem}
@@ -558,8 +561,22 @@ $$
     $F(a, b) \simeq \langle x^2, y^2 \rangle$.
   }
   \item{
+    Let $\bar{\psi} : \{ x , y \in B_3 \} \to
+    \mathrm{PSL}_2(\mathbb{Z})$ be the map given by
+    $$
+    \bar{\psi}(x) =
+    \left(\begin{array}{r r}
+      1 & 1 \\
+      0 & 1
+    \end{array}\right), \quad
+    \bar{\psi}(y) =
+    \left(\begin{array}{r r}
+      1 & 0 \\
+     -1 & 1
+    \end{array}\right)
+    $$
     \begin{align*}
-    \psi(x)\psi(y)\psi(x)
+    \bar{\psi}(x)\bar{\psi}(y)\bar{\psi}(x)
     &=
     \left(\begin{array}{r r}
       1 & 1 \\
@@ -590,7 +607,7 @@ $$
     \end{align*}
     while
     \begin{align*}
-    \psi(y) \psi(x) \psi(y)
+    \bar{\psi}(y) \bar{\psi}(x) \bar{\psi}(y)
     &=
     \left(\begin{array}{r r}
       1 & 0 \\
@@ -620,20 +637,7 @@ $$
     \end{array}\right)
     \end{align*}
     Thus the homomorphism $\psi : B_3 \to \mathrm{PSL}_2(\mathbb{Z})$
-    that extends
-    $$
-    \psi(x) =
-    \left(\begin{array}{r r}
-      1 & 1 \\
-      0 & 1
-    \end{array}\right), \quad
-    \psi(y) =
-    \left(\begin{array}{r r}
-      1 & 0 \\
-     -1 & 1
-    \end{array}\right)
-    $$
-    is well-defined.
+    that extends $\bar{\psi}$ is well-defined.
   }
 %\item{
 % Observing that the map
