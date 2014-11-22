@@ -1,0 +1,158 @@
+\documentclass{article}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+\usepackage{commath}
+\usepackage{enumerate}
+
+\usepackage{graphicx}
+
+\title{ECE/ME 851 Homework \#8}
+\date{November 12, 2014}
+\author{Sam Boling \\ PID A48788119}
+
+\begin{document}
+
+\maketitle
+
+\section*{Problem \#1}
+Consider the transfer function
+$$
+H(s) = \frac{4s^2 + 27s + 41}{(s+2)(s+3)(s+5)}
+$$
+
+\begin{enumerate}
+  \item{
+    Expanding the denominator
+    $$
+    (s+2)(s+3)(s+5) = s^3 + 10s^2 + 31s + 30
+    $$
+    shows that the denominator has higher degree than the numerator
+    and therefore this is a strictly proper rational function and
+    therefore $H(\infty) = 0$. We then immediately have the controller
+    form realization given by
+    $$
+    4s^2 + 27s + 41 = \beta_{1} s^2 + \beta_{1} s + \beta_{0}, \quad
+    s^3 + 10s^2 + 31s + 30 = s^3 + \alpha_{2} s^2 + \alpha_{1} s + \alpha_0
+    $$
+    so that
+    $$
+    A_C =
+    \left[\begin{array}{r r r}
+       0         & 1           & 0          \\
+       0         & 0           & 1          \\
+      -\alpha_{0} & -\alpha_{1} & -\alpha_{2}
+    \end{array}\right] =
+    \left[\begin{array}{r r r}
+       0  & 1   & 0   \\
+       0  & 0   & 1   \\
+      -30 & -31 & -10
+    \end{array}\right], \quad
+    B_C =
+    \left[\begin{array}{r r r}
+       0 \\
+       0 \\
+       1
+    \end{array}\right], \quad
+    C_c =
+    \left[\begin{array}{r r r}
+      \beta_{0} & \beta_{1} & \beta_{2}
+    \end{array}\right] =
+    \left[\begin{array}{r r r}
+      41 & 27 & 4
+    \end{array}\right], \quad
+    D_C = H(\infty) = 0.
+    $$
+  }
+  \item{
+    Since the system is SISO, $H(s)^\top = H(s)$, so we obtain the
+    observer-form realization
+    $$
+    A_O = A_C^\top =
+    \left[\begin{array}{r r r}
+      0 & 0 & -30 \\
+      1 & 0 & -31 \\
+      0 & 1 & -10
+    \end{array}\right], \quad
+    B_O = C_C^\top =
+    \left[\begin{array}{c}
+      41 \\
+      27 \\
+      4
+    \end{array}\right], \quad
+    C_O = B_C^\top =
+    \left[\begin{array}{c c c}
+      0 & 0 & 1
+    \end{array}\right], \quad
+    D_O = D_C^\top = 0.
+    $$
+  }
+  \item{
+    The matrix $A_C$ has distinct eigenvalues $-2, -3, -5$ and
+    therefore can be diagonalized. We compute that this matrix has
+    eigenvectors given by columns of the matrix
+    $$
+    P = \left[\begin{array}{r r r}
+      1 &  1 &  1 \\
+     -2 & -3 & -5 \\
+      4 &  9 & 25
+    \end{array}\right]
+    $$
+    so that under the similarity transformation we have
+    $$
+    \hat{A} = P^{-1} A_C P =
+    \left[\begin{array}{r r r}
+      -2 &  0 &  0 \\
+       0 & -3 &  0 \\
+       0 &  0 & -5
+    \end{array}\right], \quad
+    \hat{B} = P^{-1} B_C =
+    \left[\begin{array}{r}
+       \frac{1}{3} \\
+      -\frac{1}{2} \\
+       \frac{1}{6}
+    \end{array}\right], \quad
+    \hat{C} = C_C P =
+    \left[\begin{array}{r r r}
+      3 & -4 & 6
+    \end{array}\right].
+    $$
+  }
+\end{enumerate}
+
+\pagebreak
+
+\section*{Problem \#2}
+
+\pagebreak
+
+\section*{Problem \#3}
+For the transfer function $H(s) = \frac{s+1}{s^2 + 2}$, find
+\begin{enumerate}
+  \item{
+    an uncontrollable realization
+  }
+  \item{
+    an unobservable realization
+  }\item{
+    an uncontrollable and unobservable realization
+  }\item{
+    a minimal realization.
+  }
+\end{enumerate}
+
+\pagebreak
+
+\section*{Problem \#4}
+Determine an observable realization of
+$$
+H(s) =
+\left[\begin{array}{c c}
+  \frac{s-1}{s+1} & \frac{1}{s^2 - 1} \\
+  1               & 0
+\end{array}\right]
+$$
+
+
+\end{document}
