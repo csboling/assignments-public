@@ -129,24 +129,137 @@ $$
 \item{
   The equivalent sampled system is given by
   $$
-  \bar{A} = e^{AT} =
-  \left[\begin{array}{c c}
-    \cos T & -\sin T \\
-    \sin T & \cos T
+  \bar{A} = e^{AT}, \quad
+  \bar{B} = \left( \int_0^T e^{A \tau} \dif\tau \right) B.
+  $$
+  Therefore
+  $$
+  \bar{A} =
+  \left[\begin{array}{r r}
+    \cos T & \sin T \\
+   -\sin T & \cos T
   \end{array}\right], \quad
-  \bar{B} = \left(\int_0^T e^{A\tau} \dif\tau\right) B =
+  \bar{B} =
   \left[\begin{array}{c}
-    \left. \cos \tau \right|_0^T \\
+    \int_0^T \sin \tau \dif\tau
+    \int_0^T \cos \tau \dif \tau
+  \end{array}\right] =
+  \left[\begin{array}{c}
+    \left. -\cos \tau \right|_0^T \\
     \left. \sin \tau \right|_0^T
   \end{array}\right] =
   \left[\begin{array}{c}
-    \cos T - 1 \\
+    1 - \cos T \\
     \sin T
   \end{array}\right].
   $$
 }
 \item{
-For $T = \frac{\pi}{2}$,
+  For $T = \frac{\pi}{2}$, we have
+  $$
+  A =
+  \left[\begin{array}{r r}
+    0 &  1 \\
+   -1 &  0
+  \end{array}\right], \quad
+  B =
+  \left[\begin{array}{r}
+    1 \\
+    1
+  \end{array}\right],
+  $$
+  so the controllability matrix and its inverse are given by
+  $$
+  \mathcal{C} =
+  \left[\begin{array}{r r}
+    1 &  1 \\
+    1 & -1
+  \end{array}\right], \quad
+  \mathcal{C}^{-1} =
+  \left[\begin{array}{r r}
+    \frac{1}{2} &  \frac{1}{2} \\
+    \frac{1}{2} & -\frac{1}{2}
+  \end{array}\right] =
+  $$
+  Applying the Ackermann gain formula with the desired characteristic
+  polynomial $\alpha_d(s) = s^2$ (to place both eigenvalues at zero)
+  we have
+  $$
+  F = -e_2^\top \mathcal{C}^{-1} \alpha_d(A) =
+  \left[\begin{array}{r r}
+    \frac{1}{2} & -\frac{1}{2}
+  \end{array}\right].
+  $$
+
+  The difference equation
+  $$
+  x(k+1) = A x(k) + B u(k)
+  $$
+  under linear state feedback control has the form
+  $$
+  x(k+1) = A x(k) + B F x(k) = (A + BF)x(k)
+  $$
+  which yields the response
+  $$
+  x(k) = (A + BF)^k x(0).
+  $$
+  With the feedback gains given above, we have
+  $$
+  A + BF =
+  \left[\begin{array}{r r}
+     \frac{1}{2} &  \frac{1}{2} \\
+    -\frac{1}{2} & -\frac{1}{2}
+  \end{array}\right]
+  $$
+  so that
+  $
+  (A + BF)^2 =
+  \left[\begin{array}{c c}
+    0 & 0 \\
+    0 & 0
+  \end{array}\right],
+  $
+  and therefore the system will converge in two time steps.
+}
+\item{
+  From the system equation we have
+  $$
+  x(1) = A x(0) + B u(0)
+  $$
+  so using the matrices derived above we have
+  $$
+  \left[\begin{array}{c}
+    x_1(1) \\
+    x_2(1)
+  \end{array}\right] =
+  \left[\begin{array}{r}
+     x_2(0) \\
+    -x_1(0)
+  \end{array}\right]
+  +
+  \left[\begin{array}{c}
+    u(0) \\
+    u(0)
+  \end{array}\right].
+  $$
+  An input which steers the system to the origin in one timestep
+  therefore requires
+  $$
+  u(0) = -x_2(0), \quad u(0) = x_1(0),
+  $$
+  or $x_1(0) = -x_2(0)$. Therefore only initial states which have the
+  form
+  $$
+  x(0) =
+  \left[\begin{array}
+    a \\
+   -a
+  \end{array}\right]
+  $$
+  can be steered to the origin in a single timestep, by applying the
+  input $u(0) = a$.
+}
+\item{
 }
 \end{enumerate}
 
