@@ -251,7 +251,7 @@ $$
   form
   $$
   x(0) =
-  \left[\begin{array}
+  \left[\begin{array}{r}
     a \\
    -a
   \end{array}\right]
@@ -260,7 +260,56 @@ $$
   input $u(0) = a$.
 }
 \item{
-}
+  Assigning
+  $
+  C =
+  \left[\begin{array}{c c}
+    1 & 0
+  \end{array}\right]
+  $
+  we can formulate the observer design as the dual controller design
+  problem by letting
+  $$
+  \hat{A} = A^\top, \quad
+  \hat{B} = C^\top, \quad
+  \hat{F} = -K^\top.
+  $$
+  This yields
+  $$
+  \mathcal{C} =
+  \left[\begin{array}{c c}
+    1 & 0 \\
+    0 & 1
+  \end{array}\right]
+  = \mathcal{C}^{-1}
+  $$
+  We find the gains for this system by
+  $$
+  \hat{F} = -e_2^\top \mathcal{C}^{-1} \alpha_d(A) =
+  \left[\begin{array}{c c}
+    0 & 1
+  \end{array}\right]
+  $$
+  so that
+  $
+  K = -\hat{F}^\top =
+  \left[\begin{array}{r}
+    0 \\ -1
+  \end{array}\right].
+  $
+  Then
+  $$
+  A - KC =
+  \left[\begin{array}{c c}
+    0 & 1 \\
+    0 & 0
+  \end{array}\right],
+  $$
+  so $(A - KC)^2 = \mathbf{0}_{2 \times 2}$. Therefore it will take 2
+  steps for the state estimate to converge and another 2 for the
+  observer-based controller to bring the system to the origin, for a
+  total of 4 timesteps.
+ }
 \end{enumerate}
 
 \pagebreak
@@ -283,14 +332,161 @@ For the transfer function $H(s) = \frac{s+1}{s^2 + 2}$, find
 \pagebreak
 
 \section*{Problem \#4}
-Determine an observable realization of
+Consider the transfer function
 $$
 H(s) =
 \left[\begin{array}{c c}
   \frac{s-1}{s+1} & \frac{1}{s^2 - 1} \\
   1               & 0
-\end{array}\right]
+\end{array}\right],
 $$
 
+so that the LCMs $d_i(s)$ of denominators of the $i$-th row are given
+by
+$$
+d_1(s) = (s+1)(s-1) = s^2 - 1, \quad
+d_2(s) = 1.
+$$
+and let
+$$
+\tilde{H}(s) = (H(s))^\top =
+\left[\begin{array}{c c}
+  \frac{s-1}{s+1}   & 1 \\
+  \frac{1}{s^2 - 1} & 0
+\end{array}\right] =
+\left[\begin{array}{c c}
+  \frac{s-1}{s+1}      & 1 \\
+  \frac{1}{(s+1)(s-1)} & 0
+\end{array}\right]
+$$
+so that
+$$
+\tilde{H}(\infty) =
+\left[\begin{array}{c c}
+  1 & 1 \\
+  0 & 0
+\end{array}\right].
+$$
+We then have
+$d(s)$
+$$
+d_1(s) = (s+1)(s-1) = s^2 - 1, \quad
+d_2(s) = 1
+$$
+so that
+\begin{align*}
+D(s) &=
+\left[\begin{array}{c c}
+  s^2-1 & 0 \\
+  0     & 1
+\end{array}\right]
+=
+\left[\begin{array}{c c}
+  s^2 & 0 \\
+  0   & 1
+\end{array}\right]
++
+\left[\begin{array}{r r}
+  -1 & 0 \\
+   0 & 0
+\end{array}\right]
+\\ &=
+\left[\begin{array}{c c}
+  s^2 & 0 \\
+  0   & 1
+\end{array}\right]
++
+\left[\begin{array}{r r r}
+  -1 & 0 & 0 \\
+   0 & 0 & 0
+\end{array}\right]
+\left[\begin{array}{c c}
+  1 & 0 \\
+  s & 0 \\
+  0 & 1
+\end{array}\right],
+\end{align*}
+i.e. $
+L =
+\left[\begin{array}{r r r}
+  -1 & 0 & 0 \\
+   0 & 0 & 0
+\end{array}\right].
+$
+
+Next we have
+$$
+N(s) = \tilde{H}(s)D(s) =
+\left[\begin{array}{c c}
+  (s-1)^2 & 1 \\
+  1       & 0
+\end{array}\right], \quad
+\tilde{H}(\infty)D(s) =
+\left[\begin{array}{c c}
+  s^2 - 1 & 1 \\
+  0       & 0
+\end{array}\right]
+$$
+so
+$$
+N(s) - \tilde{H}(\infty)D(s) =
+\left[\begin{array}{c c}
+  -2s + 2 & 0 \\
+   1      & 0
+\end{array}\right]
+=
+\left[\begin{array}{r r r}
+  -2 & 2 \\
+   1 & 0
+\end{array}\right]
+\left[\begin{array}{c c}
+  1   & 0 \\
+  s   & 0
+\end{array}\right],
+$$
+so that
+$
+M =
+\left[\begin{array}{r r}
+  -2 & 2 \\
+   1 & 0
+\end{array}\right].
+$
+We then have
+$$
+A_m =
+\left[\begin{array}{c c c }
+   0 & 1 \\
+   0 & 0
+\end{array}\right], \quad
+B_m =
+\left[\begin{array}{c c}
+   0 & 0 \\
+   1 & 0
+\end{array}\right]
+$$
+so
+\begin{align*}
+A_C &= A_m - B_m L =
+\left[\begin{array}{c c}
+   0 & 1 \\
+   1 & 0
+\end{array}\right], \\
+B_C &= B_m =
+\left[\begin{array}{c c}
+   0 & 0 \\
+   1 & 0
+\end{array}\right], \\\
+C_C &= M =
+\left[\begin{array}{r r}
+  -2 & 2 \\
+   1 & 0
+\end{array}\right], \\\
+D_C &= \hat{H}(\infty) =
+\left[\begin{array}{c c}
+   1 & 1 \\
+   0 & 0
+\end{array}\right]
+\end{align*}
 
 \end{document}
