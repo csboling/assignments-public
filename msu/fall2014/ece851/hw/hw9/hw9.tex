@@ -371,8 +371,31 @@ and observable.
     We confirm that this is controllable and unobservable from the
     rank of the controllability matrix (3) and observability matrix (2).
   }\item{
-    an uncontrollable and unobservable realization
-  }\item{
+    An uncontrollable and unobservable realization can be obtained by
+    adding a state to the uncontrollable realization that is not
+    reflected on the output or affected by the input. For instance,
+    the system given by
+    \begin{align*}
+      A &=
+      \left[\begin{array}{r r r r}
+        0 &  0 &  2 & 0 \\
+        1 &  0 & -2 & 0 \\
+        0 &  1 &  1 & 0 \\
+        0 &  0 &  0 & 1
+      \end{array}\right], \\
+      B &=
+      \left[\begin{array}{c}
+        -1 \\ 0 \\ 1 \\ 0
+      \end{array}\right], \\
+      C &=
+      \left[\begin{array}{r r r r}
+         0 & 0 & 1 & 0
+      \end{array}\right], \\
+      D &= H(\infty) = 0.
+    \end{align*}
+    possesses the same transfer function but is unobservable and uncontrollable.
+  }
+  \item{
     The controller form of the original transfer function is given by
     \begin{align*}
       A &=
@@ -466,6 +489,6 @@ D &= H(\infty) =
   1 & 0
 \end{array}\right]
 \end{align*}
-which is a minimal realization and therefore observable.
+is a minimal realization and therefore observable.
 
 \end{document}
