@@ -37,8 +37,8 @@ $$
     s^3 + 10s^2 + 31s + 30 = s^3 + \alpha_{2} s^2 + \alpha_{1} s + \alpha_0
     $$
     so that
-    $$
-    A_C =
+    \begin{align*}
+    A_C &=
     \left[\begin{array}{r r r}
        0         & 1           & 0          \\
        0         & 0           & 1          \\
@@ -48,45 +48,45 @@ $$
        0  & 1   & 0   \\
        0  & 0   & 1   \\
       -30 & -31 & -10
-    \end{array}\right], \quad
-    B_C =
+    \end{array}\right], \\
+    B_C &=
     \left[\begin{array}{r r r}
        0 \\
        0 \\
        1
-    \end{array}\right], \quad
-    C_c =
+    \end{array}\right], \\
+    C_c &=
     \left[\begin{array}{r r r}
       \beta_{0} & \beta_{1} & \beta_{2}
     \end{array}\right] =
     \left[\begin{array}{r r r}
       41 & 27 & 4
-    \end{array}\right], \quad
-    D_C = H(\infty) = 0.
-    $$
+    \end{array}\right], \\
+    D_C &= H(\infty) = 0.
+    \end{align*}
   }
   \item{
     Since the system is SISO, $H(s)^\top = H(s)$, so we obtain the
     observer-form realization
-    $$
-    A_O = A_C^\top =
+    \begin{align*}
+    A_O &= A_C^\top =
     \left[\begin{array}{r r r}
       0 & 0 & -30 \\
       1 & 0 & -31 \\
       0 & 1 & -10
-    \end{array}\right], \quad
-    B_O = C_C^\top =
+    \end{array}\right], \\
+    B_O &= C_C^\top =
     \left[\begin{array}{c}
       41 \\
       27 \\
       4
-    \end{array}\right], \quad
-    C_O = B_C^\top =
+    \end{array}\right], \\
+    C_O &= B_C^\top =
     \left[\begin{array}{c c c}
       0 & 0 & 1
-    \end{array}\right], \quad
-    D_O = D_C^\top = 0.
-    $$
+    \end{array}\right], \\
+    D_O &= D_C^\top = 0.
+    \end{align*}
   }
   \item{
     The matrix $A_C$ has distinct eigenvalues $-2, -3, -5$ and
@@ -100,24 +100,24 @@ $$
     \end{array}\right]
     $$
     so that under the similarity transformation we have
-    $$
-    \hat{A} = P^{-1} A_C P =
+    \begin{align*}
+    \hat{A} &= P^{-1} A_C P =
     \left[\begin{array}{r r r}
       -2 &  0 &  0 \\
        0 & -3 &  0 \\
        0 &  0 & -5
-    \end{array}\right], \quad
-    \hat{B} = P^{-1} B_C =
+    \end{array}\right], \\
+    \hat{B} &= P^{-1} B_C =
     \left[\begin{array}{r}
        \frac{1}{3} \\
       -\frac{1}{2} \\
        \frac{1}{6}
-    \end{array}\right], \quad
-    \hat{C} = C_C P =
+    \end{array}\right], \\
+    \hat{C} &= C_C P =
     \left[\begin{array}{r r r}
       3 & -4 & 6
     \end{array}\right].
-    $$
+    \end{align*}
   }
 \end{enumerate}
 
@@ -133,13 +133,13 @@ $$
   \bar{B} = \left( \int_0^T e^{A \tau} \dif\tau \right) B.
   $$
   Therefore
-  $$
-  \bar{A} =
+  \begin{align*}
+  \bar{A} &=
   \left[\begin{array}{r r}
     \cos T & \sin T \\
    -\sin T & \cos T
-  \end{array}\right], \quad
-  \bar{B} =
+  \end{array}\right], \\
+  \bar{B} &=
   \left[\begin{array}{c}
     \int_0^T \sin \tau \dif\tau
     \int_0^T \cos \tau \dif \tau
@@ -152,7 +152,7 @@ $$
     1 - \cos T \\
     \sin T
   \end{array}\right].
-  $$
+  \end{align*}
 }
 \item{
   For $T = \frac{\pi}{2}$, we have
@@ -315,17 +315,84 @@ $$
 \pagebreak
 
 \section*{Problem \#3}
-For the transfer function $H(s) = \frac{s+1}{s^2 + 2}$, find
+For the transfer function $H(s) = \frac{s+1}{s^2 + 2}$, we observe
+that
+$$
+  H(s)
+= \frac{s+1}{s^2 + 2}\frac{s-1}{s-1} =
+= \frac{s^2 - 1}{s^3 - s^2 + 2s - 2}
+$$
+has a pole-zero cancellation and therefore cannot be both controllable
+and observable.
 \begin{enumerate}
   \item{
-    an uncontrollable realization
+    An uncontrollable realization is given by the observer form of
+    this transfer function:
+    \begin{align*}
+      A &=
+      \left[\begin{array}{r r r}
+        0 &  0 &  2 \\
+        1 &  0 & -2 \\
+        0 &  1 &  1
+      \end{array}\right], \\
+      B &=
+      \left[\begin{array}{c}
+        -1 \\ 0 \\ 1
+      \end{array}\right], \\
+      C &=
+      \left[\begin{array}{r r r}
+         0 & 0 & 1
+      \end{array}\right], \\
+      D &= H(\infty) = 0.
+    \end{align*}
+    We confirm that this is controllable and unobservable from the
+    rank of the controllability matrix (2) and observability matrix (3).
   }
   \item{
-    an unobservable realization
+    An unobservable realization is given by the controller form of the
+    transfer function:
+    \begin{align*}
+      A &=
+      \left[\begin{array}{r r r}
+        0 &  1 & 0 \\
+        0 &  0 & 1 \\
+        2 & -2 & 1
+      \end{array}\right], \\
+      B &=
+      \left[\begin{array}{c}
+        0 \\ 0 \\ 1
+      \end{array}\right], \\
+      C &=
+      \left[\begin{array}{r r r}
+        -1 & 0 & 1
+      \end{array}\right], \\
+      D &= H(\infty) = 0.
+    \end{align*}
+    We confirm that this is controllable and unobservable from the
+    rank of the controllability matrix (3) and observability matrix (2).
   }\item{
     an uncontrollable and unobservable realization
   }\item{
-    a minimal realization.
+    The controller form of the original transfer function is given by
+    \begin{align*}
+      A &=
+      \left[\begin{array}{r r r}
+        0 &  1 \\
+       -2 &  0
+      \end{array}\right], \\
+      B &=
+      \left[\begin{array}{c}
+        0 \\ 1
+      \end{array}\right], \\
+      C &=
+      \left[\begin{array}{r r r}
+        1 & 1
+      \end{array}\right], \\
+      D &= H(\infty) = 0.
+    \end{align*}
+    The controllability matrix and observability matrix for this
+    realization both have rank 2, so the system is controllable and
+    observable and therefore minimal.
   }
 \end{enumerate}
 
@@ -338,155 +405,67 @@ H(s) =
 \left[\begin{array}{c c}
   \frac{s-1}{s+1} & \frac{1}{s^2 - 1} \\
   1               & 0
-\end{array}\right],
-$$
-
-so that the LCMs $d_i(s)$ of denominators of the $i$-th row are given
-by
-$$
-d_1(s) = (s+1)(s-1) = s^2 - 1, \quad
-d_2(s) = 1.
-$$
-and let
-$$
-\tilde{H}(s) = (H(s))^\top =
-\left[\begin{array}{c c}
-  \frac{s-1}{s+1}   & 1 \\
-  \frac{1}{s^2 - 1} & 0
 \end{array}\right] =
 \left[\begin{array}{c c}
-  \frac{s-1}{s+1}      & 1 \\
-  \frac{1}{(s+1)(s-1)} & 0
+  \frac{s-1}{s+1} & \frac{1}{(s+1)(s-1)} \\
+  1               & 0
 \end{array}\right]
 $$
-so that
-$$
-\tilde{H}(\infty) =
-\left[\begin{array}{c c}
-  1 & 1 \\
+We observe that the denominators have least common multiple
+$(s+1)(s-1)$, which has distinct real roots $\pm 1$. Therefore we find
+\begin{align*}
+K_1 &= \lim_{s \to -1} (s + 1)H(s) =
+\left[\begin{array}{r r}
+ -2 & -\frac{1}{2} \\
   0 & 0
-\end{array}\right].
-$$
-We then have
-$d(s)$
-$$
-d_1(s) = (s+1)(s-1) = s^2 - 1, \quad
-d_2(s) = 1
-$$
-so that
-\begin{align*}
-D(s) &=
-\left[\begin{array}{c c}
-  s^2-1 & 0 \\
-  0     & 1
+\end{array}\right] =
+\left[\begin{array}{r}
+ -1 \\
+  0
 \end{array}\right]
-=
-\left[\begin{array}{c c}
-  s^2 & 0 \\
-  0   & 1
-\end{array}\right]
-+
 \left[\begin{array}{r r}
-  -1 & 0 \\
-   0 & 0
-\end{array}\right]
-\\ &=
-\left[\begin{array}{c c}
-  s^2 & 0 \\
-  0   & 1
-\end{array}\right]
-+
-\left[\begin{array}{r r r}
-  -1 & 0 & 0 \\
-   0 & 0 & 0
-\end{array}\right]
-\left[\begin{array}{c c}
-  1 & 0 \\
-  s & 0 \\
-  0 & 1
-\end{array}\right],
-\end{align*}
-i.e. $
-L =
-\left[\begin{array}{r r r}
-  -1 & 0 & 0 \\
-   0 & 0 & 0
-\end{array}\right].
-$
-
-Next we have
-$$
-N(s) = \tilde{H}(s)D(s) =
-\left[\begin{array}{c c}
-  (s-1)^2 & 1 \\
-  1       & 0
-\end{array}\right], \quad
-\tilde{H}(\infty)D(s) =
-\left[\begin{array}{c c}
-  s^2 - 1 & 1 \\
-  0       & 0
-\end{array}\right]
-$$
-so
-$$
-N(s) - \tilde{H}(\infty)D(s) =
-\left[\begin{array}{c c}
-  -2s + 2 & 0 \\
-   1      & 0
-\end{array}\right]
-=
-\left[\begin{array}{r r r}
-  -2 & 2 \\
-   1 & 0
-\end{array}\right]
-\left[\begin{array}{c c}
-  1   & 0 \\
-  s   & 0
-\end{array}\right],
-$$
-so that
-$
-M =
-\left[\begin{array}{r r}
-  -2 & 2 \\
-   1 & 0
-\end{array}\right].
-$
-We then have
-$$
-A_m =
-\left[\begin{array}{c c c }
-   0 & 1 \\
-   0 & 0
-\end{array}\right], \quad
-B_m =
-\left[\begin{array}{c c}
-   0 & 0 \\
-   1 & 0
-\end{array}\right]
-$$
-so
-\begin{align*}
-A_C &= A_m - B_m L =
-\left[\begin{array}{c c}
-   0 & 1 \\
-   1 & 0
+  2 & \frac{1}{2}
 \end{array}\right], \\
-B_C &= B_m =
-\left[\begin{array}{c c}
-   0 & 0 \\
-   1 & 0
-\end{array}\right], \\\
-C_C &= M =
+K_2 &= \lim_{s \to 1} (s - 1)H(s) =
 \left[\begin{array}{r r}
-  -2 & 2 \\
-   1 & 0
-\end{array}\right], \\\
-D_C &= \hat{H}(\infty) =
-\left[\begin{array}{c c}
-   1 & 1 \\
-   0 & 0
+  0 & \frac{1}{2} \\
+  0 & 0
+\end{array}\right] =
+\left[\begin{array}{r}
+  1 \\
+  0
+\end{array}\right]
+\left[\begin{array}{r r}
+  0 & \frac{1}{2}
+\end{array}\right],
+\end{align*}
+with $\rho_1 = \rho_2 = 1$. Then
+\begin{align*}
+A &=
+\left[\begin{array}{r r}
+ -1 I_{1 \times 1} & 0 \\
+  0                & I_{1 \times 1}
+\end{array}\right] =
+\left[\begin{array}{r r}
+ -1 & 0 \\
+  0 & 1
+\end{array}\right], \\
+B &=
+\left[\begin{array}{r r}
+  2 & \frac{1}{2} \\
+  0 & \frac{1}{2}
+\end{array}\right], \\
+C &=
+\left[\begin{array}{r r}
+ -1 & 1 \\
+  0 & 0
+\end{array}\right], \\
+D &= H(\infty) =
+\left[\begin{array}{r r}
+  1 & 0 \\
+  1 & 0
 \end{array}\right]
 \end{align*}
+which is a minimal realization and therefore observable.
 
 \end{document}
