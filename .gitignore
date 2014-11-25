@@ -1,0 +1,9 @@
+*.log
+*~
+
+*.pdf
+*.aux
+*.blg
+*.fmt
+auto/
+_region_.*
