@@ -71,7 +71,8 @@
       Let $P$ be a prime ideal of $A$ and let $S = A - P$. Let
       $x, y \in S$. Then $x, y \notin P$, so since $P$ is a prime
       ideal it must be that $xy \notin P$. Therefore $xy \in A - P =
-      S$, so $S$ is a multiplicative submonoid of $A$.
+      S$,
+      so $S$ is a multiplicative submonoid of $A$.
 
 
     }
@@ -118,7 +119,7 @@
   A = \mathbb{C}[[x]] =
   \left\{
     \left.
-      \sum_{n \geq 0}^\infty a_i X^i
+      \sum_{k \in \mathbb{N}} a_k X^k
     = a_0 + a_1 X + a_2 X^2 + \cdots + a_n X^n + \cdots
     \right|
       a_i \in \mathbb{C}
@@ -142,6 +143,111 @@
 
 \begin{Answer}
   \begin{enumerate}[(a)]
+    \item{
+      The product of the power series
+      $$
+      a = \sum_{n=0}^\infty a_n X^n, \quad
+      b = \sum_{n=0}^\infty b_n X^n \in \mathbb{C}[[x]]
+      $$
+      is given by
+      $$
+      a \cdot b = \sum_{n=0}^\infty(a \cdot b)_n X^n, \quad
+      (a \cdot b)_n = \sum_{k=0}^n a_k b_{n-k}.
+      $$
+      \begin{itemize}
+        \item[$\implies$]{
+          Suppose $a \cdot b = 1$ for some $b \in
+          \mathbb{C}[[x]]$. Then
+          \begin{align*}
+             1
+          &= a \cdot b
+          &= \sum_{n=0}^\infty \sum_{k=0}^n a_k b_{n-k} X^n \\
+          &= a_0 b_0
+           + X \sum_{n=1}^\infty \sum_{k=0}^n a_k b_{n-k} X^{n-1},
+          \end{align*}
+          and since all terms besides $a_0 b_0$ contain $X$ this is
+          only possible if $b_0 = a_0^{-1}$, $(a \cdot b)_n = 0$ for
+          all $n \geq 1$. Therefore $a_0$ must have a multiplicative
+          inverse for this equation to be satisfied, so $a_0 \neq 0$.
+        }
+        \item[$\impliedby$]{
+          Suppose $a_0 \neq 0$. Then $a_0$ has a multiplicative
+          inverse in $\mathbb{C}$. Let
+          \begin{align*}
+            b_0 &= a_0^{-1}, \\
+            b_n &= -a_0^{-1} \sum_{k=0}^{n-1} a_{k+1} b_{(n-1)-k}.
+          \end{align*}
+          and consider the power series $b = \sum_{n=0}^\infty b_n
+          X^n$. Then the terms of the product are given by
+          \begin{align*}
+             (a \cdot b)_0
+          &= a_0 a_0^{-1} = 1, \\
+             (a \cdot b)_n
+          &= a_0 b_n + a_1 b_{n-1} + \cdots + a_{n-1} b_1 + a_n b_0 \\
+          &= a_0 b_n + \sum_{k=0}^{n-1} a_{k+1} b_k \\
+          &= -a_0 a_0^{-1} \sum_{k=0}^{n-1} a_{k+1} b_k
+           + \sum_{k=0}^{n-1} a_{k+1} b_k
+           = 0,
+          \end{align*}
+          and therefore $a \cdot b = 1$.
+        }
+      \end{itemize}
+    }
+    \item{
+      Note that
+      \begin{align*}
+         (X)
+      &= \left\{
+           r_1 X + r_2 X + \cdots + r_n X
+         \mid
+           r_i \in A
+         \right\} \\
+      &= \left\{
+           X (r_1 + \cdots r_n)
+         \mid
+           r_i \in A
+         \right\} \\
+      &= \left\{
+           \left.
+             X
+             \left(
+               \sum_{k \in \mathbb{N}} a_{1k} X^k
+             + \cdots
+             + \sum_{k \in \mathbb{N}} a_{nk} X^k
+             \right)
+           \right|
+             a_{ij} \in \mathbb{C}
+         \right\} \\
+      &= \left\{
+           \left.
+             X
+             \sum_{k \in \mathbb{N}}
+               (a_{1k} + \cdots + a_{nk}) X^k
+           \right|
+             a_{ij} \in \mathbb{C}
+         \right\},
+      \end{align*}
+      or after relabeling coefficients
+      \begin{align*}
+         (X)
+      &= \left\{
+           \left.
+             \sum_{k \in \mathbb{N}} a_k X^k
+           \right|
+             a_0 = 0
+         \right\} \\
+      &= A -
+         \left\{
+           \left.
+             \sum_{k \in \mathbb{N}} a_k X^k
+           \right|
+             a_0 \neq 0
+         \right\}.
+      \end{align*}
+      Therefore, from part (a), $(X) = A - A^\ast$
+      and from problem 1(a) this means $(X)$ is the unique maximal
+      ideal of $A$.
+    }
     \item{
     }
   \end{enumerate}
