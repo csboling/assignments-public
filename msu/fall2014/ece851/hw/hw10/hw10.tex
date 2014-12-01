@@ -27,6 +27,88 @@ H(s) =
 $$
 \begin{enumerate}
   \item{
+    The denominator polynomial is given by
+    $$
+    d(s) = s(s+3)(s+1)
+    $$
+    which has distinct real roots, so taking
+    $$
+    \bar{H}(s) = H(s) - H(\infty) =
+    \left[\begin{array}{c c}
+      \frac{1}{s}   & \frac{s+3}{s+1} - 1 \\
+      \frac{1}{s+3} & \frac{s}{s+1} - 1
+    \end{array}\right] =
+    \left[\begin{array}{c c}
+      \frac{1}{s}   &  \frac{2}{s+1} \\
+      \frac{1}{s+3} & -\frac{1}{s+1}
+    \end{array}\right]
+    $$
+    we have
+    \begin{align*}
+      K_1 = \lim_{s \to 0} s \bar{H}(s) &=
+      \left[\begin{array}{c c}
+        1 & 0 \\
+        0 & 0
+      \end{array}\right] =
+      \left[\begin{array}{c}
+        1 \\
+        0
+      \end{array}\right]
+      \left[\begin{array}{c c}
+        1 & 0
+      \end{array}\right], \\
+      K_2 = \lim_{s \to -1} (s+1)\bar{H}(s) &=
+      \left[\begin{array}{r r}
+        0 &  2 \\
+        0 & -1
+      \end{array}\right] =
+      \left[\begin{array}{r}
+         2 \\
+        -1
+      \end{array}\right]
+      \left[\begin{array}{c c}
+        0 & 1
+      \end{array}\right], \\
+      K_3 = \lim_{s \to -3} (s+3)\bar{H}(s) &=
+      \left[\begin{array}{c c}
+        0 & 0 \\
+        1 & 0
+      \end{array}\right] =
+      \left[\begin{array}{c c}
+        0 \\
+        1
+      \end{array}\right]
+      \left[\begin{array}{c c}
+        1 & 0
+      \end{array}\right].
+    \end{align*}
+    Since $\rho_1 = \rho_2 = \rho_3 = 1$, we then have
+    \begin{align*}
+      A &=
+      \left[\begin{array}{r r r}
+        0 &  0 &  0 \\
+        0 & -1 &  0 \\
+        0 &  0 & -3
+      \end{array}\right], \\
+      B &=
+      \left[\begin{array}{c c}
+        1 & 0 \\
+        0 & 1 \\
+        1 & 0
+      \end{array}\right], \\
+      C &=
+      \left[\begin{array}{r r r}
+        1 &  2 & 0 \\
+        0 & -1 & 1
+      \end{array}\right], \\
+      D &=
+      \left[\begin{array}{c c}
+        0 & 1 \\
+        0 & 1
+      \end{array}\right].
+    \end{align*}
+  }
+  \item{
     The denominators are already factored, so we have
     $$
     H(s) - H(\infty) =
@@ -297,38 +379,36 @@ $$
     which is a sum of scalar functions multiplied by constant
     matrices. Then
     \begin{align*}
-    \phi(t, t_0)
-    &=
-    \exp \left\{
-      \int_{t_0}^{t} \alpha_1(t) M_1 \dif t
-    \right\}
-    \exp \left\{
-      \int_{t_0}^{t} \alpha_2(t) M_2 \dif t
-    \right\} \\
-    &=
-   \exp\left\{
-     \left[\begin{array}{c c}
-       1       & 0 \\
-       \lambda & 1
-     \end{array}\right]
-   \right\}
-   \left[\begin{array}{c c}
-     e^{-(t - t_0)} & 0 \\
-     0           & 1
-   \end{array}\right]
-   \end{align*}
-   where
-   $$
-   \lambda = \int_{t_0}^t \tau \dif \tau = \frac{1}{2}(t^2 - t_0^2)
-   $$
-   so that
-   $$
-   \phi(t, t_0) =
-   \left[\begin{array}{c c}
-     e^{-(t - t_0)}                         & 0 \\
-     \frac{1}{2}(t^2 - t_0^2) e^{-(t - t_0)} & 1
-   \end{array}\right].
-   $$
+      \phi(t, t_0)
+      &=
+      \exp \left\{
+        \int_{t_0}^{t} \alpha_1(t) M_1 \dif t
+      \right\}
+      \exp \left\{
+        \int_{t_0}^{t} \alpha_2(t) M_2 \dif t
+      \right\} \\
+      &=
+      \left[\begin{array}{c c}
+        1       & 0 \\
+        \lambda & 1
+      \end{array}\right]
+      \left[\begin{array}{c c}
+        e^{-(t - t_0)} & 0 \\
+        0           & 1
+      \end{array}\right]
+    \end{align*}
+    where
+    $$
+    \lambda = \int_{t_0}^t \tau \dif \tau = \frac{1}{2}(t^2 - t_0^2)
+    $$
+    so that
+    $$
+    \phi(t, t_0) =
+    \left[\begin{array}{c c}
+      e^{-(t - t_0)}                         & 0 \\
+      \frac{1}{2}(t^2 - t_0^2) e^{-(t - t_0)} & 1
+    \end{array}\right].
+    $$
   }
 \end{enumerate}
 
@@ -417,5 +497,69 @@ $$
 \end{enumerate}
 
 \section*{Problem \#4}
+
+\begin{enumerate}
+  \item{
+    The uniform asymptotic stability of the transition matrices is as
+    follows:
+    \begin{itemize}
+      \item{
+        The transition matrix in problem 2(a) is uniformly
+        asymptotically stable, since the decaying exponential term
+        dominates the response.
+      }
+      \item{
+        The matrix in problem 2(b) is not uniformly asymptotically
+        stable, since the transition matrix contains growing
+        exponentials.
+      }
+      \item{
+        Although the response in problem 2(c) consists of decaying
+        exponentials, there is a constant entry in the transition
+        matrix which keeps the system response from decaying to
+        zero. Therefore this system is not uniformly asymptotically
+        stable.
+      }
+      \item{
+        The system in problem 3(b) is not uniformly asymptotically
+        stable since it contains a term which grows as $e^{t^3}$.
+      }
+      \item{
+        Note that
+        $$
+        2e^{-z}
+        \left[\begin{array}{c c}
+          \cosh z & \sinh z \\
+          \sinh z & \cosh z
+        \end{array}\right]
+        =
+        e^{-z}
+        \left[\begin{array}{c c}
+          e^{z} + e^{-z} & e^{z} - e^{-z} \\
+          e^{z} - e^{-z} & e^{z} + e^{-z}
+        \end{array}\right]
+        =
+        \left[\begin{array}{c c}
+          1 + e^{-2z} & 1 - e^{-2z} \\
+          1 - e^{-2z} & 1 + e^{-2z}
+        \end{array}\right]
+        $$
+        so that
+        $$
+        \phi(t, t_0) =
+        \frac{1 + t}{1 + t_0}
+        \left[\begin{array}{c c}
+          1 + e^{-2z} & 1 - e^{-2z} \\
+          1 - e^{-2z} & 1 + e^{-2z}
+        \end{array}\right].
+        $$
+        Therefore this system is not uniformly asymptotically stable.
+      }
+    \end{itemize}
+  }
+  \item{
+    None of the $2 \times 2$ systems are uniformly asymptotically stable.
+  }
+\end{enumerate}
 
 \end{document}
