@@ -1,0 +1,421 @@
+\documentclass{article}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+\usepackage{commath}
+\usepackage{enumerate}
+
+\usepackage{graphicx}
+
+\title{ECE/ME 851 Homework \#10}
+\date{November 12, 2014}
+\author{Sam Boling \\ PID A48788119}
+
+\begin{document}
+
+\maketitle
+
+\section*{Problem \#1}
+The desired transfer function is given by
+$$
+H(s) =
+\left[\begin{array}{c c}
+  \frac{1}{s}   & \frac{s+3}{s+1} \\
+  \frac{1}{s+3} & \frac{s}{s+1}
+\end{array}\right].
+$$
+\begin{enumerate}
+  \item{
+    The denominators are already factored, so we have
+    $$
+    H(s) - H(\infty) =
+    \left[\begin{array}{c c}
+      \frac{1}{s}   & \frac{s+3}{s+1} - 1 \\
+      \frac{1}{s+3} & \frac{s}{s+1} - 1
+    \end{array}\right] =
+    \left[\begin{array}{c c}
+      \frac{1}{s}   &  \frac{2}{s+1} \\
+      \frac{1}{s+3} & -\frac{1}{s+1}
+    \end{array}\right].
+    $$
+    Next we find the denominator polynomials
+    $$
+    d_1(s) = s(s+3) = s^2 + 3s, \quad
+    d_2(s) = s + 1
+    $$
+    so that
+    $$
+    D(s) =
+    \left[\begin{array}{c c}
+      s^2 & 0 \\
+      0   & s
+    \end{array}\right]
+    +
+    \left[\begin{array}{c c c}
+      0 & 3 & 0 \\
+      0 & 0 & 1
+    \end{array}\right]
+    \left[\begin{array}{c c}
+      1 & 0 \\
+      s & 0 \\
+      0 & 1
+    \end{array}\right] =
+    \left[\begin{array}{c c}
+      s^2 + 3s & 0 \\
+      0        & s + 1
+    \end{array}\right]
+    $$
+    Then
+    \begin{align*}
+    N(s) = H(s)D(s) &=
+    \left[\begin{array}{c c}
+      s+3 & s+3 \\
+      s   & s
+    \end{array}\right], \\
+    H(\infty)D(s) &=
+    \left[\begin{array}{c c}
+      0 & s+1 \\
+      0 & s+1
+    \end{array}\right], \\
+    N(s) - H(\infty)D(s) &=
+    \left[\begin{array}{c r}
+      s+3 &  2 \\
+      s   & -1 \\
+    \end{array}\right] =
+    \left[\begin{array}{r r r}
+      3 & 1 &  2 \\
+      0 & 1 & -1
+    \end{array}\right]
+    \left[\begin{array}{c c}
+      1 & 0 \\
+      s & 0 \\
+      0 & 1
+    \end{array}\right].
+    \end{align*}
+    Furthermore
+    \begin{align*}
+      A_m &=
+      \left[\begin{array}{c c c}
+        0 & 1 & 0 \\
+        0 & 0 & 0 \\
+        0 & 0 & 0
+      \end{array}\right], \\
+      B_m &=
+      \left[\begin{array}{c c}
+        0 & 0 \\
+        1 & 0 \\
+        0 & 1
+      \end{array}\right]
+    \end{align*}
+    so that the controller form realization is given by
+    \begin{align*}
+      A_C = A_m - B_m L &=
+      \left[\begin{array}{r r r}
+        0 &  1 &  0 \\
+        0 & -3 &  0 \\
+        0 &  0 & -1
+      \end{array}\right], \\
+      B_C = B_m &=
+      \left[\begin{array}{c c}
+        0 & 0 \\
+        1 & 0 \\
+        0 & 1
+      \end{array}\right], \\
+      C_C = M &=
+      \left[\begin{array}{r r r}
+        3 & 1 &  2 \\
+        0 & 1 & -1
+      \end{array}\right], \\
+      D_C = H(\infty) &=
+      \left[\begin{array}{c c}
+        0 & 1 \\
+        0 & 1 \\
+    \end{array}\right].
+    \end{align*}
+    The observability matrix has full rank, so this is an observable
+    realization. Since it is in controller form, it is a controllable
+    realization as well, so it is a minimal realization. A
+    diagonalizing transformation can then be found by finding a matrix
+    of eigenvectors
+    $$
+    P =
+    \left[\begin{array}{c c c}
+      1 & -1 & 0 \\
+      0 &  3 & 0 \\
+      0 &  0 & 1
+    \end{array}\right]
+    $$
+    so that
+    $$
+    P^{-1} =
+    \left[\begin{array}{c c c}
+      1 & \frac{1}{3} & 0 \\
+      0 & \frac{1}{3} & 0 \\
+      0 &           0 & 1
+    \end{array}\right]
+    $$
+    and the diagonal minimal realization is
+    \begin{align*}
+      A = P^{-1} A P &=
+      \left[\begin{array}{c c c}
+        0 &  0 &  0 \\
+        0 & -3 &  0 \\
+        0 &  0 & -1
+      \end{array}\right], \\
+      B = P^{-1} B &=
+      \left[\begin{array}{c c}
+        \frac{1}{3} & 0 \\
+        \frac{1}{3} & 0 \\
+        0           & 1
+      \end{array}\right], \\
+      C = CP &=
+      \left[\begin{array}{r r r}
+        3 & 0 &  2 \\
+        0 & 3 & -1
+      \end{array}\right],
+      D = D_C &=
+      \left[\begin{array}{c c}
+        0 & 1 \\
+        0 & 1 \\
+      \end{array}\right].
+    \end{align*}
+  }
+\end{enumerate}
+
+\section*{Problem \#2}
+\begin{enumerate}[(a)]
+  \item{
+    The scalar
+    $$
+    A(t) = -\frac{t}{1 + t}
+    $$
+    yields the transition matrix (via integration by parts)
+    \begin{align*}
+      \phi(t, t_0)
+      &= \exp\left\{
+           -\int_{t_0}^{t} \frac{t}{1 + t}
+         \right\} \\
+      &= \exp\left\{
+           -\left[
+              t \ln (1 + t) - \int \ln (1 + t) \dif t
+            \right]_{t_0}^{t}
+         \right\} \\
+      &= \exp\left\{
+           \left[
+             -t \ln (1 + t) + \left((t + 1) \ln (1 + t) - t\right)
+           \right]_{t_0}^{t}
+         \right\} \\
+      &= \exp\left\{
+           \left[
+             \log (t + 1) - t
+           \right]_{t_0}^{t}
+         \right\} \\
+      &= \exp\left\{
+           \ln\frac{1 + t}{1 + t_0} - (t - t_0)
+         \right\} \\
+      &= \frac{1 + t}{1 + t_0}e^{-(t - t_0)}.
+     \end{align*}
+  }
+  \item{
+    We can write
+    $$
+    A =
+    \left[\begin{array}{c c}
+      t & 0 \\
+      1 & t
+    \end{array}\right]
+    =
+    t
+    \left[\begin{array}{c c}
+      1 & 0 \\
+      0 & 1
+    \end{array}\right]
+    +
+    \left[\begin{array}{c c}
+      0 & 0 \\
+      1 & 0
+    \end{array}\right]
+    =
+    \alpha_1(t) M_1 + \alpha_2(t) M_2,
+    $$
+    which is a sum of scalar functions multiplied by constant
+    matrices. Then
+    \begin{align*}
+    \phi(t, t_0)
+    &=
+    \exp \left\{
+      \int_{t_0}^{t} \alpha_1(t) M_1 \dif t
+    \right\}
+    \exp \left\{
+      \int_{t_0}^{t} \alpha_2(t) M_2 \dif t
+    \right\} \\
+    &=
+    \exp\left\{
+      \frac{1}{2}(t^2 - t_0^2) I
+    \right\}
+    e^{M_2(t - t_0)} \\
+    &=
+    \left[\begin{array}{c c}
+      e^{\frac{1}{2}(t^2 - t_0^2)} & 0 \\
+      0                      & e^{\frac{1}{2}(t^2 - t_0^2)}
+    \end{array}\right]
+    \left[\begin{array}{c c}
+      1         & 0 \\
+      e^{t - t_0} & 1
+    \end{array}\right] \\
+    &=
+    e^{\frac{1}{2}(t^2 - t_0^2)}
+    \left[\begin{array}{c c}
+      1         & 0 \\
+      e^{t - t_0} & 1
+    \end{array}\right].
+    \end{align*}
+  }
+  \item{
+    We can write
+    $$
+    A =
+    \left[\begin{array}{r r}
+     -1 & 0 \\
+      t & 0
+    \end{array}\right]
+    =
+    t
+    \left[\begin{array}{c c}
+      0 & 0 \\
+      1 & 0
+    \end{array}\right]
+    +
+    \left[\begin{array}{r r}
+     -1 & 0 \\
+      0 & 0
+    \end{array}\right]
+    =
+    \alpha_1(t) M_1 + \alpha_2(t) M_2,
+    $$
+    which is a sum of scalar functions multiplied by constant
+    matrices. Then
+    \begin{align*}
+    \phi(t, t_0)
+    &=
+    \exp \left\{
+      \int_{t_0}^{t} \alpha_1(t) M_1 \dif t
+    \right\}
+    \exp \left\{
+      \int_{t_0}^{t} \alpha_2(t) M_2 \dif t
+    \right\} \\
+    &=
+   \exp\left\{
+     \left[\begin{array}{c c}
+       1       & 0 \\
+       \lambda & 1
+     \end{array}\right]
+   \right\}
+   \left[\begin{array}{c c}
+     e^{-(t - t_0)} & 0 \\
+     0           & 1
+   \end{array}\right]
+   \end{align*}
+   where
+   $$
+   \lambda = \int_{t_0}^t \tau \dif \tau = \frac{1}{2}(t^2 - t_0^2)
+   $$
+   so that
+   $$
+   \phi(t, t_0) =
+   \left[\begin{array}{c c}
+     e^{-(t - t_0)}                         & 0 \\
+     \frac{1}{2}(t^2 - t_0^2) e^{-(t - t_0)} & 1
+   \end{array}\right].
+   $$
+  }
+\end{enumerate}
+
+\section*{Problem \#3}
+\begin{enumerate}[(a)]
+  \item{
+    The matrix $A$ has the form
+    $$
+      A(t)
+    = t^2
+      \left[\begin{array}{r r}
+        1 &  0 \\
+        2 & -1
+      \end{array}\right]
+    = \alpha(t) M
+    $$
+    The transition matrix is then given by
+    \begin{align*}
+         \phi(t, t_0)
+      &= \exp\left\{
+           \int_{t_0}^{t} A(\tau) \dif\tau
+         \right\} \\
+      &= \exp\left\{
+           \left[
+             \int_{t_0}^t \alpha(\tau) \dif\tau
+           \right]
+           \left[\begin{array}{r r}
+             1 &  0 \\
+             2 & -1
+           \end{array}\right]
+         \right\} \\
+      &= \left[\begin{array}{c c}
+           e^\lambda         & 0 \\
+           2 \sinh \lambda & e^{-\lambda}
+         \end{array}\right]
+    \end{align*}
+    where
+    $$
+      \lambda
+    = \int_{t_0}^{t} \tau^2 \dif\tau
+    = \frac{1}{3}(t^3 - t_0^3).
+    $$
+  }
+  \item{
+    The matrix $A$ can be rewritten
+    $$
+    A
+    =
+    \left[\begin{array}{r r}
+      -\frac{2t}{1 + t} & 1                 \\
+       1                & -\frac{2t}{1 + t}
+    \end{array}\right]
+    =
+    -\frac{2t}{1 + t}
+    \left[\begin{array}{r r}
+       1 & 0 \\
+       0 & 1
+    \end{array}\right]
+    +
+    \left[\begin{array}{r r}
+       0 & 1 \\
+       1 & 0
+    \end{array}\right]
+    =
+    \alpha_1(t) M_1 + \alpha_2(t) M_2,
+    $$
+    which is a sum of scalar functions multiplied by constant
+    matrices. Then
+    \begin{align*}
+    \phi(t, t_0)
+    &=
+    \exp \left\{
+      \int_{t_0}^{t} \alpha_1(t) M_1 \dif t
+    \right\}
+    \exp \left\{
+      \int_{t_0}^{t} \alpha_2(t) M_2 \dif t
+    \right\} \\
+    &=
+    2\frac{1 + t}{1 + t_0}e^{-(t - t_0)}
+    \left[\begin{array}{c c}
+       \cosh (t - t_0) & \sinh (t - t_0) \\
+       \sinh (t - t_0) & \cosh (t - t_0)
+    \end{array}\right].
+    \end{align*}
+  }
+\end{enumerate}
+
+\section*{Problem \#4}
+
+\end{document}
