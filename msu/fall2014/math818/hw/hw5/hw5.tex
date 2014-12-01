@@ -106,6 +106,29 @@
 \begin{Answer}
   \begin{enumerate}[(a)]
     \item{
+      Consider the ideals
+      $$
+      I_n = (x, xy, xy^2, \dots, xy^n)
+      $$
+      for $n \geq 0$. For any $k$, $I_k \subset I_{k+1}$, but note that
+      $xy^{k+1} \in I_{k+1} - I_k$. Suppose $xy^{k+1} \in I_k$.
+    }
+    \item{
+      \begin{itemize}
+        \item[$\implies$]{
+        }
+        \item[$\impliedby$]{
+          Let $(f(x,y))$ be a prime ideal. Then $(f(x,y)) \neq 0$, so
+          $f(x,y) \neq 0$. Let $f(x,y) = bc \in (f(x,y))$.
+          Then either $b \in (f(x,y))$ or $c
+          \in (f(x,y))$. Suppose $b \in (f(x,y))$. Then
+          $b = k \cdot f(x,y)$ for some $k \in \mathbb{R}[x, y]$, so
+          $f(x, y) = k c \cdot f(x,y)$ or $f(x, y)(1 - kc) = 0$. But
+          $f(x, y) \neq 0$, so $1 - kc = 0$ since $\mathbb{R}[x, y]$
+          is a domain. Therefore $kc = 1$ and so $c$ is a unit in
+          $\mathbb{R}[x,y]$, i.e. $f(x,y) = bc$ is irreducible.
+        }
+      \end{itemize}
     }
   \end{enumerate}
 \end{Answer}
@@ -227,7 +250,8 @@
              a_{ij} \in \mathbb{C}
          \right\},
       \end{align*}
-      or after relabeling coefficients
+      which means an $X$ appears in every term of each element of this
+      ideal, so after relabeling coefficients
       \begin{align*}
          (X)
       &= \left\{
@@ -249,6 +273,10 @@
       ideal of $A$.
     }
     \item{
+      Suppose $a, b \in A[[x]]$ so that
+      $$
+      0 = a \cdot b = \sum_{n=0}^\infty \sum_{k=0}^n a_k b_{n-k} X^n
+      $$
     }
   \end{enumerate}
 \end{Answer}
@@ -303,8 +331,10 @@
       $$
       cb - ad = (c^2 + d^2) q_I + r_I
       $$
-      for some $q_I, r_I \in \mathbb{Z}$. We rewrite this system of
-      equations as an equation of integer-valued matrices and observe
+      for some $q_I, r_I \in \mathbb{Z}$. Furthermore we have
+      $0 \leq r_R < |c^2 + d^2|$, $0 \leq r_I < |c^2 + d^2|$.
+      We rewrite this system of equations as an equation of
+      integer-valued matrices and observe
       \begin{align*}
         \left[\begin{array}{c}
           ac + bd \\
@@ -385,6 +415,7 @@
       $\mathbb{Z}[i]$ has division.
     }
     \item{
+      Let $I$ be an ideal in $\mathbb{Z}[i]$.
     }
   \end{enumerate}
 \end{Answer}
