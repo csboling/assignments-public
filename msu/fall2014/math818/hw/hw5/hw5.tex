@@ -36,7 +36,7 @@
     }
     \item{
       Let $P$ be a prime ideal of $A$ and denote $S = A - P$. Prove
-      that $S$ is a multiplicative submonoid of $A$ and that the
+      that $S$ is a multiplicative set of $A$ and that the
       localization $S^{-1}A$ of $A$ at $S$ is a local ring.
     }
     \item{
@@ -71,10 +71,38 @@
       Let $P$ be a prime ideal of $A$ and let $S = A - P$. Let
       $x, y \in S$. Then $x, y \notin P$, so since $P$ is a prime
       ideal it must be that $xy \notin P$. Therefore $xy \in A - P =
-      S$,
-      so $S$ is a multiplicative submonoid of $A$.
+      S$, so $S$ is a multiplicative set of $A$.
 
+      Let $\sim$ denote the equivalence relation that defines
+      $S^{-1} A = A \times S / \sim$, i.e.
+      $$
+      (a, s) \sim (a^\prime, s^\prime)
+      \iff
+      \exists t \in S, t(as^\prime - a^\prime s) = 0
+      $$
+      and denote $(a, s) \bmod \sim$ by $\frac{a}{s}$.
 
+      Consider the map $\varphi : A \to S^{-1} A$ given by
+      $\varphi(a) = \frac{a}{1}$, and observe that for $a, b \in A$ we have
+      \begin{align*}
+        \varphi(0)     &= \frac{0}{1}  = 0 \bmod \sim, \\
+        \varphi(1)     &= \frac{1}{1}  = 1 \bmod \sim, \\
+        \varphi(ab)    &= \frac{ab}{1}
+                        = \frac{a}{1}\frac{b}{1}
+                        = \varphi(a)\varphi(b), \\
+        \varphi(a + b) &= \frac{a + b}{1}
+                        = \frac{a \cdot 1 + b \cdot 1}{1 \cdot 1}
+                        = \frac{a}{1} + \frac{b}{1}
+                        = \varphi(a) + \varphi(b)
+      \end{align*}
+      so that $\varphi$ is a ring homomorphism.
+
+      % TODO
+      % Show P \times S / \sim equals S^{-1} A - (S^{-1} A)^\ast, i.e.
+      % that the unique maximal ideal in S^{-1} A consists of elements
+      % of the form p / s for some p \in P, s \in S = A - P.
+      % Prove that $\varphi(S) = (S^{-1}A)^\ast$ and that $\varphi(P)$
+      % is an ideal in $S^{-1}A$.
     }
   \end{enumerate}
 \end{Answer}
@@ -116,19 +144,65 @@
     \item{
       \begin{itemize}
         \item[$\implies$]{
+          Let $f(x,y)$ be irreducible and let $bc \in (f(x,y))$. Then
+          $bc = a \cdot f(x,y)$ for some $a \in k[x,y]$.
+
+          Since $k[x,y]$ is a unique factorization domain, we can
+          write the unique factorization of these terms as
+          \begin{align*}
+            b &= u_b p_1 p_2 \cdots p_n, \\
+            c &= u_c q_1 q_2 \cdots q_m, \\
+            a &= u_a r_1 r_2 \cdots r_l
+          \end{align*}
+          where $u_a, u_b, u_c \in k[x,y]^\ast$ are units and
+          $p_i, q_i, r_i \in k[x,y]$ are irreducible. Then we have
+          $$
+            u_b u_c p_1 p_2 \cdots p_n q_1 q_2 \cdots q_m
+          = u_a r_1 r_2 \cdots r_l f(x,y),
+          $$
+          so by the definition of unique factorization we must have
+          $l =  n + m - 1$ since $f(x,y)$ is irreducible.
+          Suppose $b \notin f(x,y)$. Then $f(x,y)$ does not divide
+          $b$, so $f(x,y) \neq p_i$ for any $i$. But then it must be
+          that $f(x,y) = u q_j$ for some $j$ and some unit $u$, so
+          $$
+          c = u_c u^{-1} q_1 q_2 \cdots f(x,y) \cdots q_m,
+          $$
+          so $c \in (f(x,y))$. Therefore either
+          $b \in (f(x,y))$ or $c \in (f(x,y))$,
+          so $(f(x,y))$ is a prime ideal.
         }
         \item[$\impliedby$]{
           Let $(f(x,y))$ be a prime ideal. Then $(f(x,y)) \neq 0$, so
-          $f(x,y) \neq 0$. Let $f(x,y) = bc \in (f(x,y))$.
-          Then either $b \in (f(x,y))$ or $c
-          \in (f(x,y))$. Suppose $b \in (f(x,y))$. Then
-          $b = k \cdot f(x,y)$ for some $k \in \mathbb{R}[x, y]$, so
-          $f(x, y) = k c \cdot f(x,y)$ or $f(x, y)(1 - kc) = 0$. But
-          $f(x, y) \neq 0$, so $1 - kc = 0$ since $\mathbb{R}[x, y]$
-          is a domain. Therefore $kc = 1$ and so $c$ is a unit in
-          $\mathbb{R}[x,y]$, i.e. $f(x,y) = bc$ is irreducible.
+          $f(x,y) \neq 0$. Let $f(x,y) = ab \in (f(x,y))$.
+          Then either $a \in (f(x,y))$ or $b \in (f(x,y))$.
+
+          Suppose $a \in (f(x,y))$. Then
+          $a = g(x,y) \cdot f(x,y)$ for some $g(x,y) \in k[x, y]$, so
+          $$
+          f(x, y) = ab = b \cdot g(x,y) \cdot f(x,y)
+          $$
+          or
+          $$
+          f(x, y) \cdot (1 - b \cdot g(x,y)) = 0.
+          $$
+          But
+          $f(x, y) \neq 0$, so $1 - b \cdot g(x,y) = 0$ since $k[x, y]$
+          is an integral domain. Therefore $b \cdot g(x,y) = 1$ and so $b$ is a
+          unit in $k[x,y]$, i.e. $f(x,y) = ab$ is irreducible.
         }
       \end{itemize}
+    }
+    \item{
+      Note that both $x^2$ and $x^3$ are irreducible in this ring, so
+      that the element $x^6 \in C$ can be written
+      $$
+      x^6 = x^3 \cdot x^3 = x^2 \cdot x^2 \cdot x^2
+      $$
+      and therefore has non-unique factorizations in
+      irreducibles. Indeed, these factorizations contain different
+      numbers of irreducible elements. Therefore $C$ cannot be a unique factorization
+      domain.
     }
   \end{enumerate}
 \end{Answer}
@@ -183,7 +257,7 @@
           \mathbb{C}[[x]]$. Then
           \begin{align*}
              1
-          &= a \cdot b
+          &= a \cdot b \\
           &= \sum_{n=0}^\infty \sum_{k=0}^n a_k b_{n-k} X^n \\
           &= a_0 b_0
            + X \sum_{n=1}^\infty \sum_{k=0}^n a_k b_{n-k} X^{n-1},
@@ -207,9 +281,9 @@
           &= a_0 a_0^{-1} = 1, \\
              (a \cdot b)_n
           &= a_0 b_n + a_1 b_{n-1} + \cdots + a_{n-1} b_1 + a_n b_0 \\
-          &= a_0 b_n + \sum_{k=0}^{n-1} a_{k+1} b_k \\
-          &= -a_0 a_0^{-1} \sum_{k=0}^{n-1} a_{k+1} b_k
-           + \sum_{k=0}^{n-1} a_{k+1} b_k
+          &= a_0 b_n + \sum_{k=0}^{n-1} a_{k+1} b_{(n-1)-k} \\
+          &= -a_0 a_0^{-1} \sum_{k=0}^{n-1} a_{k+1} b_{(n-1)-k}
+           + \sum_{k=0}^{n-1} a_{k+1} b_{(n-1)-k}
            = 0,
           \end{align*}
           and therefore $a \cdot b = 1$.
@@ -220,34 +294,21 @@
       Note that
       \begin{align*}
          (X)
-      &= \left\{
-           r_1 X + r_2 X + \cdots + r_n X
-         \mid
-           r_i \in A
-         \right\} \\
-      &= \left\{
-           X (r_1 + \cdots r_n)
-         \mid
-           r_i \in A
-         \right\} \\
+      &= \left\{ r X \mid r \in A \right\} \\
       &= \left\{
            \left.
              X
              \left(
-               \sum_{k \in \mathbb{N}} a_{1k} X^k
-             + \cdots
-             + \sum_{k \in \mathbb{N}} a_{nk} X^k
+               \sum_{k \in \mathbb{N}} a_k X^k
              \right)
            \right|
-             a_{ij} \in \mathbb{C}
+             a_k \in \mathbb{C}
          \right\} \\
       &= \left\{
            \left.
-             X
-             \sum_{k \in \mathbb{N}}
-               (a_{1k} + \cdots + a_{nk}) X^k
+             a_0 X + a_1 X^2 + \cdots + a_n X^{k+1} + \cdots
            \right|
-             a_{ij} \in \mathbb{C}
+             a_{k} \in \mathbb{C}
          \right\},
       \end{align*}
       which means an $X$ appears in every term of each element of this
@@ -273,10 +334,61 @@
       ideal of $A$.
     }
     \item{
-      Suppose $a, b \in A[[x]]$ so that
-      $$
-      0 = a \cdot b = \sum_{n=0}^\infty \sum_{k=0}^n a_k b_{n-k} X^n
-      $$
+      We show that $A[[x]]$ is an integral domain and that every ideal
+      is principal.
+      \begin{itemize}
+        \item{
+          Suppose $a, b \in A[[x]]$ so that
+          $$
+          0 = a \cdot b = \sum_{n=0}^\infty \sum_{k=0}^n a_k b_{n-k} X^n.
+          $$
+          Suppose $a \neq 0$. Then $a_{r_i} \neq 0$ for some
+          natural numbers $r_i$. Pick $r_0$ to be the least such number,
+          so that $a_{k} = 0$ for $0 \leq k < r_0$.
+
+          Suppose $r_0 = 0$. Then $a_0 \neq 0$, so $a$ is a unit, and
+          then $ab = 0$ implies $b = a^{-1} 0 = 0$. Therefore let $r_0
+          > 0$.
+
+          Next note
+          \begin{align*}
+           0 = (ab)_{r_0}
+            &= \sum_{k=0}^{r_0} a_k b_{r_0 - k} \\
+            &= a_0 b_{r_0}
+             + a_1 b_{r_0 - 1}
+             + \cdots
+             + a_{r_0 - 1} b_1
+             + a_{r_0} b_0 \\
+            &= a_{r_0} b_0
+          \end{align*}
+          so that $b_0 = 0$.
+
+          Suppose for some $n > 0$ that $b_k = 0$ for
+          $0 \leq k < n-1$. Then
+          \begin{align*}
+            0 = (ab)_{n + r_0}
+             &= \sum_{k=0}^{n + r_0} a_k b_{n + r_0 - k} \\
+             &= a_0 b_{n + r_0}
+              + a_1 b_{n + r_0 - 1}
+              + \cdots
+              + a_{r_0} b_n
+              + a_{r_0 + 1} b_{n - 1}
+              + \cdots
+              + a_{n + r_0} b_0 \\
+             &= \sum_{k=0}^{r_0 - 1} a_k b_{r_0 - 1 - k}
+              + a_{r_0} b_n
+              + \sum_{k=1}^{n} a_{r_0 + k} b_{n - k} \\
+             &= 0 + a_{r_0} b_n + 0
+          \end{align*}
+          so that $b_n = 0$.
+
+          Therefore $a b = 0$ implies $a = 0$ or $b = 0$, so $A[[x]]$
+          is an integral domain.
+        }
+        \item{
+
+        }
+      \end{itemize}
     }
   \end{enumerate}
 \end{Answer}
