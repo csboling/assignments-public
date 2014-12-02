@@ -22,6 +22,14 @@
 
 \begin{titlepage}
 \maketitle
+
+% TODO:
+% -Show that S^{-1}A is a local ring.
+% -Show that $P = (x - a, y - b)$ is a maximal ideal and write down
+%  the localization (A - P)^{-1} A.
+% -
+% -Show that A[[x]] is a principal ideal ring and find all its ideals.
+% -Show that the Gaussian integers have division.
 \end{titlepage}
 
 \begin{Problem}
@@ -361,7 +369,7 @@
              + a_{r_0} b_0 \\
             &= a_{r_0} b_0
           \end{align*}
-          so that $b_0 = 0$.
+          so that $b_0 = 0$ since $A$ is an integral domain.
 
           Suppose for some $n > 0$ that $b_k = 0$ for
           $0 \leq k < n-1$. Then
@@ -380,7 +388,7 @@
               + \sum_{k=1}^{n} a_{r_0 + k} b_{n - k} \\
              &= 0 + a_{r_0} b_n + 0
           \end{align*}
-          so that $b_n = 0$.
+          so that $b_n = 0$ since $A$ is an integral domain.
 
           Therefore $a b = 0$ implies $a = 0$ or $b = 0$, so $A[[x]]$
           is an integral domain.
@@ -527,7 +535,42 @@
       $\mathbb{Z}[i]$ has division.
     }
     \item{
-      Let $I$ be an ideal in $\mathbb{Z}[i]$.
+      We show that $\mathbb{Z}[i]$ is an integral domain and that
+      every ideal is principal.
+      \begin{itemize}
+        \item{
+          Let $z, w \in \mathbb{Z}[i]$ such that
+          $zw = 0$. We can write $z = a + bi$ and $w = c + di$ for
+          some $a, b, c, d \in \mathbb{Z}$.
+          Then $(a + bi)(c + di) = 0$, so multiplying by
+          $(a - bi)(c - di)$ we see $(a^2 + b^2)(c^2 + d^2) = 0$.
+          Since $\mathbb{Z}$ is an integral domain, this implies
+          $a^2 + b^2 = 0$ or $c^2 + d^2 = 0$. But $a^2 + b^2 = |z|^2$,
+          and since $z = |z|e^{i \theta}$ for some
+          $\theta \in [ 0, 2\pi )$, $a^2 + b^2 = 0$ implies $z = 0$.
+          Identically, $c^2 + d^2 = 0$ implies $w = 0$. Therefore
+          $\mathbb{Z}[i]$ is an integral domain.
+        }
+        \item{
+          Let $I$ be an ideal in $\mathbb{Z}[i]$ that is not $(0)$, and
+          note that
+          $$
+          \{ |z|^2 \mid z \in I \} - \{ 0 \}
+          $$
+          is a non-empty subset of $\mathbb{Z}_+$ and therefore has a
+          smallest element $a$. Let $b \in I \subset \mathbb{Z}[i]$. Since
+          $\mathbb{Z}[i]$ has division, we can write
+          $b = aq + r$ for some $q, r \in \mathbb{Z}[i]$ such that
+          $0 \leq |r| < |a|$. Then $r = b - aq \in I$ since $a, b \in I$.
+          But $|r| < |a|$ implies $|r|^2 < |a|^2$, and by assumption
+          $a$ is the nonzero element in $I$ with least square modulus, so
+          it must be that $|r|^2 = 0$ whence $r = 0$. Then $b = aq$ for
+          some $q \in \mathbb{Z}[i]$, and since $b$ was chosen arbitrarily
+          we have $I \subset (a)$ so $I = (a)$. Therefore $\mathbb{Z}[i]$
+          is a principal ideal ring.
+        }
+      \end{itemize}
+      Therefore $\mathbb{Z}[i]$ is a principal ideal domain.
     }
   \end{enumerate}
 \end{Answer}
