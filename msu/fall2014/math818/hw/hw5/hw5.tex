@@ -86,30 +86,48 @@
       \iff
       \exists t \in S, t(as^\prime - a^\prime s) = 0
       $$
-      and denote $(a, s) \bmod \sim$ by $\frac{a}{s}$.
+      and denote $(a, s) \mod \sim$ by $\frac{a}{s}$.
 
-      Consider the map $\varphi : A \to S^{-1} A$ given by
-      $\varphi(a) = \frac{a}{1}$, and observe that for $a, b \in A$ we have
-      \begin{align*}
-        \varphi(0)     &= \frac{0}{1}  = 0 \bmod \sim, \\
-        \varphi(1)     &= \frac{1}{1}  = 1 \bmod \sim, \\
-        \varphi(ab)    &= \frac{ab}{1}
-                        = \frac{a}{1}\frac{b}{1}
-                        = \varphi(a)\varphi(b), \\
-        \varphi(a + b) &= \frac{a + b}{1}
-                        = \frac{a \cdot 1 + b \cdot 1}{1 \cdot 1}
-                        = \frac{a}{1} + \frac{b}{1}
-                        = \varphi(a) + \varphi(b)
-      \end{align*}
-      so that $\varphi$ is a ring homomorphism.
+      Let $(p, s) \in P \times S$, $(a, s^\prime) \in A \times S$.
+      Then $\frac{p}{s} \frac{a}{s^\prime} = \frac{pa}{ss^\prime}$.
+      Since $p \in P$ and $P$ is an ideal, $pa \in P$.
+      Since $S$ is a multiplicative set, $s s^\prime \in S$. Therefore
+      $\frac{pa}{ss^\prime} \in P \times S / \sim$, so
+      $P \times S / \sim$ is an ideal of $S^{-1} A$.
 
-      % TODO
-      % Show P \times S / \sim equals S^{-1} A - (S^{-1} A)^\ast, i.e.
-      % that the unique maximal ideal in S^{-1} A consists of elements
-      % of the form p / s for some p \in P, s \in S = A - P.
-      % Prove that $\varphi(S) = (S^{-1}A)^\ast$ and that $\varphi(P)$
-      % is an ideal in $S^{-1}A$.
+      Let $(p, s) \in P \times S$. Suppose
+      $\frac{p}{s}$ is a unit in $S^{-1} A$. Then there exists some
+      $\frac{a}{s^\prime} \in S^{-1} A$ so that
+      $\frac{pa}{ss^\prime} = 1$, or explicitly there exists $t \in S$
+      such that
+      $$
+      t(pa - ss^\prime) = 0.
+      $$
+      Then $tpa = tss^\prime$. Since $p \in P$ and $P$ is an ideal,
+      $tpa = tss^\prime \in P$. But $S$ is a multiplicative set,
+      so since $t, s, s^\prime \in S$, $tss^\prime \in S$. This is a
+      contradiction since $S = A - P$. Therefore $\frac{p}{s}$ is not a
+      unit of $S^{-1} A$.
+
+      Since $P \neq A$, $1 \notin P$, so $1 \in S$.
+      Let $s \in S$. Then $1 \cdot (1 \cdot s - s \cdot 1) = 0$, so
+       $$
+       \frac{1}{1} = \frac{s}{s} = \frac{s}{1}\frac{1}{s}
+       $$
+      and thus $\frac{s}{1}$, $\frac{1}{s}$ are units for any $s \in
+      S$. Then
+      $
+      \frac{s}{s^\prime} = \frac{s}{1}\frac{1}{s^\prime}
+      $
+      is a unit as well for any $s^\prime \in S$, so
+      $(S \times S / \sim) \subset (S^{-1}A)^\ast$.
+
+      Then since $P \times S / \sim = S^{-1} A - S \times S / \sim$,
+      and since $P \times S / \sim \neq S^{-1} A$, the condition from
+      part (a) is met and $S^{-1} A$ has a unique maximal ideal, namely
+      $P \times S / \sim$.
     }
+
   \end{enumerate}
 \end{Answer}
 
@@ -566,8 +584,9 @@
       Under the usual geometric interpretation of $\mathbb{C}$,
       complex multiplication of the ``vector'' $z$ corresponds
       to rotation by an  angle $\theta = \mathrm{arg}(w)$ and scaling
-      by $A = |w|$. In particular, $|i| = 1$ and
-      $\mathrm{arg}(i) = \frac{\pi}{2}$ so that $i$ and $1$ are
+      by $A = |w|$. In particular, the map $u \mapsto wu$ preserves
+      the angle between two vectors $u, v \in \mathbb{C}$. Additionally,
+      $|i| = 1$ and  $\mathrm{arg}(i) = \frac{\pi}{2}$ so that $i$ and $1$ are
       orthogonal. Therefore the set
      \begin{align*}
             & \{ w q \mid q \in \mathbb{Z}[i] \} \\
