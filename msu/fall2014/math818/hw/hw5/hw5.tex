@@ -127,6 +127,13 @@
       $P \times S / \sim$.
     }
     \item{
+      Let $a, b \in \mathbb{R}$ and let $J$ be an ideal such that
+      $(x - a, y - b) \subset J$. Suppose $J \neq \mathbb{R}[x,y]$.
+      Then $J$ does not contain any units of $\mathbb{R}[x,y]$.
+      Let $p(x,y) \in J$. Then $p(x,y)$ is not a unit, so
+      the total degree of $p(x,y)$ is greater than 0. But then
+      $(x - a) \vert p(x,y)$ or $(y - b) \vert p(x,y)$, so
+      $J = (x - a, y - b)$. Therefore $(x - a, y - b)$ is maximal.
     }
   \end{enumerate}
 \end{Answer}
@@ -162,7 +169,8 @@
       $$
       (x) \subset (x, xy) \subset (x, xy, xy^2) \subset \cdots
       $$
-      and note that $xy^{m+1} = xy^m \cdot y \notin (x, xy, \dots, xy^m)$.
+      and note that $xy^{m+1} = xy^m \cdot y \notin (x, xy, \dots, xy^m)$
+      since $xy^{m+1} = xy^m \cdot y$ and $y \notin A$.
     }
     \item{
       \begin{itemize}
