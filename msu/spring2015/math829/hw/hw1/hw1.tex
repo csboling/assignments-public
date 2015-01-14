@@ -27,9 +27,74 @@
 
 Chapter I section 1 problems 2(c,f), 8, 10(b-d, f, h).
 
+\section*{Problem \#2}
+\begin{itemize}
+  \item[(c)]{
+%   Let $z = 2 + i$. Then $z = re^{i\theta}$ for $r = |z|$,
+%   $\theta = \mathrm{Arg}(2 + i)$, so we have
+%   \begin{align*}
+%      \frac{2+i}{2-i}
+%   &= \frac{z}{\bar{z}}
+%    = \frac{re^{i\theta}}
+%   \end{align*}
+    \begin{align*}
+       \frac{2 + i}{2 - i}
+    &= (2+i)\left(\frac{1}{2 - i} + i\frac{1}{2 - i}\right) \\
+    &= (2+i)\left(\frac{2}{4+1} + i\frac{1}{4 + 1}\right) \\
+    &= (2+i)\left(\frac{2}{5} + i\frac{1}{5}\right)
+    &= \frac{4}{5} + i\frac{2}{5} + i\frac{2}{5} - \frac{1}{5} \\
+    &= \frac{3}{5} + i\frac{4}{5}.
+    \end{align*}
+  }
+  \item[(f)]{
+    \begin{align*}
+       \frac{i}{1+i}
+    &= i\left(\frac{1}{2} - i\frac{1}{2}\right) \\
+    &= \frac{1}{2} + i\frac{1}{2}.
+    \end{align*}
+  }
+\end{itemize}
 
-\begin{Problem}
-\end{Problem}
+\section*{Problem \#8}
+\begin{enumerate}[(a)]
+  \item{
+    Let $x = z - w$ and $y = w$. From the triangle inequality,
+    $|x + y| \leq |x| + |y|$. But $x + y = z$, so this gives
+    $|z - w + w| \leq |z - w| + |w|$ or $|z| \leq |z - w| + |w|$ as
+    desired.
+  }
+  \item{
+    Since $|w|$ is real and nonnegative, we may subtract $|w|$ from
+    both sides of the previous inequality to get $|z| - |w| \leq |z - w|$.
+  }
+  \item{
+  }
+\end{enumerate}
 
-\begin{Answer}
-\end{Answer}
+\section*{Problem \#10}
+\begin{itemize}
+  \item[(b)]
+  {
+    $|z - i + 3| = |z - (i - 3)| > 5$ corresponds to the complement of
+    the closed disk of radius $5$ centered at the point $-3 + i$,
+    i.e. $(-3, 1)$.
+  }
+  \item[(c)]
+  {
+    $|z - i + 3| = |z - (i - 3)| \leq 5$ corresponds to the closed
+    disk of radius $5$ centered at the point $-3 + i$, i.e. $(-3, 1)$.
+  }
+  \item[(d)]
+  {
+    $|z + 2i| = |z - (-2i)| \leq 1$ corresponds to the closed disk of
+    radius 1 centered at the point $-2i$, i.e. $(0, -2)$.
+  }
+  \item[(f)]
+  {
+    $\mathrm{Im}~z \geq 0$ corresponds to the closed upper half-plane.
+  }
+  \item[(h)]
+  {
+    $\mathrm{Re}~z \geq 0$ corresponds to the closed right half-plane.
+  }
+\end{itemize}
