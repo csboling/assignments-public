@@ -23,25 +23,19 @@
 
 \begin{titlepage}
 \maketitle
+% TODO: I.1.8.c, I.2.12, I.3.4, 1, 4, 5
 \end{titlepage}
 
-Chapter I section 1 problems 2(c,f), 8, 10(b-d, f, h).
+\section{Textbook Problems}
 
-\section*{Problem \#2}
+\subsection*{Ch I \S 1.2}
 \begin{itemize}
   \item[(c)]{
-%   Let $z = 2 + i$. Then $z = re^{i\theta}$ for $r = |z|$,
-%   $\theta = \mathrm{Arg}(2 + i)$, so we have
-%   \begin{align*}
-%      \frac{2+i}{2-i}
-%   &= \frac{z}{\bar{z}}
-%    = \frac{re^{i\theta}}
-%   \end{align*}
     \begin{align*}
        \frac{2 + i}{2 - i}
     &= (2+i)\left(\frac{1}{2 - i} + i\frac{1}{2 - i}\right) \\
     &= (2+i)\left(\frac{2}{4+1} + i\frac{1}{4 + 1}\right) \\
-    &= (2+i)\left(\frac{2}{5} + i\frac{1}{5}\right)
+    &= (2+i)\left(\frac{2}{5} + i\frac{1}{5}\right) \\
     &= \frac{4}{5} + i\frac{2}{5} + i\frac{2}{5} - \frac{1}{5} \\
     &= \frac{3}{5} + i\frac{4}{5}.
     \end{align*}
@@ -55,7 +49,19 @@ Chapter I section 1 problems 2(c,f), 8, 10(b-d, f, h).
   }
 \end{itemize}
 
-\section*{Problem \#8}
+\subsection*{Ch. I \S 1.7}
+We have that $(1 + i) = \sqrt{2}e^{\frac{\pi}{4} i}$.
+Therefore
+$$
+  (1 + i)^{100}
+= (\sqrt{2}^2)^{50} e^{25 \pi i}
+= 2^{50} e^{\pi i}
+= -2^{50},
+$$
+so $\mathrm{Re}((1 + i)^{100}) = -2^{50}$ and
+$\mathrm{Im}((1 + i)^{100}) = 0$.
+
+\subsection*{Ch. I \S 1.8}
 \begin{enumerate}[(a)]
   \item{
     Let $x = z - w$ and $y = w$. From the triangle inequality,
@@ -68,10 +74,12 @@ Chapter I section 1 problems 2(c,f), 8, 10(b-d, f, h).
     both sides of the previous inequality to get $|z| - |w| \leq |z - w|$.
   }
   \item{
+    \begin{align*}
+    \end{align*}
   }
 \end{enumerate}
 
-\section*{Problem \#10}
+\subsection*{Ch. I \S 1.10}
 \begin{itemize}
   \item[(b)]
   {
@@ -98,3 +106,239 @@ Chapter I section 1 problems 2(c,f), 8, 10(b-d, f, h).
     $\mathrm{Re}~z \geq 0$ corresponds to the closed right half-plane.
   }
 \end{itemize}
+
+\subsection*{Ch. I \S 2.1}
+\begin{itemize}
+  \item[(a)]{
+    \begin{align*}
+      |1 + i| &= \sqrt{1^2 + 1^2} = \sqrt{2} \\
+      \mathrm{Arg}(1 + i) &= \arctan \frac{1}{1} = \frac{\pi}{4}
+    \end{align*}
+    so $1 + i = \sqrt{2}e^{\frac{\pi}{4} i}$
+  }
+  \item[(c)]{
+    $|-3| = 3$ and $\mathrm{Arg}(-3) = \pi$, so
+    $-3 = 3e^{\pi i}$
+  }
+  \item[(d)]{
+    $|4i| = 4$ and $\mathrm{Arg}(4i) = \frac{\pi}{2}$, so
+    $4i = 4e^{\frac{\pi}{2} i}$
+  }
+  \item[(h)]{
+    $$
+      -1 - i
+    = -(1+i)
+    = e^{\pi i} (1 + i)
+    = \sqrt{2}e^{\frac{7\pi}{4} i}.
+    $$
+  }
+\end{itemize}
+
+\subsection*{Ch. I \S 2.2}
+\begin{itemize}
+  \item[(b)]{
+    $\cos \frac{2 \pi}{3} = -\frac{1}{2}$,
+    $\sin \frac{2 \pi}{3} = \frac{\sqrt{3}}{2}$,
+    so $e^{2 i \pi / 3} = -\frac{1}{2} + \frac{\sqrt{3}}{2} i$.
+  }
+  \item[(c)]{
+    $\cos \frac{\pi}{4} = \sqrt{2}{2}$,
+    $\sin \frac{\pi}{4} = \sqrt{2}{2}$,
+    so
+    $$
+      3 e^{i \pi / 4}
+    = 3(\cos \frac{\pi}{4} + i \sin \frac{\pi}{4})
+    = \frac{3 \sqrt{2}}{2} + \frac{3 \sqrt{2}}{2} i.
+    $$
+  }
+  \item[(f)]{
+    $\cos \left(-\frac{\pi}{2}\right) = 0$,
+    $\sin \left(-\frac{\pi}{2}\right) = -1$
+    so $e^{-i \pi / 2} = -i$.
+  }
+  \item[(g)]{
+    $\cos (-\pi) = -1$,
+    $\sin (-\pi) = 0$,
+    so $e^{-i\pi} = -1$.
+  }
+\end{itemize}
+
+\subsection*{Ch. I \S 2.8}
+
+\subsection*{Ch. I \S 2.11}
+Let $s = 1 + z + z^2 + \cdots + z^n$ and note that
+\begin{align*}
+   (1 - z)s
+&= (1 - z)\sum_{k=0}^n z^k
+ = \sum_{k=0}^n z^k - z\sum_{k=0}^n z^k \\
+&= \sum_{k=0}^n z^k - \sum_{k=0}^n z^{k+1}
+ = \sum_{k=0}^n z^k - \sum_{k=1}^{n+1} z^{k} \\
+&= \left(1 + \sum_{k=1}^n z^k\right) - \left(\sum_{k=1}^n z^k +
+  z^{n+1}\right) \\
+&= 1 - z^{n+1}
+\end{align*}
+so that when $z \neq 1$ we can divide by $(1 - z)$ and find
+$$
+  s
+= \sum_{k=0}^n z^k = \frac{1 - z^{n+1}}{1 - z}
+= \frac{z^{n+1} - 1}{z - 1}.
+$$
+
+\subsection*{Ch. I \S 2.12}
+Let $z = e^{i \theta} = \cos \theta + i \sin \theta$. From the
+previous exercise we have
+\begin{align*}
+   \sum_{k=0}^n z^k
+&= \frac{z^{n+1} - 1}{z - 1}
+ = \frac{e^{i(n+1)\theta} - 1}{e^{i\theta} - 1} \\
+&= \frac{\cos ((n+1)\theta) - 1 + i \sin ((n+1)\theta)}
+        {\cos \theta -  1 + i \sin \theta}
+\end{align*}
+where
+\begin{align*}
+   (\cos \theta - 1 + i \sin \theta)^{-1}
+&= \frac{\cos \theta - 1}
+        {(\cos \theta - 1)^2 + \sin^2 \theta}
+ + i\frac{\sin \theta}
+        {(\cos \theta - 1)^2 + \sin^2 \theta} \\
+&= \frac{\cos \theta + i \sin \theta - 1}
+        {cos^2 \theta - 2 \cos \theta + 1 + \sin^2 \theta} \\
+&= \frac{1}{2}\left(
+        \frac{\cos \theta - 1}
+             {\cos \theta + 1}
+   +   i\frac{\sin \theta - 1}
+             {\cos \theta + 1}
+   \right)
+\end{align*}
+
+\subsection*{Ch. I \S 3.4}
+\begin{itemize}
+  \item[(a)]{
+  }
+  \item[(b)]{
+  }
+  \item[(c)]{
+    The set $\{ z \in \mathbb{C} : |z| \geq 100 \}$
+  }
+\end{itemize}
+
+\subsection*{Ch. II \S 3.4}
+
+\section{Additional Problems}
+
+\begin{Problem}
+Compute the following principal logarithms using
+$\mathrm{Arg} : \mathbb{C} \to [0, 2\pi)$ and
+$\mathrm{Arg} : \mathbb{C} \to (-\pi, \pi]$.
+\begin{itemize}
+  \item{
+    $\mathrm{Log}(-i)$
+  }
+  \item{
+    $\mathrm{Log}(\sqrt{3} + i)$
+  }
+  \item{
+    $\mathrm{Log}(-1 - i)$
+  }
+\end{itemize}
+\end{Problem}
+
+\begin{Answer}
+  \begin{itemize}
+    \item{
+
+    }
+  \end{itemize}
+\end{Answer}
+
+\begin{Problem}
+Find all $z \in \mathbb{C}$ in rectangular form which solve
+$z^6 + 1 = 0$. Trigonometric functions must be evaluated.
+\end{Problem}
+
+\begin{Answer}
+The solutions of $z^6 + 1 = 0$ are the 6th roots of -1. Since $|-1| =
+1$ and $\mathrm{Arg}(-1) = \pi$, these are the numbers $e^{i\theta}$ with unit
+modulus and argument given by
+$$
+  \theta
+= \frac{\pi}{6} + \frac{2 \pi k}{6},
+\quad k \in \{ 0, 1, 2, \dots \}.
+$$
+Explicitly,
+\begin{align*}
+   e^{i\frac{\pi}{6}}
+&= \cos \frac{\pi}{6} + i \sin \frac{\pi}{6}
+ = \frac{\sqrt{3}}{2} + i \frac{1}{2} \\
+   e^{i\frac{pi}{2}}
+&= i \\
+   e^{i\frac{5 \pi}{6}}
+&= \cos \frac{5\pi}{6} + i \sin \frac{5\pi}{6}
+ = -\frac{\sqrt{3}}{2} + i \frac{1}{2} \\
+   e^{i\frac{7\pi}{6}}
+&= \cos \frac{7\pi}{6} + i \sin \frac{7\pi}{6}
+ = -\frac{\sqrt{3}}{2} - i \frac{1}{2} \\
+   e^{i\frac{9\pi}{6}}
+&= \cos \frac{3\pi}{2} + i \sin \frac{3\pi}{2}
+ = -i \\
+   e^{i\frac{11\pi}{6}}
+&= \cos \frac{11\pi}{6} + i \sin \frac{11\pi}{6}
+ = \frac{\sqrt{3}}{2} - i \frac{1}{2}
+\end{align*}
+
+\end{Answer}
+
+\begin{Problem}
+Let $n \in \mathbb{N}$ with $n \geq 2$ and
+$z_0 \in \mathbb{C} - \{ 0 \}$.
+Let $w_1, \dots, w_n$ be the distinct $n$-th roots of $z_0$.
+Prove that $\sum_{k=1}^n w_k = 0$.
+\end{Problem}
+
+\begin{Answer}
+Write $z_0$ in polar form as $z_0 = r e^{i \theta}$. The
+distinct $n$-th roots of $z_0$ are
+$$
+  w_k
+= r^{-n} e^{i\left(\frac{\theta}{n} + \frac{2 \pi k}{n}\right)}
+= r^{-n} e^{i \frac{\theta}{n}} e^{i \frac{2 \pi k}{n}}
+\quad k = 0, 1, 2, \dots, n-1
+$$
+
+First suppose $n = 2$. Then we have
+$$
+w_0 = r^{-2} e^{i \frac{\theta}{2}} e^{i \pi} = -r^{-2} e^{i \frac{\theta}{2}}
+$$
+and
+$$
+w_1 = r^{-2} e^{i \frac{\theta}{2}} e^{i 2 \pi} = r^{-2} e^{i
+  \frac{\theta}{2}} = -w_0
+$$
+so $w_0 + w_1 = 0$.
+
+Otherwise, $n > 2$. Then
+\begin{align*}
+   \sum_{k = 0}^{n-1} w_k
+&= \sum_{k=0}^{n-1} r^{-n} e^{i\frac{\theta}{n}} e^{i\frac{2 \pi k}{n}} \\
+&= r^{-n} e^{i\frac{\theta}{n}} \sum_{k=0}^{n-1} e^{i\frac{2 \pi k}{n}} \\
+&= r^{-n} e^{i\frac{\theta}{n}} \sum_{k=0}^{n-1} (e^{i\frac{2 \pi}{n}})^k \\
+&= r^{-n} e^{i\frac{\theta}{n}} \frac{(e^{i\frac{2 \pi}{n}})^n -
+  1}{e^{i \frac{2\pi}{n}} - 1} \\
+&= 0,
+\end{align*}
+using the result from Ch. I \S 2.11 and the fact that
+$e^{\frac{2 \pi}{n}} \neq 1$ for $n > 2$.
+\end{Answer}
+
+\begin{Problem}
+Let $z_1, z_2, z_3, z_4 \in \mathbb{C}$ be distinct. State
+conditions in terms of computation of complex numbers which make
+$z_1, z_2, z_3, z_4$ vertices of a square in the counterclockwise
+direction.
+\end{Problem}
+
+\begin{Problem}
+Express $\sin z$ and $\cos z$ in rectangular form.
+\end{Problem}
+
+\end{document}
