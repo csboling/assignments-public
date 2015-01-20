@@ -23,7 +23,7 @@
 
 \begin{titlepage}
 \maketitle
-% TODO: I.1.8.c, I.2.12, I.3.4, 1, 4, 5
+% TODO: I.1.8.c, 1, 4, 5
 \end{titlepage}
 
 \section{Textbook Problems}
@@ -165,6 +165,35 @@ $\mathrm{Im}((1 + i)^{100}) = 0$.
 
 \subsection*{Ch. I \S 2.8}
 
+\begin{enumerate}[(a)]
+  \item{
+    Suppose $z = x + iy$ for $x, y \in \mathbb{R}$ and $e^z = 1$. Then
+    $e^z = e^x e^{iy} = 1$, so $e^{iy} = e^{-x}$. Taking the modulus of both sides
+    gives $1 = |e^{-x}| = e^{-x}$, so $x = -\ln 1 = 0$. Therefore we have
+    $e^z = e^{iy} = 1$, so this set is the unit circle.
+  }
+  \item{
+    Take $\alpha = x_0 + i y_0$, with $x_0, y_0 \in \mathbb{R}$
+    so that $w = e^\alpha = e^{x_0} e^{iy_0}$.
+    Let $z \in \mathbb{C}$, so that $z = x + iy$ for some
+    $x, y \in \mathbb{R}$, and assume $w = e^z$.
+
+    Since $e^z = e^x e^{iy}$, this means
+    $e^x e^{iy} = e^{x_0} e^{iy_0}$ and therefore
+    $e^{x - x_0} = e^{-i(y - y_0)}$. Taking the modulus of
+    both sides gives $|e^{x - x_0}| = 1$, so that
+    $x - x_0 = \ln 1 = 0$ and therefore $x = x_0$.
+    Then we have $e^x e^{iy} = e^x e^{iy_0}$, so
+    $e^{iy} = e^{iy_0}$. Therefore $y$ and $y_0$ differ by
+    a multiple of $2\pi$. We conclude that
+    $z = x_0 + i(y_0 + 2\pi k)$ for some $k \in \mathbb{Z}$,
+    i.e. the complex numbers $z$ lie on the same vertical line
+    with real part $x_0$ and imaginary part differing from $y_0$
+    by a multiple of $2\pi$.
+  }
+\end{enumerate}
+
+
 \subsection*{Ch. I \S 2.11}
 Let $s = 1 + z + z^2 + \cdots + z^n$ and note that
 \begin{align*}
@@ -185,31 +214,60 @@ $$
 $$
 
 \subsection*{Ch. I \S 2.12}
-Let $z = e^{i \theta} = \cos \theta + i \sin \theta$. From the
+First we observe that
+\begin{align*}
+    e^{i \theta} - e^{-i \theta}
+&= (\cos \theta + i \sin \theta) - (\cos(-\theta) + i \sin(-\theta))
+ = 2i \sin \theta
+\end{align*}
+for any real number $\theta$.
+
+Let $\theta \in (0, 2\pi)$. Then $e^{i\theta} \neq 1$,
+so letting $z = e^{i \theta} = \cos \theta + i \sin \theta$ and using the
 previous exercise we have
 \begin{align*}
    \sum_{k=0}^n z^k
 &= \frac{z^{n+1} - 1}{z - 1}
  = \frac{e^{i(n+1)\theta} - 1}{e^{i\theta} - 1} \\
-&= \frac{\cos ((n+1)\theta) - 1 + i \sin ((n+1)\theta)}
-        {\cos \theta -  1 + i \sin \theta}
+&= \frac{e^{i\frac{1}{2}\theta}(e^{i(n+\frac{1}{2})\theta} - e^{-i\frac{1}{2}\theta})}
+        {e^{i\frac{1}{2}\theta}(e^{i\frac{1}{2}\theta} - e^{-i\frac{1}{2}\theta})} \\
+&= \frac{e^{i(n + \frac{1}{2})\theta} - e^{-i\frac{1}{2}\theta}}
+        {2 i \sin \frac{\theta}{2}} \\
+&= -i
+    \frac{
+      \cos((n + \frac{1}{2})\theta)
+  + i \sin((n + \frac{1}{2})\theta)
+  -   \cos(-\frac{1}{2}\theta)
+  - i \sin(-\frac{1}{2}\theta)
+    }
+    {2 \sin \frac{\theta}{2}} \\
+&=
+  \frac{
+    \sin(\frac{\theta}{2})
++   \sin ((n + \frac{1}{2})\theta)
++ i (\cos\frac{\theta}{2} - \cos((n + \frac{1}{2})\theta))
+  }
+  { 2 \sin \frac{\theta}{2} } \\
+&= \frac{1}{2}
+ + \frac{\sin ((n + \frac{1}{2})\theta)}
+        { 2 \sin \frac{\theta}{2} }
+ + i\frac{\cos\frac{\theta}{2} - \cos((n + \frac{1}{2})\theta)}
+         { 2 \sin \frac{\theta}{2} }.
 \end{align*}
-where
-\begin{align*}
-   (\cos \theta - 1 + i \sin \theta)^{-1}
-&= \frac{\cos \theta - 1}
-        {(\cos \theta - 1)^2 + \sin^2 \theta}
- + i\frac{\sin \theta}
-        {(\cos \theta - 1)^2 + \sin^2 \theta} \\
-&= \frac{\cos \theta + i \sin \theta - 1}
-        {cos^2 \theta - 2 \cos \theta + 1 + \sin^2 \theta} \\
-&= \frac{1}{2}\left(
-        \frac{\cos \theta - 1}
-             {\cos \theta + 1}
-   +   i\frac{\sin \theta - 1}
-             {\cos \theta + 1}
-   \right)
-\end{align*}
+But
+$$
+  \sum_{k=0}^n z^n
+= \sum_{k=0}^n e^{i n \theta}
+= \sum_{k=0}^n (\cos n \theta + i \sin n \theta),
+$$
+so taking real parts of both sides we have
+$$
+  \sum_{k=0}^n \cos n \theta
+= \frac{1}{2}
++ \frac{\sin ((n + \frac{1}{2})\theta)}
+       { 2 \sin \frac{\theta}{2} }
+$$
+as desired.
 
 \subsection*{Ch. I \S 3.4}
 \begin{itemize}
@@ -223,6 +281,23 @@ where
 \end{itemize}
 
 \subsection*{Ch. II \S 3.4}
+Suppose $\sin z = 0$ for some $z = x + iy$. Given that
+$$
+\sin z = \frac{e^{iz} - e^{-iz}}{2 i},
+$$
+this gives $e^{iz} = e^{-iz}$ so that
+$e^{-y + ix} = e^{y - ix}$. But this means
+$|e^{-y + ix}| = |e^{y - ix}|$ or
+$e^{-y} = e^y$, and taking the natural logarithm
+of these real quantities gives $-y = y$, so $y = 0$
+and thus $z$ is purely real. Then we have
+$e^{ix} = e^{-ix}$ or
+$$
+\cos x + i \sin x = \cos x - i \sin x,
+$$
+leaving $2 i \sin x = 0$ or $\sin x = 0$. This equation
+is satisfied only by integer multiples of $\pi$,
+$x = \pi k$ and thus $z = x = \pi k$ for some $k \in \mathbb{Z}$.
 
 \section{Additional Problems}
 
@@ -340,5 +415,42 @@ direction.
 \begin{Problem}
 Express $\sin z$ and $\cos z$ in rectangular form.
 \end{Problem}
+
+\begin{Answer}
+We have
+\begin{align*}
+   \sin z
+&= \frac{1}{2i}(e^{iz} - e^{-iz})
+ = \frac{1}{2i}(e^{-y + ix} - e^{y - ix}) \\
+&= \frac{1}{2i}
+     [   e^{-y}(\cos x + i \sin x)
+       - e^{y}(\cos x - i \sin x)
+     ]
+ = \frac{1}{2}
+     [
+       -  i e^{-y} \cos x
+       +    e^{-y} \sin x
+       +  i e^{y}
+       +    e^{y}  \sin x
+     ] \\
+&= \frac{1}{2}[
+       (e^y + e^{-y}) \sin x
+    + i(e^y - e^{-y}) \cos x
+   ] \\
+&= \sin x \cosh y + i \cos x \sinh y.
+\end{align*}
+
+Furthermore
+\begin{align*}
+   \cos z
+&= \frac{1}{2}[
+     e^{-y}(\cos x + i \sin x)
+   + e^{y} (\cos x - i \sin x)
+   ]
+ = (e^{y} + e^{-y}) \cos x + i (e^{-y} - e^y) \sin x \\
+&= \cos x \cosh y - i \sin x \sinh y.
+\end{align*}
+
+\end{Answer}
 
 \end{document}
