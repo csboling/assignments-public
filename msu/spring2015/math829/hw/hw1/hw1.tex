@@ -23,7 +23,7 @@
 
 \begin{titlepage}
 \maketitle
-% TODO: I.1.8.c, 1, 4, 5
+% TODO: I.3.4 1
 \end{titlepage}
 
 \section{Textbook Problems}
@@ -74,8 +74,30 @@ $\mathrm{Im}((1 + i)^{100}) = 0$.
     both sides of the previous inequality to get $|z| - |w| \leq |z - w|$.
   }
   \item{
+    Note that
     \begin{align*}
+       (|z| - |w|)^2
+    &= |z|^2 - 2 |z| |w| + |w|^2
+     = |z|^2 - 2 |z| |\overline{w}| + |w|^2 \\
+    &= |z|^2 + |w|^2 - 2|z \overline{w}|
     \end{align*}
+    and
+    \begin{align*}
+          |z + w|^2
+    &=    (z + w)\overline{(z + w)}
+     =    (z + w)(\overline{z} + \overline{w}) \\
+    &=    z \overline{z} + z \overline{w} + \overline{z} w + w \overline{w} \\
+    &=    |z|^2 + z \overline{w} + \overline{z \overline{w}} + |w|^2 \\
+    &=    |z|^2 + 2 \mathrm{Re}(z \overline{w}) + |w|^2.
+    \end{align*}
+    Subtracting gives
+    $$
+    |z + w|^2 - (|z| - |w|)^2 = 2 \mathrm{Re}(z \overline{w}) - 2|z \overline{w}|.
+    $$
+
+    Since $|u| \geq \mathrm{Re}(u) \geq -|u|$ for any $u \in \mathbb{C}$,
+    this means that $|z + w|^2 - (|z| - |w|)^2 \geq 0$, and it follows that
+    $|z| - |w| \leq |z + w|$.
   }
 \end{enumerate}
 
@@ -272,11 +294,22 @@ as desired.
 \subsection*{Ch. I \S 3.4}
 \begin{itemize}
   \item[(a)]{
+    For $x \leq 1$ and $0 \leq y \leq \pi$ we have
+    $e^z = e^x e^{iy}$, so these are points with radius
+    $e^x$ and argument $y$. Therefore this is the closed
+    half-disk in the upper half-plane of radius $e$, excepting the point
+    $z = 0$.
   }
   \item[(b)]{
+    For $0 \leq y \leq \pi$, this is the closed upper half-plane, excepting
+    the point $z = 0$.
   }
   \item[(c)]{
-    The set $\{ z \in \mathbb{C} : |z| \geq 100 \}$
+    Considering the set $\{ z \in \mathbb{C} : |z| \geq 100 \}$,
+    $e^z = e^{r e^{i \theta}} = e^{r \cos \theta} e^{i r \sin \theta}$.
+    With $r \geq 100$, $r \cos \theta$ and $r \sin \theta$
+    can take any real value, so the image of this set is the entire
+    complex plane except for 0.
   }
 \end{itemize}
 
@@ -321,7 +354,31 @@ $\mathrm{Arg} : \mathbb{C} \to (-\pi, \pi]$.
 \begin{Answer}
   \begin{itemize}
     \item{
-
+      Since $-i = e^{-i \frac{\pi}{2}} = e^{i \frac{3 \pi}{2}}$,
+      $\mathrm{Log}(-i) = \frac{3 \pi}{2}i$ when the principal logarithm
+      is taken to have argument in $[0, 2 \pi)$ and
+      $\mathrm{Log}(-i) = -\frac{\pi}{2}i$ when
+      taken to have argument in $(-\pi, \pi]$.
+    }
+    \item{
+      Since $|\sqrt{3} + i| = \sqrt{3 + 1} = 2$ and
+      $\mathrm{arg}(\sqrt{3} + i) = \frac{\pi}{6} + 2 \pi k$,
+      we have $\sqrt{3} + i  = 2e^{i\frac{\pi}{6}}$, which has the
+      same principal logarithm $\ln 2 + \frac{\pi}{6} i$ in either case.
+    }
+    \item{
+      Since
+      $$
+        -1 - i
+      = -(1 + i)
+      = -\sqrt{2}e^{i\frac{\pi}{4}}
+      = \sqrt{2}e^{i\frac{5 \pi}{4}}
+      = \sqrt{2}e^{-i\frac{3 \pi}{4}},
+      $$
+      we have $\mathrm{Log}(-1 - i) = \ln \sqrt{2} + \frac{5 \pi}{4}i$
+      when the principal logarithm is taken to have argument in
+      $[0, 2 \pi)$ and $\mathrm{Log}(-1 - i) = \ln \sqrt{2} - \frac{3 \pi}{4}i$
+      when the principal logarithm is taken to have argument in $(-\pi, \pi]$.
     }
   \end{itemize}
 \end{Answer}
@@ -412,6 +469,37 @@ $z_1, z_2, z_3, z_4$ vertices of a square in the counterclockwise
 direction.
 \end{Problem}
 
+\begin{Answer}
+  Let $z_1, z_2, z_3, z_4$ form the vertices of a square which is
+  length $l$ on a side. This square inscribes a circle with
+  a radius $\frac{\sqrt{2}}{2}l$. First, consider the case where
+  this circle (and hence the square) is centered at zero. Then
+  this means $z_1 = \frac{\sqrt{2}}{2} e^{i \theta}$ for some
+  $\theta \in [0, 2 \pi)$.
+  Furthermore, the line segment between $z_2$ and the
+  origin makes an angle of $\frac{\pi}{4}$ with the line segment
+  between $z_1$ and the origin, and the same is true of the angle
+  between $z_3$ and $z_2$, and so on, so that we have
+  $z_2 = e^{i\frac{\pi}{2}} z_1 = i z_1$, $z_3 = i z_2$, $z_4 = i z_3$.
+  In other words we have
+  \begin{align*}
+    z_1 &= \frac{\sqrt{2}}{2} e^{i \theta} \\
+    z_2 &= i   z_1 \\
+    z_3 &= i^2 z_1 \\
+    z_4 &= i^3 z_1.
+  \end{align*}
+
+  However, it is possible for such a square to be centered anywhere in the
+  plane rather than at the origin. Correspondingly, all of these points may
+  be simultaneously translated by an arbitrary complex number $w$. Therefore
+  we have
+  $$
+  z_k = \frac{\sqrt{2}}{2} e^{i (\theta + \frac{\pi}{4}(k-1))} + w
+  $$
+  for some $\theta \in [0, 2 \pi)$ and some $w \in \mathbb{C}$.
+
+\end{Answer}
+
 \begin{Problem}
 Express $\sin z$ and $\cos z$ in rectangular form.
 \end{Problem}
@@ -425,8 +513,8 @@ We have
 &= \frac{1}{2i}
      [   e^{-y}(\cos x + i \sin x)
        - e^{y}(\cos x - i \sin x)
-     ]
- = \frac{1}{2}
+     ] \\
+&= \frac{1}{2}
      [
        -  i e^{-y} \cos x
        +    e^{-y} \sin x
