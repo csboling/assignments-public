@@ -192,7 +192,8 @@ $\mathrm{Im}((1 + i)^{100}) = 0$.
     Suppose $z = x + iy$ for $x, y \in \mathbb{R}$ and $e^z = 1$. Then
     $e^z = e^x e^{iy} = 1$, so $e^{iy} = e^{-x}$. Taking the modulus of both sides
     gives $1 = |e^{-x}| = e^{-x}$, so $x = -\ln 1 = 0$. Therefore we have
-    $e^z = e^{iy} = 1$, so this set is the unit circle.
+    $e^z = e^{iy} = 1$, so this set is given by $y = 2 \pi k$ for $k \in \mathbb{Z}$,
+    so $z = 2 \pi k i$, $k \in \mathbb{Z}$.
   }
   \item{
     Take $\alpha = x_0 + i y_0$, with $x_0, y_0 \in \mathbb{R}$
@@ -436,19 +437,7 @@ $$
 = r^{-n} e^{i \frac{\theta}{n}} e^{i \frac{2 \pi k}{n}}
 \quad k = 0, 1, 2, \dots, n-1
 $$
-
-First suppose $n = 2$. Then we have
-$$
-w_0 = r^{-2} e^{i \frac{\theta}{2}} e^{i \pi} = -r^{-2} e^{i \frac{\theta}{2}}
-$$
-and
-$$
-w_1 = r^{-2} e^{i \frac{\theta}{2}} e^{i 2 \pi} = r^{-2} e^{i
-  \frac{\theta}{2}} = -w_0
-$$
-so $w_0 + w_1 = 0$.
-
-Otherwise, $n > 2$. Then
+Then
 \begin{align*}
    \sum_{k = 0}^{n-1} w_k
 &= \sum_{k=0}^{n-1} r^{-n} e^{i\frac{\theta}{n}} e^{i\frac{2 \pi k}{n}} \\
@@ -459,7 +448,7 @@ Otherwise, $n > 2$. Then
 &= 0,
 \end{align*}
 using the result from Ch. I \S 2.11 and the fact that
-$e^{\frac{2 \pi}{n}} \neq 1$ for $n > 2$.
+$e^{i \frac{2 \pi}{n}} \neq 1$ for $n \geq 2$.
 \end{Answer}
 
 \begin{Problem}
