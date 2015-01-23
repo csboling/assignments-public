@@ -1,0 +1,59 @@
+
+\documentclass{article}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{enumerate}
+\usepackage{mathtools}
+\usepackage{xfrac}
+\usepackage[lastexercise]{exercise}
+
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+
+\newcounter{Problem}
+\newenvironment{Problem}{\begin{Exercise}[name={Problem},
+                                          counter={Problem}]}
+                        {\end{Exercise}}
+\title{MATH 829 Homework \#2}
+\date{January 28, 2015}
+\author{Sam Boling}
+
+\begin{document}
+
+\begin{titlepage}
+\maketitle
+\end{titlepage}
+
+\section{Textbook Problems}
+
+\section{Additional Problems}
+
+\begin{Problem}
+  Prove that for $z \in \mathbb{C}$, the sequence $(z^n)_{n=1}^\infty$
+  converges if and only if $|z| < 1$ or $z = 1$.
+\end{Problem}
+
+\begin{Problem}
+  Let $K$ be a nonempty compact subset of an open set
+  $U  \subset \mathbb{C}$. Show that there is $r > 0$
+  such that $D(z, r) \subset U$ for any $z \in K$.
+  Note that $r$ does not depend on $z \in K$.
+\end{Problem}
+
+\begin{Problem}
+  Let $S \subset \mathbb{C}$. We say that $z_0$ is an accumulation
+  point of $S$ if for every $r > 0$, the intersection
+  $D(z_0, r) \cap S$ is an infinite set.
+
+  Let $U$ be open and $S \subset U$. Suppose that $S$ has no accumulation
+  points in $U$. Show that for any compact set $K \subset U$,
+  $K \cap S$ is finite.
+\end{Problem}
+
+\begin{Problem}
+  Let $z_0 \in \mathbb{C}$ and $f(z) = |z - z_0|$. Show that
+  $f$ is continuous on $\mathbb{C}$ without using real analysis.
+\end{Problem}
+
+\end{document}
