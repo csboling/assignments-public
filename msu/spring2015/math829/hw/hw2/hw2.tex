@@ -34,6 +34,34 @@
   converges if and only if $|z| < 1$ or $z = 1$.
 \end{Problem}
 
+\begin{Answer}
+  \begin{itemize}
+    \item[($\implies$)]{
+      Let $z \in \mathbb{C}$ such that $(z^n)_{n=1}^\infty$ converges.
+      Then there exists some $\alpha \in \mathbb{C}$ and some
+      $N \in \mathbb{N}$ such that $\forall \varepsilon > 0$,
+      $|z^n - \alpha| < \varepsilon$ whenever $n \geq N$.
+      But $|z^n - \alpha| \geq |z|^n - |\alpha|$, and if
+      $|z| > 1$ then $|z|^n - |\alpha| < \varepsilon$ fails
+      for infinitely many $n$. If $|z| = 1$ and $z \neq 1$, then
+      $|z^n - \alpha| \geq |z|^n - |\alpha| = 1 - |\alpha|$
+      independent of $n$, in which case this sequence is not
+      convergent. Therefore $|z| < 1$ or $z = 1$.
+    }
+    \item[($\impliedby$)]{
+      Suppose $z = 1$. Then $|z - 1| = 0$, so
+      $\lim_{n \to \infty} z^n = 1$.
+
+      Suppose $|z| < 1$. We have
+      $|z^n - 0| = |z^n| = |z|^n$. Since $|z| < 1$
+      the real sequence $(|z|^n)_{n=1}^\infty$ has limit
+      0, so for any $\varepsilon > 0$ there exists an
+      $N \in \mathbb{N}$ such that $||z|^n - 0| = |z|^n = |z^n - 0| < \varepsilon$
+      whenever $n \geq N$. Therefore $(z^n)_{n=1}^\infty$ converges.
+    }
+  \end{itemize}
+\end{Answer}
+
 \begin{Problem}
   Let $K$ be a nonempty compact subset of an open set
   $U  \subset \mathbb{C}$. Show that there is $r > 0$
