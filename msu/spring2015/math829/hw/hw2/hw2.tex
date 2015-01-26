@@ -79,9 +79,54 @@
   $K \cap S$ is finite.
 \end{Problem}
 
+\begin{Answer}
+  Suppose $K \cap S$ is infinite, so we may choose a sequence of distinct
+  points $(z_n)$ in $K \cap S$. Since $(z_n)$ is a sequence in a compact set
+  $K$, it has a convergent subsequence $(z_{n_k})$, where each
+  $z_{n_k} \in K \cap S$ and also the limit
+  $l = \lim_{k \to \infty} (z_{n_k}) \in K$.
+  But by definition of the limit, for any $\varepsilon > 0$
+  there is an $N \in \mathbb{N}$ so that
+  $|l - z_{n_k}| < \varepsilon$ whenever $k \geq N$.
+  Therefore there are infinitely many $k$ such that
+  $|l - z_{n_k}| < \varepsilon$, i.e. such that
+  $z_{n_k} \in D(l, \varepsilon)$. Since each $z_{n_k} \in K \cap S$,
+  $z_{n_k} \in S$, so $z_{n_k} \in S \cap D(l, \varepsilon)$ for
+  infinitely many $k$. This means $l$ is an accumulation point of $S$,
+  and since $l \in K \subset U$ this is a contradiction.
+\end{Answer}
+
 \begin{Problem}
   Let $z_0 \in \mathbb{C}$ and $f(z) = |z - z_0|$. Show that
   $f$ is continuous on $\mathbb{C}$ without using real analysis.
 \end{Problem}
+
+\begin{Answer}
+  Observe that
+  \begin{align*}
+          |z - \alpha|
+    &=    |z - z_0 + z_0 - \alpha| \\
+    &=    |(z - z_0) - (\alpha - z_0)| \\
+    &\geq |z - z_0| - |\alpha - z_0|
+  \end{align*}
+  so $|z - z_0| - |\alpha - z_0| < \delta$ whenever $|z - \alpha| < \delta$.
+  Similarly
+  \begin{align*}
+          |z - \alpha|
+    &=    |\alpha - z|
+     =    |\alpha - z_0 + z_0 - z| \\
+    &=    |(\alpha - z_0) - (z - z_0)| \\
+    &\geq |\alpha - z_0| - |z - z_0|
+  \end{align*}
+  so $|\alpha - z_0| - |z - z_0| < \delta$ whenever $|z - \alpha| < \delta$,
+  which means $|z - z_0| - |\alpha - z_0| > -\delta$ in this case. Then
+  $$
+  -\delta < |z - z_0| - |\alpha - z_0| < \delta
+  $$
+  or $\left||z - z_0| - |\alpha - z_0|\right| < \delta$, or
+  $|f(z) - f(\alpha)| < \delta$ when $|z - \alpha| < \delta$. Choosing
+  $\delta = \varepsilon$ yields $\lim_{z \to \alpha} f(z) = f(\alpha)$ for
+  every $\alpha \in \mathbb{C}$, so $f$ is continuous on $\mathbb{C}$.
+\end{Answer}
 
 \end{document}
