@@ -25,10 +25,6 @@
 \maketitle
 \end{titlepage}
 
-\section{Textbook Problems}
-
-\section{Additional Problems}
-
 \begin{Problem}
   Prove that for $z \in \mathbb{C}$, the sequence $(z^n)_{n=1}^\infty$
   converges if and only if $|z| < 1$ or $z = 1$.
@@ -53,22 +49,64 @@
       $\cos n\theta \to x$ for some $x \in \mathbb{R}$.
       But the sequence $(\cos n \theta)_{n=0}^\infty$ does
       not converge for any $\theta \in (0, 2 \pi)$:
-      \begin{itemize}
-        \item{
-          Suppose $\theta / \pi$ is rational. Then
-          $\theta = \frac{k}{l} \pi$ for some
-          $k, l \in \mathbb{Z}$. If $k$ is odd, then
-          $\cos ((l + m) \theta) = -1$ and
-          $\cos ((2l + m) \theta = 1$ for any even $m$,
-          so the sequence does not converge. If $k$ is
-          even, then $\cos ((l + m) \theta) = 1$ and
-          $\cos ((2l + m) \theta) = -1$ for any even
-          $m$, so the sequence does not converge.
-        }
-        \item{
-          Suppose $\theta / \pi$ is irrational.
-        }
-      \end{itemize}
+      Since $\cos x \in [-1, 1]$ for any $x$, if
+      the $\cos n\theta \to L$ then $L \in [-1, 1]$,
+      so $L = \cos \varphi$ for some
+      $\varphi \in [0, 2 \pi)$.
+      Suppose
+      $|\cos n\theta - \cos \varphi| < \cos(2 \theta -
+      \varphi$ for some $n$. Then this means
+      $$
+      -\cos(2 \theta - \varphi) < \cos n\theta < \cos(2 \theta - \varphi
+      $$
+      or
+      $$
+      2 \sin \theta \sin(\varphi - \theta) < \cos n \theta < 2 \cos
+      \theta \cos (\theta - \varphi).
+      $$
+      But then
+      \begin{align*}
+         |\cos 2 n \theta - \cos \varphi|
+      &= |2 \cos^2 n \theta - 1 - \cos \theta| \\
+      &> |2 \sin^2 \theta \sin^2(\varphi - \theta) - 1 - \cos \varphi|
+      \end{align*}
+      which has a positive lower bound, so the sequence diverges.
+%     Suppose that $\theta \in (0, \pi]$, so
+%     $(n+1)\theta = n\theta + \theta \leq n\theta + \pi$
+%     for any $n \in \mathbb{N}$. Then
+%     $$
+%       f(x)
+%     = |\cos x - \cos \varphi|
+%     = \left|2 \sin\left(\frac{x - \varphi}{2}\right)
+%               \sin\left(\frac{x + \varphi}{2}\right)
+%       \right|
+%     = 2\left|\sin\left(\frac{x - \varphi}{2}\right)\right|
+%        \left|\sin\left(\frac{x + \varphi}{2}\right)\right|
+%     $$
+%     is increasing on
+%     $[\varphi, \varphi + \pi]$. This means
+%     $|\cos n\theta - \cos \varphi| <
+%      |\cos ((n+1)\theta) - \cos \varphi|$
+%     for any $n$, so the sequence must diverge
+%     in this case. A symmetric argument applies when
+%     $\theta \in [\pi, 2 \pi)$.
+
+%     \begin{itemize}
+%       \item{
+%         Suppose $\theta / \pi$ is rational. Then
+%         $\theta = \frac{k}{l} \pi$ for some
+%         $k, l \in \mathbb{Z}$. If $k$ is odd, then
+%         $\cos ((l + m) \theta) = -1$ and
+%         $\cos ((2l + m) \theta = 1$ for any even $m$,
+%         so the sequence does not converge. If $k$ is
+%         even, then $\cos ((l + m) \theta) = 1$ and
+%         $\cos ((2l + m) \theta) = -1$ for any even
+%         $m$, so the sequence does not converge.
+%       }
+%       \item{
+%         Suppose $\theta / \pi$ is irrational.
+%       }
+%     \end{itemize}
 
       Therefore $|z| < 1$ or $z = 1$.
     }
