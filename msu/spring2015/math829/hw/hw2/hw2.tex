@@ -42,11 +42,35 @@
       $N \in \mathbb{N}$ such that $\forall \varepsilon > 0$,
       $|z^n - \alpha| < \varepsilon$ whenever $n \geq N$.
       But $|z^n - \alpha| \geq |z|^n - |\alpha|$, and if
-      $|z| > 1$ then $|z|^n - |\alpha| < \varepsilon$ fails
-      for infinitely many $n$. If $|z| = 1$ and $z \neq 1$, then
-      $|z^n - \alpha| \geq |z|^n - |\alpha| = 1 - |\alpha|$
-      independent of $n$, in which case this sequence is not
-      convergent. Therefore $|z| < 1$ or $z = 1$.
+      $|z| > 1$ then the sequence $(|z|^n)_{n=1}^\infty$ is unbounded,
+      so $|z|^n - |\alpha| < \varepsilon$ fails
+      for infinitely many $n$.
+
+      If $|z| = 1$ and $z \neq 1$, then we can take $z = e^{i\theta}$
+      for some $\theta \in (0, 2 \pi)$. But if
+      $z^n \to \alpha$ then we must have
+      $\mathrm{Re}(z^n) \to \mathrm{Re}(\alpha)$ and so
+      $\cos n\theta \to x$ for some $x \in \mathbb{R}$.
+      But the sequence $(\cos n \theta)_{n=0}^\infty$ does
+      not converge for any $\theta \in (0, 2 \pi)$:
+      \begin{itemize}
+        \item{
+          Suppose $\theta / \pi$ is rational. Then
+          $\theta = \frac{k}{l} \pi$ for some
+          $k, l \in \mathbb{Z}$. If $k$ is odd, then
+          $\cos ((l + m) \theta) = -1$ and
+          $\cos ((2l + m) \theta = 1$ for any even $m$,
+          so the sequence does not converge. If $k$ is
+          even, then $\cos ((l + m) \theta) = 1$ and
+          $\cos ((2l + m) \theta) = -1$ for any even
+          $m$, so the sequence does not converge.
+        }
+        \item{
+          Suppose $\theta / \pi$ is irrational.
+        }
+      \end{itemize}
+
+      Therefore $|z| < 1$ or $z = 1$.
     }
     \item[($\impliedby$)]{
       Suppose $z = 1$. Then $|z - 1| = 0$, so
@@ -68,6 +92,29 @@
   such that $D(z, r) \subset U$ for any $z \in K$.
   Note that $r$ does not depend on $z \in K$.
 \end{Problem}
+
+\begin{Answer}
+Observe that since $U$ is open, its complement
+$V = \mathbb{C} \backslash U$ is closed. Then
+$K$ is a compact set and $V$ is a closed set,
+so there exists a $z_0 \in K$ and $w_0 \in V$
+such that
+$$
+  |z_0 - w_0|
+= \mathrm{dist}(K, V)
+= \inf \{ |z - w| : z \in K, w \in V \}.
+$$
+Then for any $z \in K$ and any $w \in V$
+we have that $|z - w| \geq r$. Since
+$K \subset U = \mathbb{C} \backslash V$,
+this means $K \cap V = \varnothing$, so it cannot
+be the case that $r = \mathrm{dist}(K, V) = 0$.
+Therefore $|z - w| \neq 0$ for any $w \in V$,
+so $w \notin D(z,r)$, i.e.
+$D(z, r) \cap V = \varnothing$, which
+means that $D(z, r) \subset U$.
+\end{Answer}
+
 
 \begin{Problem}
   Let $S \subset \mathbb{C}$. We say that $z_0$ is an accumulation
