@@ -240,7 +240,7 @@
     }
     \item{
       Let $f$ be an entire function and $n \in \mathbb{N}$.
-      Suppose $f^(n) = 0$. Show that $f$ is a polynomial
+      Suppose $f^{(n)} = 0$. Show that $f$ is a polynomial
       with $\deg f \leq n - 1$.
     }
   \end{enumerate}
@@ -252,6 +252,41 @@
   (Hint: $|f| = C$ implies $u^2 + v^2 = C^2$. Take partial derivatives
   and apply the Cauchy-Riemann equations.)
 \end{Problem}
+
+\begin{Answer}
+  Since $|f| = C$, $|f|^2 = u^2 + v^2 = C^2$. Since $f$ is
+  holomorphic, we must have
+  \begin{align*}
+    0 &= \frac{\partial}{\partial x} (u^2 + v^2)
+       = u_x \cdot 2 u + v_x \cdot 2 v \\
+      &= 2 u u_x - 2 v u_y
+  \end{align*}
+  and
+  \begin{align*}
+    0 &= \frac{\partial}{\partial y} (u^2 + v^2)
+       = u_y \cdot 2 u + v_y \cdot 2 v \\
+      &= 2 u v_x - 2 v v_y,
+  \end{align*}
+  so that
+  $$
+  u u_x = v u_y, \quad
+  u v_x = v v_y.
+  $$
+  Multiplying the first equation by $i$ and adding it to the second we
+  have
+  \begin{align*}
+  u u_x + i u v_x &= v u_y + i v v_y \\
+  u (u_x + i v_x) &= v (u_y + i v_y).
+  \end{align*}
+  But $u_x + i v_x = f^\prime$, and since
+  $$
+  i f^\prime = i(v_y - i u_y) = u_y + i v_y,
+  $$
+  we have $u f^\prime = i v f^\prime$ or
+  $(u - iv)f^\prime = \bar{f} f^\prime = 0$. Then it must be that
+  $f = 0$ or $f^\prime = 0$, and in either case this implies that $f$
+  is constant.
+\end{Answer}
 
 \begin{Problem}
   Let $f$ be an entire function Suppose that $f^\prime(z) = f(z)$ for
@@ -274,5 +309,21 @@
     }
   \end{enumerate}
 \end{Problem}
+
+\begin{Answer}
+  \begin{enumerate}
+    \item{
+      We must have that the series converges for every $z$ with $|z| <
+      R$, so since $|3 - 4i| = \sqrt{3^2 + 4^2} = 5$ it must be that
+      $R \leq 5$.
+    }
+    \item{
+      Similarly, since $0 \in D(0,1)$ and $|0| = 0$, we have that
+      $R = 0$ since $R \geq 0$ must also be satisfied.
+    }
+    \item{
+    }
+  \end{enumerate}
+\end{Answer}
 
 \end{document}
