@@ -23,6 +23,7 @@
 
 \begin{titlepage}
 \maketitle
+% TODO: III.6.2?
 \end{titlepage}
 
 \section{Textbook Problems}
@@ -30,30 +31,124 @@
 \subsection*{Ch. II, \S 2.4}
 \begin{itemize}
   \item[(a)]{
+    The series
+    $$
+    \sum_{n=0}^\infty n^n z^n
+    $$
+    has $a_n = n^n$ so that
+    $$
+      \limsup |a_n|^{1 / n}
+    = \limsup (n^n)^{1 / n}
+    = \limsup n = \infty,
+    $$
+    and therefore $R = 0$.
   }
   \item[(c)]{
+    The series
+    $$
+    \sum_{n=0}^\infty 2^n z^n
+    $$
+    has
+    $$
+      \left|\frac{a_{n+1}}{a_n}\right|
+    = \frac{2^{n+1}}{2^n}
+    = 2
+    $$
+    so that $R = \frac{1}{2}$.
   }
   \item[(f)]{
+    The series
+    $$
+    \sum_{n=0}^\infty n^2 z^n
+    $$
+    has
+    $$
+      \left|\frac{a_{n+1}}{a_n}\right|
+    = \frac{n^2 + 2n + 1}{n^2}
+    = 1 + 2\frac{1}{n} + \frac{1}{n^2} \to 1
+    $$
+    so that $R = 1$.
   }
   \item[(g)]{
+    The series
+    $$
+    \sum_{n=0}^\infty \frac{n!}{n^n} z^n
+    $$
+    has
+    $$
+      \frac{|a_{n+1}|}{|a_n|}
+    = \frac{n!}{(n+1)!}\frac{n^n}{n^{n+1}}
+    = \frac{1}{n+1}\frac{1}{n}
+    = \frac{1}{n^2 + n} \to 0
+    $$
+    so that $R = \infty$.
   }
 \end{itemize}
 
 \subsection*{Ch. II \S 2.10}
+\begin{enumerate}[(a)]
+  \item{
+    Noting that
+    $\sum (a_n + b_n) z^n = \sum a_n z^n + \sum b_n z^n$
+    so that
+    $$
+      \lim_{n \to \infty} \sum_{n=0}^\infty (a_n + b_n) z^n
+    = \lim_{n \to \infty} \sum_{n=0}^\infty a_n z^n
+    + \lim_{n \to \infty} \sum_{n=0}^\infty b_n z^n,
+    $$
+    we see that this series is convergent if and only if
+    both $\sum a_n z^n$ and $\sum b_n z^n$ converge. Therefore
+    the region of convergence is the intersection of the
+    regions of convergence of these two series, i.e.
+    $D(0, r) \cap D(0, s)$, so the region of convergence is
+    given by $\min(r, s)$.
+  }
+  \item{
+    We see that
+    \begin{align*}
+       \lim_{n \to \infty} \left|\frac{a_{n+1} b_{n+1}}{a_n b_n}\right|
+    &= \lim_{n \to \infty} \left|\frac{a_{n+1}}{a_n}\right|
+                       \left|\frac{b_{n+1}}{b_n}\right|
+     = \left(\lim_{n \to \infty}
+        \left|\frac{a_{n+1}}{a_n}\right|
+       \right)
+       \left(\lim_{n \to \infty}
+         \left|\frac{b_{n+1}}{b_n}\right|
+       \right) \\
+    &= \frac{1}{r} \frac{1}s}
+     = \frac{1}{rs}
+    \end{align*}
+    so that the radius of convergence is $rs$.
+  }
+\end{enumerate}
 
 \subsection*{Ch. III \S 6.1}
 \begin{itemize}
   \item[(d)]{
+    $i^i = e^{i \log i}$,
+    and $i = e^{i \frac{\pi}{2}}$ so for this branch of the logarithm
+    we have $\log i = i\frac{\pi}{2}$. Then
+    $e^{i \log i} = e^{-\frac{\pi}{2}}$.
   }
   \item[(e)]{
+    $(-i)^i = e^{i \log (-i)}$, and $-i = e^{-i\frac{\pi}{2}}$ so for
+    this branch of the logarithm we have $\log i = -i\frac{\pi}{2}$,
+    so $(-i)^i = e^{\frac{\pi}{2}}$.
   }
 \end{itemize}
 
 \subsection*{Ch. III \S 6.2}
 \begin{itemize}
   \item[(d)]{
+    $i^i = e^{i \log i}$,
+    and $i = e^{i \frac{\pi}{2}}$ so for this branch of the logarithm
+    we have $\log i = i\frac{\pi}{2}$. Then
+    $e^{i \log i} = e^{-\frac{\pi}{2}}$.
   }
   \item[(e)]{
+    $(-i)^i = e^{i \log (-i)}$, and $-i = e^{-i\frac{\pi}{2}}$ so for
+    this branch of the logarithm we have $\log i = -i\frac{\pi}{2}$,
+    so $(-i)^i = e^{\frac{\pi}{2}}$.
   }
 \end{itemize}
 
@@ -61,13 +156,80 @@
 
 \begin{Problem}
   Let $\mathrm{Log} z$ be the principal logarithm function
-  defined using $\mathrm{Arg} z \in (-\pi, \pi]$. Prove that
-  $\mathrm{Log}(z)$ is holomorphic on
+  defined using $\mathrm{Arg}~z \in (-\pi, \pi]$. Prove that
+  $\mathrm{Log}~z$ is holomorphic on
   $\mathbb{C} \backslash \{x \in \mathbb{R} : x \leq 0}$ and
-  that $\frac{d}{dz} \mathrm{Log} z = \frac{1}{z}$.
+  that $\frac{d}{dz} \mathrm{Log}~z = \frac{1}{z}$.
   (Hint: Divide the domain into the union of the right, lower, and
   upper half-planes. Apply the Cauchy-Riemann equations.)
 \end{Problem}
+
+\begin{Answer}
+  We have $\mathrm{Log}~z = \log |z| + i \mathrm{Arg}~z$.
+  Let $z = x + iy = e^{i \theta}$, and write
+  $\mathrm{Log}~(x + iy) = u(x, y) + i v(x, y)$.
+
+  \begin{itemize}
+    \item{
+      In the half-plane $\{ z : \mathrm{Im}~z < 0 \}$ we have
+      $\theta \neq 0$, $\theta \neq \pi$, so $\sin \theta \neq 0$
+      and thus
+      $\cot \theta = \frac{\cos \theta}{\sin \theta} = \frac{x}{y}$ is defined.
+      On this domain we then have $\mathrm{Arg}~z = \cot^{-1} \frac{y}{x}$, so
+      $$
+      \mathrm{Log}~z = \log \sqrt{x^2 + y^2} + i \cot^{-1} \frac{y}{x}
+      $$
+      so that
+      $$
+      u(x, y) = \log \sqrt{x^2 + y^2}, \quad
+      v(x, y) = \cot^{-1} \frac{x}{y}
+      $$
+      and then
+      \begin{align*}
+      u_x &= \left(\frac{\partial}{\partial x} \sqrt{x^2 + y^2}\right)
+             \left(\frac{1}{\sqrt{x^2 + y^2}}\right)
+           = (2x)\left(\frac{1}{2}(x^2 + y^2)^{-1/2}\right)
+             \left(\frac{1}{\sqrt{x^2 + y^2}}\right) \\
+          &= \frac{x}{x^2 + y^2}, \\
+      u_y &= \frac{y}{x^2 + y^2} \\
+      v_x &= \frac{1}{y}\left(-\frac{1}{1 + \left(\frac{x}{y}\right)^2}\right)
+           = -\frac{y}{x^2 + y^2} \\
+      v_y &= -\frac{x}{y^2}\left(-\frac{1}{1 + \left(\frac{x}{y}\right)^2}\right)
+           = \frac{x}{x^2 + y^2},
+      \end{align*}
+      so the Cauchy-Riemann equations are satisfied.
+    }
+    \item{
+      In the half-plane $\{z : \mathrm{Im}~z > 0\}$ we have
+      $\theta \neq 0$, $\theta \neq \pi$, so $\sin \theta \neq 0$ and
+      $\theta = \cot^{-1} \frac{y}{x}$, so that
+      $$
+      u(x, y) = \log \sqrt{x^2 + y^2}, \quad
+      v(x, y) = \cot^{-1} \frac{x}{y}
+      $$
+      in this case as well, so the Cauchy-Riemann
+      equations are satisfied in this region as well.
+    }
+    \item{
+      In the half-plane $\{z : \mathrm{Re}~z > 0\}$ we have
+      $\theta \neq \pm \frac{\pi}{2}$, so $\cos \theta \neq 0$ and
+      $\tan \theta = \frac{\sin \theta}{\cos \theta}$ is defined.
+      Therefore $\theta = \tan^{-1} \theta$ so
+      $$
+      u(x, y) = \log \sqrt{x^2 + y^2}, \quad
+      v(x, y) = \tan^{-1} \frac{y}{x}
+      $$
+      and then
+      \begin{align*}
+      u_x &= \frac{x}{x^2 + y^2}, \\
+      u_y &= \frac{y}{x^2 + y^2} \\
+      v_x &= -\frac{y}{x^2}\frac{1}{\frac{y^2}{x^2} + 1}
+           = -\frac{y}{x^2 + y^2}, \\
+      v_y &= \frac{1}{x}\frac{1}{\frac{y^2}{x^2} + 1}
+           = \frac{x}{x^2 + y^2}.
+      \end{align*}
+    }
+\end{Answer}
 
 \begin{Problem}
   \begin{enumerate}[(i)]
