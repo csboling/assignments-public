@@ -115,7 +115,7 @@
        \left(\lim_{n \to \infty}
          \left|\frac{b_{n+1}}{b_n}\right|
        \right) \\
-    &= \frac{1}{r} \frac{1}s}
+    &= \frac{1}{r} \frac{1}{s}
      = \frac{1}{rs}
     \end{align*}
     so that the radius of convergence is $rs$.
@@ -158,7 +158,7 @@
   Let $\mathrm{Log} z$ be the principal logarithm function
   defined using $\mathrm{Arg}~z \in (-\pi, \pi]$. Prove that
   $\mathrm{Log}~z$ is holomorphic on
-  $\mathbb{C} \backslash \{x \in \mathbb{R} : x \leq 0}$ and
+  $\mathbb{C} \backslash \{x \in \mathbb{R} : x \leq 0 \}$ and
   that $\frac{d}{dz} \mathrm{Log}~z = \frac{1}{z}$.
   (Hint: Divide the domain into the union of the right, lower, and
   upper half-planes. Apply the Cauchy-Riemann equations.)
@@ -229,6 +229,7 @@
            = \frac{x}{x^2 + y^2}.
       \end{align*}
     }
+  \end{itemize}
 \end{Answer}
 
 \begin{Problem}
@@ -245,6 +246,50 @@
     }
   \end{enumerate}
 \end{Problem}
+
+\begin{Answer}
+  \begin{enumerate}[(i)]
+    \item{
+      Since $f^\prime = g^\prime$, we have $f^\prime - g^\prime = 0$.
+      But $f^\prime - g^\prime = (f - g)^\prime$, so since
+      $(f - g)^\prime = 0$ this means $f - g = C$ for some constant
+      $C$, and then $f = g + C$ as desired.
+    }
+    \item{
+      \begin{itemize}
+        \item{
+          Consider $n = 1$. Then $f^\prime = 0$, so $f$ is constant,
+          i.e. a polynomial of degree $0 = n - 1$.
+        }
+        \item{
+          Suppose $n > 1$ and that the assertion holds for all
+          $m < n$, and that $f^{(n)} = \frac{d}{dz} f^{(n-1)} = 0$. Then
+          $f^{(n-1)} = C$ for some $C \in \mathbb{C}$,
+          so $f^{(n-1)} - C = 0$.
+
+          Define
+          $$
+          g(z) = f(z) - \frac{C}{(n-1)!} z^{n-1}.
+          $$
+          Then
+          $$
+            g^{(n-1)}(z)
+          = \frac{d^{n-1}}{dz^{n-1}} \left( f(z) - \frac{C}{(n-1)!}
+            z^{n-1} \right)
+          = f^{(n-1)}(z) - C
+          $$
+          and therefore $g^{(n-1)}(z) = 0$. But then by the inductive
+          hypothesis $g$ is a polynomial with $\deg g \leq n - 2$, and
+          so
+          $$
+          f(z) = g(z) + \frac{C}{(n-1)!}z^{n-1}
+          $$
+          is a polynomial with $\deg f = n - 1$.
+        }
+      \end{itemize}
+    }
+  \end{enumerate}
+\end{Answer}
 
 \begin{Problem}
   Let $f$ be an entire function. Suppose that $|f|$ is constant. Prove
@@ -293,6 +338,33 @@
   any $z \in \mathbb{C}$. Prove that $f(z) = C e^z$ for some
   $C \in \mathbb{C}$.
 \end{Problem}
+
+\begin{Answer}
+Since $f^\prime = u_x + i v_x$, $f^\prime = f$ implies
+that $u_x + i v_x = u + i v$, and since $u$ and $v$ are
+real functions this in turn implies that $u_x = u$ and
+$v_x = v$. Then $u(x, y) = k(y) e^x$ for some function
+$k(y)$ that does not depend on $x$, and similarly
+$v(x, y) = l(y) e^x$.
+We also have $f^\prime = v_y - i u_y$, so
+$v_y = u$ and $u_y = -v$. Then
+$l^\prime(y) e^x = k(y) e^x$ and
+$k^\prime(y) e^x = -l(y) e^x$, so
+$l^\prime(y) = k(y)$ and
+$k^\prime(y) = -l(y)$. Then
+$-l(y) = k^\prime(y) = l^{\prime\prime}(y)$
+and $k(y) = l^\prime(y) = -k^{\prime\prime}(y)$, and the unique
+solutions to these equations are sinusoids.
+Since $l^\prime(y) = k(y)$ this means
+$k(y) = K \cos y$ and $l(y) = K \sin y$
+for a real constant $K$. We conclude that
+$$
+  f(x + iy)
+= K e^x \cos y + i K e^x \sin y
+= K e^{x + iy}
+$$
+as desired.
+\end{Answer}
 
 \begin{Problem}
   Let $\sum_{n=0}^\infty a_n z^n$ be a power series with radius $R$.
