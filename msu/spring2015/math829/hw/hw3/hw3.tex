@@ -75,13 +75,19 @@
     \sum_{n=0}^\infty \frac{n!}{n^n} z^n
     $$
     has
-    $$
+    \begin{align*}
       \frac{|a_{n+1}|}{|a_n|}
-    = \frac{n!}{(n+1)!}\frac{n^n}{n^{n+1}}
-    = \frac{1}{n+1}\frac{1}{n}
-    = \frac{1}{n^2 + n} \to 0
-    $$
-    so that $R = \infty$.
+    &= \frac{\frac{(n+1)!}{(n+1)^{n+1}}}
+            {\frac{n!}{n^n}}
+     = n\frac{n^n}{(n+1)^{n+1}}
+     = \left(\frac{n}{n+1}\right)^{n+1} \\
+    &= \left(1 + \frac{1}{n}\right)^{-(n+1)}
+     = \frac{1}{\left(1 + \frac{1}{n}\right)^{n+1}} \\
+    &= \frac{1}{\left(1 + \frac{1}{n}\right)^n}
+       \frac{1}{\left(1 + \frac{1}{n}\right)}
+     \to \frac{1}{e},
+    \end{align*}
+    so $R = e$.
   }
 \end{itemize}
 
@@ -174,7 +180,10 @@
       In the half-plane $\{ z : \mathrm{Im}~z < 0 \}$ we have
       $\theta \neq 0$, $\theta \neq \pi$, so $\sin \theta \neq 0$
       and thus
-      $\cot \theta = \frac{\cos \theta}{\sin \theta} = \frac{x}{y}$ is defined.
+      $\cot \theta = \frac{\cos \theta}{\sin \theta} = \frac{x}{y}$ is
+      defined. Furthermore $\sin \theta < 0$, and
+      with this choice of principal logarithm we have
+      $-\pi < \theta < 0$.
       On this domain we then have $\mathrm{Arg}~z = \cot^{-1} \frac{y}{x}$, so
       $$
       \mathrm{Log}~z = \log \sqrt{x^2 + y^2} + i \cot^{-1} \frac{y}{x}
@@ -198,6 +207,14 @@
            = \frac{x}{x^2 + y^2},
       \end{align*}
       so the Cauchy-Riemann equations are satisfied.
+      We confirm also that
+      $$
+        u_x + i v_x
+      = \frac{x - iy}{x^2 + y^2}
+      = \frac{\bar{z}}{|z|}
+      = \frac{1}{z},
+      $$
+      so $\frac{d}{dz} \log z = \frac{1}{z}$ on this domain.
     }
     \item{
       In the half-plane $\{z : \mathrm{Im}~z > 0\}$ we have
@@ -208,7 +225,8 @@
       v(x, y) = \cot^{-1} \frac{x}{y}
       $$
       in this case as well, so the Cauchy-Riemann
-      equations are satisfied in this region as well.
+      equations are satisfied in this region as well and
+      $\frac{d}{dz} \log z = \frac{1}{z}$.
     }
     \item{
       In the half-plane $\{z : \mathrm{Re}~z > 0\}$ we have
@@ -228,6 +246,10 @@
       v_y &= \frac{1}{x}\frac{1}{\frac{y^2}{x^2} + 1}
            = \frac{x}{x^2 + y^2}.
       \end{align*}
+      We confirm also that
+      $$
+      u_x + i v_x = \frac{x - y}{x^2 + y^2} = \frac{1}{z}.
+      $$
     }
   \end{itemize}
 \end{Answer}
@@ -329,7 +351,7 @@
   $$
   we have $u f^\prime = i v f^\prime$ or
   $(u - iv)f^\prime = \bar{f} f^\prime = 0$. Then it must be that
-  $f = 0$ or $f^\prime = 0$, and in either case this implies that $f$
+  $\bar{f} = 0 = f$ or $f^\prime = 0$, and in either case this implies that $f$
   is constant.
 \end{Answer}
 
@@ -394,6 +416,16 @@ as desired.
       $R = 0$ since $R \geq 0$ must also be satisfied.
     }
     \item{
+      This series can be written
+      $$
+      \sum_{n=0}^\infty a_n z^{2n} = \sum_{n=0}^\infty b_n z^n
+      $$
+      with $b_n = a_n z^n$, so that
+      $|b_n|^{1 / n} = |a_n|^{1 / n} |z|$. Then
+      $\lim_{n \to \infty} |b_n|^{1 / n} = R|z|$. When
+      $\sum a_n z^n$ converges we have $|z| \leq R$,
+      so this means the radius of convergence for
+      $\sum b_n z^n$ is at most $R^2$.
     }
   \end{enumerate}
 \end{Answer}
