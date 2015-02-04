@@ -80,8 +80,9 @@
     &= \frac{\frac{(n+1)!}{(n+1)^{n+1}}}
             {\frac{n!}{n^n}}
      = n\frac{n^n}{(n+1)^{n+1}}
-     = \left(\frac{n}{n+1}\right)^{n+1} \\
-    &= \left(1 + \frac{1}{n}\right)^{-(n+1)}
+     = \frac{n}{n+1} \left(\frac{n}{n+1}\right)^n \\
+    &= \left(\frac{n}{n+1}\right)^{n+1}
+     = \left(1 + \frac{1}{n}\right)^{-(n+1)}
      = \frac{1}{\left(1 + \frac{1}{n}\right)^{n+1}} \\
     &= \frac{1}{\left(1 + \frac{1}{n}\right)^n}
        \frac{1}{\left(1 + \frac{1}{n}\right)}
@@ -98,11 +99,11 @@
     $\sum (a_n + b_n) z^n = \sum a_n z^n + \sum b_n z^n$
     so that
     $$
-      \lim_{n \to \infty} \sum_{n=0}^\infty (a_n + b_n) z^n
-    = \lim_{n \to \infty} \sum_{n=0}^\infty a_n z^n
-    + \lim_{n \to \infty} \sum_{n=0}^\infty b_n z^n,
+      \lim_{n \to \infty} \sum_{k=0}^n (a_k + b_k) z^k
+    = \lim_{n \to \infty} \sum_{k=0}^n a_k z^k
+    + \lim_{n \to \infty} \sum_{k=0}^n b_k z^k,
     $$
-    we see that this series is convergent if and only if
+    we see that this series is convergent only if
     both $\sum a_n z^n$ and $\sum b_n z^n$ converge. Therefore
     the region of convergence is the intersection of the
     regions of convergence of these two series, i.e.
@@ -149,12 +150,14 @@
     $i^i = e^{i \log i}$,
     and $i = e^{i \frac{\pi}{2}}$ so for this branch of the logarithm
     we have $\log i = i\frac{\pi}{2}$. Then
-    $e^{i \log i} = e^{-\frac{\pi}{2}}$.
+    $e^{i \log i} = e^{-\frac{\pi}{2}}$. The same value is attained
+    for $-\pi < \theta < \pi$.
   }
   \item[(e)]{
     $(-i)^i = e^{i \log (-i)}$, and $-i = e^{-i\frac{\pi}{2}}$ so for
     this branch of the logarithm we have $\log i = -i\frac{\pi}{2}$,
-    so $(-i)^i = e^{\frac{\pi}{2}}$.
+    so $(-i)^i = e^{\frac{\pi}{2}}$. The same value is attained
+    for $-\pi < \theta < \pi$.
   }
 \end{itemize}
 
@@ -252,6 +255,11 @@
       $$
     }
   \end{itemize}
+  Therefore the Cauchy-Riemann equations hold on a union of sets which
+  cover the domain of this branch of the logarithm, and the derivative
+  is equal to $\frac{1}{z}$ on each set composing this union, so this
+  branch of the logarithm is holomorphic on its domain and has
+  derivative $\frac{1}{z}$ as desired.
 \end{Answer}
 
 \begin{Problem}
@@ -416,16 +424,25 @@ as desired.
       $R = 0$ since $R \geq 0$ must also be satisfied.
     }
     \item{
-      This series can be written
+      Observe that
       $$
-      \sum_{n=0}^\infty a_n z^{2n} = \sum_{n=0}^\infty b_n z^n
+      \sum_{n=0}^\infty a_n z^n + \sum_{n=0}^\infty (-1)^n a_n z^n
+      = \sum_{n=0}^\infty 2 a_n z^{2n}
       $$
-      with $b_n = a_n z^n$, so that
-      $|b_n|^{1 / n} = |a_n|^{1 / n} |z|$. Then
-      $\lim_{n \to \infty} |b_n|^{1 / n} = R|z|$. When
-      $\sum a_n z^n$ converges we have $|z| \leq R$,
-      so this means the radius of convergence for
-      $\sum b_n z^n$ is at most $R^2$.
+      so that
+      $$
+        \sum_{n=0}^\infty a_n z^{2n}
+      = \frac{1}{2}\left[
+          \sum_{n=0}^\infty (-1)^n a_n z^n
+        + \sum_{n=0}^\infty a_n z^n
+        \right]
+      $$
+      Observing that $|(-1)^n a_n|^{\frac{1}{n}} =
+      |a_n|^{\frac{1}{n}}$, we see that $\sum (-1)^n a_n z^n$ has the
+      same radius of convergence as $\sum a_n z^n$, and the radius of
+      convergence of this sum of series is the minimum of the radii of
+      convergence of the summands. Therefore this series has the same
+      radius of convergence as $\sum a_n z^n$, namely $R$.
     }
   \end{enumerate}
 \end{Answer}
