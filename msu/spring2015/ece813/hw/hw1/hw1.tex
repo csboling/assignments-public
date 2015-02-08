@@ -1,0 +1,223 @@
+\documentclass{article}
+
+\usepackage{amsmath}
+\usepackage{exercise}
+
+\title{ECE 813 Homework \#1}
+\author{Sam Boling}
+\date{February 11, 2015}
+
+\begin{document}
+
+\maketitle
+
+\section*{Problem \#3.2}
+
+\begin{enumerate}[(a)]
+  \item{
+    Writing the voltage drops around the loop gives
+    $$
+    V_D + I_D R_S + V_S = 0
+    $$
+    so that from the ideal diode equation
+    $$
+    V_D + I_S (e^{\frac{V_D}{\phi_T}} - 1)R_S + V_S = 0.
+    $$
+    This nonlinear equation does not have a straightforward analytic
+    solution, so we proceed by other means.
+
+    It is not possible that the diode is forward-biased (see part
+    (b)), so the current $I_D$ is approximately $-I_S$. This means
+    that $V_D \approx I_S R_S - V_S = 2000 I_S - 3.3$.
+
+    We next find
+    \begin{align*}
+       \phi_T
+    &= \frac{\phi_0}{\ln \frac{N_A N_D}{n_i^2}}
+     = \frac{0.65~\mathrm{V}}
+            {\ln \frac{(2.5 \times 10^{16}) \cdot (5 \times 10^{15})}
+                      {1.5 \times 10^{10}}} \\
+    &= 0.013~\mathrm{V}
+    \end{align*}
+    and
+    $$
+    I_S = 10^{-17} ~\frac{\mathrm{A}}{\mu \mathrm{m}^2} \cdot 12 ~\mu\mathrm{m}^2
+        = 12 \times 10^{-17}
+    $$
+    using the assumption that the typical saturation current density
+    is $10^{-17} ~\frac{\mathrm{A}}{\mu \mathrm{m}^2}$ and the given
+    cross-sectional area $A_D = 12 \mu\mathrm{m}^2$. Using these
+    values and the initial guess of $V_D = -3.3$ yields a value for
+    $V_D + I_S(e^{\frac{V_D}{\phi_T}} - 1)R_S$ that is within
+    $10^{-12}$ of $-V_S$. Therefore we take the solution to be
+    $$
+    V_D = 2000 I_S - 3.3 \approx -3.3 ~\mathrm{V}, \quad I_D = -I_S.
+    $$
+  }
+  \item{
+    Suppose the diode is forward-biased. Then there must be a positive
+    voltage drop across the diode, so there must be a
+    voltage drop of at least $3.3~\mathrm{V}$ across the
+    resistor to bring the non-grounded terminal of the diode to a
+    lower potential than the grounded terminal, which would require a
+    current of at least $1.65~\mathrm{mA}$ in the reverse-bias
+    direction, which is not possible in forward-bias. Therefore
+    the diode is reverse-biased.
+  }
+  \item{
+    We have
+    \begin{align*}
+    W_j &= \sqrt{\left(
+                   \frac{2 \varepsilon_{si}}{q}
+                   \frac{N_A + N_D}{N_A N_D}
+                 \right) (\phi_0 - V_D)}
+         = \sqrt{\left(
+                   \frac{2 \cdot 1.05 \times 10^{-12}}
+                        {1.6 \times 10^{-19}}
+                   \frac{3 \times 10^{16}}
+                        {1.25 \times 10^{32}}
+                  \right) \cdot 3.95} \\
+        &= 1.115 \times 10^{-4} ~\mathrm{cm}
+         = 1.12 ~\mu~\mathrm{m}.
+    \end{align*}
+  }
+  \item{
+    We have
+    \begin{align*}
+      C_j &= \frac{\varepsilon_{si} A_D}{W_j}
+           = \frac{(1.05 \times 10^{-12}) \cdot (1.2 \times 10^{-7})}
+                  {1.12 \times 10^{-4}} \\
+          &= 1.125 \times 10^{-15} ~\mathrm{F}
+           = 1.125 ~\mathrm{fF}
+    \end{align*}
+    since $1.2 ~\mu\mathrm{m}^2 = 1.2 \times 10^{-7} ~\mathrm{cm}^2$.
+  }
+  \item{
+    Since the diode's reverse bias is approximately equal in magnitude
+    to the source voltage, decreasing the source voltage will cause
+    the diode to be less reverse-biased, meaning the depletion width
+    decreases. This brings the ``plates'' of the capacitor closer
+    together, resulting in an increased capacitance.
+  }
+\end{enumerate}
+
+\section*{Problem \#3.3}
+Assuming the source-to-bulk voltage is 0, we have $V_T = V_{T0}$.
+The general current expression is then
+\begin{align*}
+I_D &= k^\prime \frac{W}{L}
+       \left(V_{GT}V_{min} - \frac{V_{min}^2}{2}\right)
+       (1 + \lambda V_{DS})
+\end{align*}
+when $V_{GT} \geq 0$, which is satisfied for each of the following.
+Then for NMOS we have
+\begin{align*}
+I_{Dn} &= 115 \times 10^{-6}
+         \left(V_{GT}V_{min} - \frac{V_{min}^2}{2}\right)
+         (1 + 0.06 V_{DS})
+\end{align*}
+and for PMOS
+\begin{align*}
+I_{Dp} &= 30 \times 10^{-6}
+         \left(V_{GT}V_{min} - \frac{V_{min}^2}{2}\right)
+         (1 - 0.1 V_{DS}).
+\end{align*}
+
+\begin{enumerate}[(a)]
+  \item{
+    In both cases we have $|V_{GS}| > |V_T|$.
+
+    For NMOS we have
+    $$
+    V_{GT} = 2.5 - 0.43 = 2.07 ~\mathrm{V}, \quad
+    V_{DS} = 2.5,
+    $$
+    so $V_{min} = V_{GT}$, i.e. $V_{GS} - V_{DS} = 0 \leq V_T$ so the
+    NMOS transistor is in saturation. The current is given by
+    $$
+    I_{Dn} = 115 \times 10^{-6} \frac{2.07^2}{2}(1 + 0.06 \cdot 2.5)
+          = 283 ~\mu\mathrm{A}.
+    $$
+
+    For PMOS we have
+    $$
+    V_{GT} = V_{SG} - |V_T| = 0.5 - 0.4 = 0.1 ~\mathrm{V}, \quad
+    V_{SD} = 1.25
+    $$
+    so $V_{min} = V_{GT}$, i.e. the PMOS transistor is in
+    saturation. The current is given by
+    $$
+    I_{Dp} = 30 \times 10^{-6} \frac{0.1^2}{2}(1 + 0.1 \cdot 1.25)
+          = 0.827 ~\mu\mathrm{A}.
+    $$
+  }
+  \item{
+    In both cases we have $|V_{GS}| > |V_T|$.
+
+    For NMOS we have
+    $$
+    V_{GT} = 3.3 - 0.43 = 2.87, \quad
+    V_{DS} = 2.2
+    $$
+    so $V_{min} = V_{DS}$ and thus the device is in the triode
+    region. The current is given by
+    $$
+    I_{Dn} = 115 \times 10^{-6}
+            (2.87 \cdot 2.2 - \frac{2.2^2}{2})
+            (1 + 0.06 \cdot 2.2)
+          = 50.7 ~\mu\mathrm{A}.
+    $$
+
+    For PMOS we have
+    $$
+    V_{GT} = V_{SG} - |V_T| = 2.5 - 0.4 = 2.1, \quad
+    V_{SD} = 1.8
+    $$
+    so $V_{min} = V_{SD}$ and thus the device is in the triode region.
+    The current is given by
+    $$
+    I_{Dp} = 30 \times 10^{-6}
+            (2.1 \cdot 1.8 - \frac{1.8^2}{2})
+            (1 + 0.1 \cdot 1.8)
+          = 0.765 ~\mu\mathrm{A}
+    $$
+  }
+  \item{
+    In both cases we have $|V_{GS}| > |V_T|$.
+
+    For NMOS we have
+    $$
+    V_{GT} = 0.6 - 0.43 = 0.17, \quad
+    V_{DS} = 0.1
+    $$
+    so $V_{min} = V_{DS}$ and the device is in the triode region.
+    The current is given by
+    $$
+    I_{Dn} = 115 \times 10^{-6}
+            (0.17 \cdot 0.1 - \frac{0.1^2}{2})
+            (1 + 0.06 \cdot 0.1)
+          = 1.39 ~\mu\mathrm{A}.
+    $$
+
+    For PMOS we have
+    $$
+    V_{GT} = 2.5 - 0.4 = 2.1, \quad
+    V_{SD} = 0.7
+    $$
+    so that $V_{min} = V_{SD}$ and thus the device is in the triode
+    region. The current is given by
+    $$
+    I_{Dp} = 30 \times 10^{-6}
+            (2.1 \cdot 0.7 - \frac{0.7^2}{2})
+            (1 + 0.1 \cdot 0.7)
+          = 0.393 ~\mu\mathrm{A}
+    $$
+  }
+\end{enumerate}
+
+\section*{Problem \#3.18}
+
+\section*{Problem \#3.22}
+
+
+\end{document}
