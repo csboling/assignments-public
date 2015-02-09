@@ -361,6 +361,17 @@
   $(u - iv)f^\prime = \bar{f} f^\prime = 0$. Then it must be that
   $\bar{f} = 0 = f$ or $f^\prime = 0$, and in either case this implies that $f$
   is constant.
+
+  If $C = 0$, then $f = 0$. Assume $C > 0$. Differentiating
+  $u^2 + v^2 = C^2$ we have $2u u_x + 2 v v_x = 0$ and
+  $2 u u_y + 2 v v_y = 0$. The Cauchy-Riemann equations give
+  $-2 u v_x + 2 v u_x = 0$. From this we can multiply
+  to find
+  $$
+  v (2u u_x + 2 v v_x) - u(-2 u v_x + 2 v u_x) = 2 (v^2 + u^2) v_x = 2 C^2 v_x = 0
+  $$
+  and similarly we have $2 (u^2 + v^2) u_x = 2 C^2 u_x = 0$. Since $C > 0$, this
+  that $f^\prime = 0$.
 \end{Answer}
 
 \begin{Problem}
@@ -394,6 +405,10 @@ $$
 = K e^{x + iy}
 $$
 as desired.
+
+Let $g(z) = e^{-z} f(z)$. Then
+$g^\prime(z) = e^{-z} f^\prime(z) - e^{-z} f(z) = 0$
+since $f^\prime = f$. Therefore $g = C$ so $f(z) = C e^z$.
 \end{Answer}
 
 \begin{Problem}
