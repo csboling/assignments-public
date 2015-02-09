@@ -23,10 +23,138 @@
 
 \begin{titlepage}
 \maketitle
-% TODO: III.6.2?
 \end{titlepage}
 
 \section{Textbook Problems}
+
+\subsection*{Ch. II \S 5.1}
+We can observe that in general
+$$
+  \sum_{n=0}^\infty \frac{(-1)^n + 1}{2} a_n z^n
+= \sum_{k=0}^\infty a_{2k} z^{2k}
+$$
+since $\frac{(-1)^n + 1}{2}$ is 0 when $n$ is odd and 1 when $n$ is
+even. Then we have
+\begin{align*}
+   f^{(2)}(z)
+&= \sum_{n=2}^{\infty} n (n - 1) \frac{(-1)^n + 1}{2} \frac{z^{n-2}}{n!}  \\
+&= \sum_{n=2}^{\infty} \frac{(-1)^n + 1}{2} \frac{z^{n-2}}{(n-2)!}.
+\end{align*}
+Taking $k = n - 2$ we see that $n = k + 2$, and $(-1)^{k + 2} =
+(-1)^k$ so this means
+\begin{align*}
+   f^{(2)}(z)
+&= \sum_{k=0}^\infty \frac{(-1)^k + 1}{2} \frac{z^k}{k!}
+ = \sum_{m=0}^{\infty} \frac{z^{2m}}{(2m)!} \\
+&= f(z).
+\end{align*}
+
+To find the radius of convergence we observe that
+$$
+  f(z)
+= \frac{1}{2}\left[
+    \sum_{k=0}^\infty (-1)^k \frac{z^k}{k!}
+  + \sum_{k=0}^\infty \frac{z^k}{k!}
+  \right]
+$$
+and that $|(-1)^k a_k|^{1 / k} = |a_k|^{1 / k}$ for any $a_k$,
+so the radius of convergence is that of
+$$
+e^z = \sum_{n=0}^\infty \frac{z^n}{n!}
+$$
+which is $\infty$.
+
+\subsection*{Ch. II \S 5.4}
+We have
+\begin{align*}
+   J^\prime(z)
+&= \sum_{n=1}^\infty 2n
+                   \frac{(-1)^n}{(n!)^2 2^n}
+                   z^{2n-1} \\ \\
+&= \sum_{n=1}^\infty \frac{n(-1)^n}{(n!)^2 \cdot 2^{2n-1}}
+                   z^{2n-1}
+\end{align*}
+so that
+\begin{align*}
+   J^{\prime\prime}(z)
+&= \sum_{n=2}^\infty (2n-1)
+                   \frac{n(-1)^n}{(n!)^2 \cdot 2^{2n-1}}
+                   z^{2n-2}
+\end{align*}
+and then
+\begin{align*}
+   z^2 J^{\prime\prime}(z) + zJ^\prime(z) + z^2 J(z)
+&= \sum_{n=2}^\infty (2n-1)
+                   \frac{n(-1)^n}{(n!)^2 \cdot 2^{2n-1}}
+                   z^{2n-2} \\
+&+ \sum_{n=1}^\infty \frac{n(-1)^n}{(n!)^2 \cdot 2^{2n-1}}
+                   z^{2n-1} \\
+&+ \sum_{n=0}^\infty \frac{(-1)^n}{(n!)^2 \cdot 2^{2n}}
+                   z^{2(n+1)} \\
+&= z^2 \\
+&+ \left(-\frac{1}{4}z^2 - \frac{1}{2}z\right) \\
+&+ \sum_{n=2}^\infty \left[
+     (2n-1)
+     \frac{n(-1)^n}{(n!)^2 \cdot 2^{2n-1}}
+     z^{2n-2}
+   + \frac{n(-1)^n}{(n!)^2 \cdot 2^{2n-1}}
+     z^{2n-1}
+   + \frac{(-1)^n}{(n!)^2 \cdot 2^{2n}}
+     z^{2(n+1)}
+   \right]\\
+&=
+\end{align*}
+
+
+%begin{align*}
+%  J(z)
+%= \sum_{k=0}^\infty
+%    \frac{(-1)^k + 1}{2}
+%    \frac{(-1)^{\left\lfloor\frac{k}{2}\right\rfloor}}
+%         {2^k \left(\left\lfloor\frac{k}{2}\right\rfloor!\right)^2}
+%    z^k
+%end{align*}
+%o that the derivative is given by
+%$
+%^\prime(z)
+% \sum_{k=1}^\infty
+%   k
+%   \frac{(-1)^k + 1}{2}
+%   \frac{(-1)^{\left\lfloor\frac{k}{2}\right\rfloor}}
+%        {2^k \left(\left\lfloor\frac{k}{2}\right\rfloor!\right)^2}
+%   z^{k-1}
+% \sum_{m=0}^\infty
+%   (m+1)
+%   \frac{(-1)^{m+1} + 1}{2}
+%   \frac{(-1)^{}{}
+%$
+%
+%$
+% k
+% \frac{(-1)^{\left\lfloor\frac{k}{2}\right\rfloor}}
+%      {\left\lfloor\frac{k}{2}\right\rfloor!
+%       \cdot \left\lfloor\frac{k}{2}\right\rfloor!
+%       \cdot 2^{k}}
+% 2n\frac{(-1)^n}{(n!)}
+%$
+%hen $J^{\prime\prime}(z)$ has zero odd coefficients and even
+%oefficients given by
+%$
+% k\frac{(-1)^k}{(k-1) \cdot k! \cdot 2^k}
+% \frac{(-1)^k}{(k-1)^2 2^k}.
+%$
+%e compute
+%begin{align*}
+%  z^2 J^{\prime\prime}(z) + zJ^\prime(z) + z^2 J(z)
+%=
+%end{align*}
+
+\subsection*{Ch. II \S 5.6(a)}
+First we find
+\begin{align*}
+   \frac{d}{dz} \sum_{n=0}^\infty (-1)^{n-1} \frac{(z-1)^n}{n}
+&= \sum_{n=0}^\infty n (
+\end{align*}
 
 \section{Additional Problems}
 
@@ -52,6 +180,7 @@
       $\forall x \in \mathbb{R}$. Show that $f(\bar{z}) = \overline{f(z)}$
       for all $z \in U$.
     }
+  \end{enumerate}
 \end{Problem}
 
 \begin{Problem}
