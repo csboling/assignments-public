@@ -45,32 +45,90 @@ Then
 \begin{align*}
    f^{\prime\prime}(z)
 &= \sum_{k=2}^\infty k (k-1) b_k z^{k-2}
- = \sum_{k=2}^\infty \frac{z^{k-2}}{(k-2)!} \chi_{2\mathbb{Z}}(k) \\
+&= \sum_{k \in 2\mathbb{N}} \frac{z^{k-2}}{(k-2)!} \\
+&= \sum_{n \in \mathbb{N}} \frac{z^{2n - 2}}{(2n - 2)!}
+\end{align*}
+under the substitution $k = 2n$, so that
+\begin{align*}
+   f^{\prime\prime}(z)
 &= \sum_{n=1}^\infty \frac{z^{2n - 2}}{(2n - 2)!}
  = \sum_{n=1}^\infty \frac{z^{2(n-1)}}{(2(n-1))!} \\
 &= \sum_{n=0}^\infty \frac{z^{2n}}{(2n)!}
- = f(z),
+ = f(z).
 \end{align*}
-where $\chi_{2\mathbb{Z}}(k) = 1$ for even $k$ and 0 for odd $k$.
 
 \subsection*{Ch. II \S 5.4}
 Defining
 $$
-a_n = \frac{(-1)^n}{(n!)^2 2^{2n}}
+a_k
+=
+\left\{\begin{array}{l l}
+  \frac{(-1)^{\frac{k}{2}}}{\left(\frac{k}{2}!\right)^2 2^k},
+    & \quad k \text{ even} \\
+  0 & \quad k \text{ odd}
+\end{array}\right.,
 $$
 we can write
 $$
-J(z) = \sum_{n=0}^\infty \frac{(-1)^n}{(n!)^2}\left(\frac{z}{2}\right)^{2n}
+  J(z)
+= \sum_{n=0}^\infty \frac{(-1)^n}{(n!)^2}\left(\frac{z}{2}\right)^{2n}
+= \sum_{k=0}^\infty a_k z^k
 $$
+so that
+\begin{align*}
+   J^\prime(z)
+&= \frac{d}{dz} \sum_{k=0}^\infty a_k z^k
+ = \sum_{k=1}^\infty k a_k z^{k-1} \\
+&= \sum_{k=2}^\infty k a_k z^{k-1}
+ = \sum_{k \in 2\mathbb{N}} k a_k z^{k-1} \\
+&= \sum_{k \in 2\mathbb{N}} k \frac{(-1)^{\frac{k}{2}}}{\left(\frac{k}{2}!\right)^2 2^k} z^{k-1}
+\end{align*}
+since $a_1 = 0$. But then by substituting $n = 2k$,
+\begin{align*}
+   J^\prime(z)
+&= \sum_{n=1}^\infty 2n \frac{(-1)^{n}}{(n!)^2 2^{2n}} z^{2n-1}
+ = \sum_{n=1}^\infty \frac{(-1)^n}{(n-1)! \cdot n! \cdot 2^{2n-1}} z^{2n-1}.
+\end{align*}
+By the same procedure
+\begin{align*}
+   J^{\prime\prime}(z)
+&= \sum_{k=2}^\infty k (k-1) a_k z^{k-2}
+ = \sum_{n=1}^\infty 2n (2n-1) \frac{(-1)^{n}}{(n!)^2 2^{2n}} z^{2n-2} \\
+&= \sum_{n=1}^\infty (2n-1) \frac{(-1)^n}{(n-1)! \cdot n! \cdot 2^{2n-1}} z^{2n-2}.
+\end{align*}
+Then
+\begin{align*}
+   z^2 J^{\prime\prime}(z) + z J^\prime(z) + z^2 J(z)
+&= \sum_{n=1}^\infty (2n-1) \frac{(-1)^n}{(n-1)! \cdot n! \cdot 2^{2n-1}} z^{2n} \\
+&+ \sum_{n=1}^\infty \frac{(-1)^n}{(n-1)! \cdot n! \cdot 2^{2n-1}} z^{2n} \\
+&+ \sum_{n=0}^\infty \frac{(-1)^n}{(n!)^2 2^{2n}} z^{2n + 2} \\
+&= z^2 + \sum_{n=1}^\infty
+\end{align*}
 
 \subsection*{Ch. II \S 5.6(a)}
-First we find
+Observe that by a change of index $k = n+1$
 \begin{align*}
-   \frac{d}{dz} \sum_{n=0}^\infty (-1)^{n-1} \frac{(z-1)^n}{n}
-&= \sum_{n=1}^\infty n (-1)^{n-1} \frac{(z-1)^{n-1}}{n}
- = \sum_{n=1}^\infty (-1)^{n-1} (z-1)^{n-1} \\
-&= \sum_{n=0}^\infty (-1)^n (z-1)^n.
+   \log z
+&= \sum_{n=1}^\infty \frac{(-1)^{n-1}}{n}(z-1)^n
+ = \sum_{n=0}^\infty \frac{(-1)^n}{n+1} (z-1)^{n+1} \\
+&= (z-1)\sum_{n=0}^\infty \frac{(-1)^n}{n+1}
 \end{align*}
+so that
+\begin{align*}
+   \frac{d}{dz} \log z
+&= \left[\frac{d}{dz} (z-1)\right]
+   \sum_{n=0}^\infty \frac{(-1)^n}{n+1} (z-1)^n
+ + (z-1)\sum_{n=1}^\infty n\frac{(-1)^n}{n+1} (z - 1)^{n-1} \\
+&= \sum_{n=0}^\infty \frac{(-1)^n}{n+1} (z-1)^n
+ + \sum_{n=1}^\infty n \frac{(-1)^n}{n+1} (z-1)^n \\
+&= 1 + \sum_{n=1}^\infty (1 + n) \frac{(-1)^n}{n+1} (z-1)^n \\
+&= 1 + \sum_{n=1}^\infty (-1)^n (z-1)^n \\
+&= \sum_{n=0}^\infty (1-z)^n,
+\end{align*}
+and when $|z - 1| < 1$ this geometric series converges to
+$$
+\frac{d}{dz} \log z = \frac{1}{1 - (1 - z)} = \frac{1}{z}.
+$$
 
 \section{Additional Problems}
 
@@ -80,25 +138,34 @@ First we find
 \end{Problem}
 
 \begin{Answer}
-  Suppose that $f(z) = \sum_{n=0}^\infty z^n$ converges uniformly on $D(0,1)$,
-  and define the sequence of functions $(f_n)$ by
-  $f_n(z) = \sum_{k=0}^n z^k$. %TODO: Show that f_n \to f
+  We consider the sequence $(f_n)$ given by
+  $$
+  f_n(z) = \sum_{k=0}^n z^k,
+  $$
+  since by definition $\sum_{n=0}^\infty z^n$ is the limit
+  of this sequence.
 
-  We have that
-  $$
+  For any $n$, we can compute the supremum norm
+  \begin{align*}
+    \left\|
+      f_{n+1} - f_n
+    \right\|_{D(0,1)}
+  &=
+    \left\|
+      \sum_{k=0}^{n+1} z^k
+    - \sum_{k=0}^{n} z^k
+    \right\|_{D(0,1)}
+   =
   \left\|
-    \sum_{k=0}^n z^k
-  - \sum_{k=0}^{n-1} z^k
-  \right\|_{D(0,1)}
-  =
-  \left\|
-    z^n
-  \right\|_{D(0,1)}
-  =
-  \sup_{D(0,1)} |z^n|
-  = 1
-  $$
-  for any $n$, and therefore the sequence $(f_n)$ is not uniformly
+    z^{n+1}
+  \right\|_{D(0,1)} \\
+  &=
+  \sup_{D(0,1)} |z^{n+1}|
+   =
+  \sup_{D(0,1)} |z|^{n+1}
+   = 1
+  \end{align*}
+  and therefore the sequence $(f_n)$ is not uniformly
   Cauchy.
 \end{Answer}
 
@@ -111,22 +178,47 @@ First we find
 \begin{Answer}
 For $z_0 \in V$ we have $\bar{z_0} \in U$, so
 $f$ is analytic at $\bar{z_0}$, so there is an
-$r > 0$ such that
+$r > 0$ and a sequence $(a_n)$ such that
 $$
-  f(\bar{z})
-= \sum_{n=0}^\infty \frac{f^{(n)}(\bar{z_0})}{n!}(\bar{z} - \bar{z_0})^n
+  f(w)
+= \sum_{n=0}^\infty a_n(w - \bar{z_0})^n, \quad
+  |w - z_0| < r.
 $$
-when $\bar{z} \in D(\bar{z_0}, r)$. Then
+
+Now let $z \in D(z_0, r)$, and write $z = a + ib$ and
+$z_0 = a_0 + ib_0$. Then $|z - z_0| < r$, but we note that
+\begin{align*}
+  |z - z_0|
+&= |(a + ib) - (a_0 + ib_0)|
+ = |(a - a_0) + i(b - b_0)| \\
+&= \sqrt{(a - a_0)^2 + (b - b_0)^2}
+\end{align*}
+while
+\begin{align*}
+  |\bar{z} - \bar{z_0}|
+&= |(a - ib) - (a_0 - ib_0)|
+ = |(a - a_0) + i(-b + b_0)| \\
+&= \sqrt{(a - a_0)^2 + (b_0 - b)^2}
+ = \sqrt{(a - a_0)^2 + (b - b_0)^2} \\
+&= |z - z_0|,
+\end{align*}
+so if $z \in D(z_0, r)$ then $\bar{z} \in D(\bar{z_0}, r)$. Therefore
+the expression
+$$
+f(\bar{z})
+= \sum_{n=0}^\infty a_n (\bar{z} - \bar{z_0})^n
+$$
+holds, so
 $$
   g(z)
+= \overline{f(\bar{z})}
 = \sum_{n=0}^\infty \frac{\overline{f^{(n)}(\bar{z_0})}}{n!}
                  \overline{(\bar{z} - \bar{z_0})^n}
 = \sum_{n=0}^\infty \frac{\overline{f^{(n)}(\bar{z_0})}}{n!}
-                  (z - z_0)^n,
+                 (z - z_0)^n, \quad
+|z - z_0| < r.
 $$
-and if $\bar{z} \in D(\bar{z_0}, r)$ then $z \in D(z_0, r)$,
-so this means $g(z)$ can be written as a power series
-around $z_0 \in V$. Since $z_0$ was chosen arbitrarily
+Since $z_0$ was chosen arbitrarily
 in $V$, this means $g$ is analytic on $V$.
 \end{Answer}
 

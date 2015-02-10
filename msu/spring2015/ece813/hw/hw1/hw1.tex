@@ -1,7 +1,10 @@
 \documentclass{article}
 
 \usepackage{amsmath}
+\usepackage{enumitem}
 \usepackage{exercise}
+
+\newcommand\dif{\mathop{}\!\mathrm{d}}
 
 \title{ECE 813 Homework \#1}
 \author{Sam Boling}
@@ -13,7 +16,7 @@
 
 \section*{Problem \#3.2}
 
-\begin{enumerate}[(a)]
+\begin{enumerate}[label=(\alph*)]
   \item{
     Writing the voltage drops around the loop gives
     $$
@@ -90,7 +93,7 @@
           &= 1.125 \times 10^{-15} ~\mathrm{F}
            = 1.125 ~\mathrm{fF}
     \end{align*}
-    since $1.2 ~\mu\mathrm{m}^2 = 1.2 \times 10^{-7} ~\mathrm{cm}^2$.
+    since $A_D = 12 ~\mu\mathrm{m}^2 = 1.2 \times 10^{-7} ~\mathrm{cm}^2$.
   }
   \item{
     Since the diode's reverse bias is approximately equal in magnitude
@@ -123,7 +126,7 @@ I_{Dp} &= 30 \times 10^{-6}
          (1 - 0.1 V_{DS}).
 \end{align*}
 
-\begin{enumerate}[(a)]
+\begin{enumerate}[label=(\alph*)]
   \item{
     In both cases we have $|V_{GS}| > |V_T|$.
 
@@ -216,8 +219,117 @@ I_{Dp} &= 30 \times 10^{-6}
 \end{enumerate}
 
 \section*{Problem \#3.18}
+\begin{enumerate}[label=(\alph*)]
+  \item{
+    No current can flow into the gate, so writing a mesh current
+    equation around the loop gives
+    $$
+    I_{in} = I_{C_T} = C_T \frac{dv_g}{dt}
+    $$
+    which is a separable differential equation so that
+    $$
+    \int I_{in} \dif t = \int C_T \dif v_g
+    $$
+    and then
+    $$
+    I_{in} t = C_T v_g + K
+    $$
+    for some constant $K$. At time 0 we have $v_g = 0$, so $K = 0$ and thus
+    $$
+    t = \frac{C_T}{I_{in}} v_g,
+    $$
+    so the time it will take the capacitor to charge to $2 V_T$ is given by
+    $$
+    t = 2\frac{C_T V_T}{I_{in}}.
+    $$
+  }
+  \item{
+    When $V_G < V_T$, i.e. over $0 \leq t < \frac{C_T V_T}{I_{in}}$,
+    the device is in the subthreshold region and so the gate capacitance
+    is
+    $$
+    C_{GB} + C_{GSO} + C_{GDO} = C_{ox} WL + C_O W + C_O W, \quad
+    0 \leq t < \frac{C_T V_T}{I_{in}}.
+    $$
+    When $V_G = V_T$, the device turns on and we have $V_{GS} - V_{DS} = V_T - V_T = 0 < V_T$,
+    so the device is in the saturation region. At its maximum value $V_G = 2 V_T$, we have
+    $V_{GS} = V_{DS} = 2 V_T - V_T = V_T$, so the device is still in saturation. In this region
+    the gate capacitance is
+    $$
+    C_{GS} + C_{GSO} + C_{GDO} = \frac{2}{3}C_{ox} W L + C_O W + C_O W, \quad
+    \frac{C_T V_T}{I_{in}} \leq t < 2\frac{C_T V_T}{I_{in}}.
+    $$
+  }
+  \item{
+    Here we have $V_{GS} = 0 < V_T$, so the transistor remains cut-off.
+    In cutoff the gate to drain capacitance is $C_{GDO}$ and the drain
+    to bulk capacitance is $C_{Ddiff}$
+  }
+\end{enumerate}
 
 \section*{Problem \#3.22}
-
+\begin{enumerate}[label=(\alph*)]
+  \item{
+    This is a long-channel scaling scenario, so the power scales as
+    \begin{align*}
+       \frac{P_{0.1 ~\mu\mathrm{m}}}{P_{0.25 ~\mu\mathrm{m}}}
+    &= \frac{I_{Dsat_{0.1}} V_{DD}}{I_{Dsat_{0.25}} V_{DD}}
+     = \frac{k_{n_{0.1}}^\prime \frac{W_{0.1}}{L_{0.1}}}
+            {k_{n_{0.25}}^\prime \frac{W_{0.25}}{L_{0.25}}} \\
+    &= \frac{\frac{1}{t_{ox_{0.1}}}}
+            {\frac{1}{t_{ox_{0.25}}}}
+       \frac{W_{0.1}}{W_{0.25}}
+       \frac{L_{0.25}}{L_{0.1}} \\
+    &= S^2 \cdot \frac{1}{S}
+     = S.
+    \end{align*}
+    Furthermore this shows that $\frac{I_{Dsat_{0.1}}}{I_{Dsat_{0.25}}} = S$.
+    The intrinsic delay scales as
+    \begin{align*}
+       \frac{R_{on_{0.1}}  C_{g_{0.1}}}
+            {R_{on_{0.25}} C_{g_{0.25}}}
+    &= \frac{\frac{V_{DD}}{I_{Dsat_{0.1}}}}
+            {\frac{V_{DD}}{I_{Dsat_{0.25}}}}
+       \frac{W_{0.1}(C_{ox_{0.1}} L_{0.1} + 2C_{O_{0.1}})}
+            {W_{0.25}(C_{ox_{0.25}} L_{0.25} + 2C_{O_{0.25}})} \\
+    &= \frac{I_{Dsat_{0.25}}}{I_{Dsat_{0.1}}}
+       \frac{W_{0.1}}{W_{0.25}}
+       \frac{C_{ox_{0.1}} L_{0.1} + 2C_{O_{0.1}}}
+            {C_{ox_{0.25}} L_{0.25} + 2C_{O_{0.25}}} \\
+    &= \frac{1}{S} S
+       \frac{C_{ox_{0.1}} L_{0.1} + 2C_{O_{0.1}}}
+            {C_{ox_{0.25}} L_{0.25} + 2C_{O_{0.25}}} \\
+    &= \frac{
+         \frac{\varepsilon_{si}}{t_{ox_{0.1}}} L_{0.1}
+       + 2 \frac{\varepsilon_{si}}{t_{ox_{0.1}}} x_{d_{0.1}}
+       }
+       {
+         \frac{\varepsilon_{si}}{t_{ox_{0.25}}} L_{0.1}
+         + 2 \frac{\varepsilon_{si}}{t_{ox_{0.25}}} x_{d_{0.1}}
+       } \\
+     &= \frac{t_{ox_{0.25}}}{t_{ox_{0.1}}}
+        \frac{L_{0.1} + 2 x_{d_{0.1}}}
+             {L_{0.25} + 2 x_{d_{0.25}}} \\
+    &= \frac{1}{S} \frac{L_{0.1} + 2 x_{d_{0.1}}}
+                        {L_{0.25} + 2 x_{d_{0.25}}} \\
+    &= \frac{1}{S^2}
+    \end{align*}
+    The power consumption will thus be $S = 25$ times higher
+    and the maximum speed will be increased by a factor of $S^2$,
+    producing a power of 250 W and a maximum frequency of
+    $625 \times 100 \times 10^6 = 62.5 ~\mathrm{GHz}$.
+  }
+  \item{
+    Scaling down the voltage will decrease the power consumption
+    quadratically to $\frac{250}{6.25} = 40~\mathrm{W}$ and the
+    intrinsic delay linearly, increasing the maximum frequency
+    to 156.25 GHz.
+  }
+  \item{
+    To cut the power consumption by 1/4 from part (b) requires
+    halving the supply voltage to 0.5 V, so the processor would
+    operate at up to 312.5 GHz.
+  }
+\end{enumerate}
 
 \end{document}
