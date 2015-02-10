@@ -28,41 +28,75 @@
 \section{Textbook Problems}
 
 \subsection*{Ch. II \S 5.1}
-We can observe that in general
-$$
-  \sum_{n=0}^\infty \frac{(-1)^n + 1}{2} a_n z^n
-= \sum_{k=0}^\infty a_{2k} z^{2k}
-$$
-since $\frac{(-1)^n + 1}{2}$ is 0 when $n$ is odd and 1 when $n$ is
-even. Then we have
-\begin{align*}
-   f^{(2)}(z)
-&= \sum_{n=2}^{\infty} n (n - 1) \frac{(-1)^n + 1}{2} \frac{z^{n-2}}{n!}  \\
-&= \sum_{n=2}^{\infty} \frac{(-1)^n + 1}{2} \frac{z^{n-2}}{(n-2)!}.
-\end{align*}
-Taking $k = n - 2$ we see that $n = k + 2$, and $(-1)^{k + 2} =
-(-1)^k$ so this means
-\begin{align*}
-   f^{(2)}(z)
-&= \sum_{k=0}^\infty \frac{(-1)^k + 1}{2} \frac{z^k}{k!}
- = \sum_{m=0}^{\infty} \frac{z^{2m}}{(2m)!} \\
-&= f(z).
-\end{align*}
+%Let $\varphi : \mathbb{N} \cup \{0\} \rightarrowtail \mathbb{Z}$ be an injection,
+%so that the left inverse $\varphi^{-1} : \varphi(\mathbb{Z}) \to \mathbb{N} \cup \{0\}$ is
+%well-defined. Then consider the series
+%$$
+%\sum_{n=0}^\infty a_n z^{\varphi(n)}
+%$$
+%and define
+%$$
+%b_k
+%= \left\{\begin{array}{l l}
+%    a_{\varphi^{-1}(k)}, & \quad k \in \varphi(\mathbb{N} \cup \{0\}) \\
+%    0,               & \quad k \notin \varphi(\mathbb{N} \cup \{0\})
+%  \end{array}\right..
+%$$
+%We observe that
+%$$
+%b_k z^k
+%= \left\{\begin{array}{l l}
+%    a_{\varphi^{-1}(k)} z^k, & \quad k \in \varphi(\mathbb{N} \cup \{0\}) \\
+%    0,                   & \quad k \notin \varphi(\mathbb{N} \cup \{0\})
+%  \end{array}\right.
+%$$
+%so that $\sum b_k z^k = \sum a_n z^{\varphi(n)}$. It follows that
+%$$
+%  \frac{d}{dz} \sum_{n=0}^\infty a_n z^{\varphi(n)}
+%= \frac{d}{dz} \sum_{k=0}^\infty b_k z^k
+%= \sum_{k=1}^\infty k b_k z^{k-1}
+%$$
+%where
+%$$
+%k b_k z^{k-1}
+%= \left\{\begin{array}{l l}
+%    k a_{\varphi^{-1}(k)} z^{k-1}, & \quad k \in \varphi(\mathbb{N} \cup \{0\}) \\
+%    0,                        & \quad k \notin \varphi(\mathbb{N} \cup \{0\})
+%  \end{array}\right.
+%$$
+%so that
+%$$
+%  \frac{d}{dz} \sum_{n=0}^\infty a_n z^{\varphi(n)}
+%= \sum_{n=1}^\infty \varphi(n) a_n z^{\varphi(n)-1},
+%$$
+%which is to say that derivatives of such power series may be taken term-by-term.
 
-To find the radius of convergence we observe that
+Observe that for
 $$
-  f(z)
-= \frac{1}{2}\left[
-    \sum_{k=0}^\infty (-1)^k \frac{z^k}{k!}
-  + \sum_{k=0}^\infty \frac{z^k}{k!}
-  \right]
+\cosh z = \frac{e^z + e^{-z}}{2}
 $$
-and that $|(-1)^k a_k|^{1 / k} = |a_k|^{1 / k}$ for any $a_k$,
-so the radius of convergence is that of
+we have
 $$
-e^z = \sum_{n=0}^\infty \frac{z^n}{n!}
+\frac{d}{dz} \cosh z = \frac{e^z - e^{-z}}{2} = \sinh z
 $$
-which is $\infty$.
+so that
+$$
+\frac{d^2}{dz^2} \cosh z = \frac{e^z + e^{-z}}{2} = \cosh z.
+$$
+It follows that letting $g(z) = \cosh z$, we have
+$$
+g^{(n)}(0)
+= \left\{\begin{array}{l l
+  \cosh(0) = 1, & \quad n \text{ even} \\
+  \sinh(0) = 0, & \quad n \text{ odd}
+$$
+so that
+$$
+  \sum_{n=0}^\infty \frac{g^{(n)}(0)}{n!}z^n
+= \sum_{n=0}^\infty \frac{1}{(2n)!} z^{2n}
+= f(z),
+$$
+and therefore $f^{\prime\prime}(z) = f(z)$.
 
 \subsection*{Ch. II \S 5.4}
 We have
@@ -153,7 +187,8 @@ and then
 First we find
 \begin{align*}
    \frac{d}{dz} \sum_{n=0}^\infty (-1)^{n-1} \frac{(z-1)^n}{n}
-&= \sum_{n=0}^\infty n (
+&= \sum_{n=0}^\infty n (-1)^{n-1} \frac{(z-1)^{n-1}}{n}
+ = \sum_{n=0}^\infty (-1)^{n-1} (z-1)^{n-1}
 \end{align*}
 
 \section{Additional Problems}
@@ -162,6 +197,12 @@ First we find
   Prove that $\sum_{n=0}^\infty z^n$ does not converge uniformly on
   $D(0, 1)$.
 \end{Problem}
+
+\begin{Answer}
+  Suppose that $f(z) = \sum_{n=0}^\infty z^n$ converges uniformly on $D(0,1)$,
+  and define the sequence of functions $(f_n)$ by
+  $f_n(z) = \sum_{k=0}^n z^k$.
+\end{Answer}
 
 \begin{Problem}
   Let $f$ be analytic on an open set $U$. Let
