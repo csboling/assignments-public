@@ -270,65 +270,22 @@ I_{Dp} &= 30 \times 10^{-6}
 \section*{Problem \#3.22}
 \begin{enumerate}[label=(\alph*)]
   \item{
-    This is a long-channel scaling scenario, so the power scales as
-    \begin{align*}
-       \frac{P_{0.1 ~\mu\mathrm{m}}}{P_{0.25 ~\mu\mathrm{m}}}
-    &= \frac{I_{Dsat_{0.1}} V_{DD}}{I_{Dsat_{0.25}} V_{DD}}
-     = \frac{k_{n_{0.1}}^\prime \frac{W_{0.1}}{L_{0.1}}}
-            {k_{n_{0.25}}^\prime \frac{W_{0.25}}{L_{0.25}}} \\
-    &= \frac{\frac{1}{t_{ox_{0.1}}}}
-            {\frac{1}{t_{ox_{0.25}}}}
-       \frac{W_{0.1}}{W_{0.25}}
-       \frac{L_{0.25}}{L_{0.1}} \\
-    &= S^2 \cdot \frac{1}{S}
-     = S.
-    \end{align*}
-    Furthermore this shows that $\frac{I_{Dsat_{0.1}}}{I_{Dsat_{0.25}}} = S$.
-    The intrinsic delay scales as
-    \begin{align*}
-       \frac{R_{on_{0.1}}  C_{g_{0.1}}}
-            {R_{on_{0.25}} C_{g_{0.25}}}
-    &= \frac{\frac{V_{DD}}{I_{Dsat_{0.1}}}}
-            {\frac{V_{DD}}{I_{Dsat_{0.25}}}}
-       \frac{W_{0.1}(C_{ox_{0.1}} L_{0.1} + 2C_{O_{0.1}})}
-            {W_{0.25}(C_{ox_{0.25}} L_{0.25} + 2C_{O_{0.25}})} \\
-    &= \frac{I_{Dsat_{0.25}}}{I_{Dsat_{0.1}}}
-       \frac{W_{0.1}}{W_{0.25}}
-       \frac{C_{ox_{0.1}} L_{0.1} + 2C_{O_{0.1}}}
-            {C_{ox_{0.25}} L_{0.25} + 2C_{O_{0.25}}} \\
-    &= \frac{1}{S} S
-       \frac{C_{ox_{0.1}} L_{0.1} + 2C_{O_{0.1}}}
-            {C_{ox_{0.25}} L_{0.25} + 2C_{O_{0.25}}} \\
-    &= \frac{
-         \frac{\varepsilon_{si}}{t_{ox_{0.1}}} L_{0.1}
-       + 2 \frac{\varepsilon_{si}}{t_{ox_{0.1}}} x_{d_{0.1}}
-       }
-       {
-         \frac{\varepsilon_{si}}{t_{ox_{0.25}}} L_{0.1}
-         + 2 \frac{\varepsilon_{si}}{t_{ox_{0.25}}} x_{d_{0.1}}
-       } \\
-     &= \frac{t_{ox_{0.25}}}{t_{ox_{0.1}}}
-        \frac{L_{0.1} + 2 x_{d_{0.1}}}
-             {L_{0.25} + 2 x_{d_{0.25}}} \\
-    &= \frac{1}{S} \frac{L_{0.1} + 2 x_{d_{0.1}}}
-                        {L_{0.25} + 2 x_{d_{0.25}}} \\
-    &= \frac{1}{S^2}
-    \end{align*}
-    The power consumption will thus be $S = 25$ times higher
+    This is a long-channel scaling scenario, so the
+    power consumption will be $S = 2.5$ times higher
     and the maximum speed will be increased by a factor of $S^2$,
-    producing a power of 250 W and a maximum frequency of
-    $625 \times 100 \times 10^6 = 62.5 ~\mathrm{GHz}$.
+    producing a power of 25 W and a maximum frequency of
+    $6.25 \times 100 \times 10^6 = 625 ~\mathrm{MHz}$.
   }
   \item{
     Scaling down the voltage will decrease the power consumption
-    quadratically to $\frac{250}{6.25} = 40~\mathrm{W}$ and the
+    quadratically to $\frac{25}{6.25} = 4~\mathrm{W}$ and the
     intrinsic delay linearly, increasing the maximum frequency
-    to 156.25 GHz.
+    to 3.90625 GHz.
   }
   \item{
     To cut the power consumption by 1/4 from part (b) requires
     halving the supply voltage to 0.5 V, so the processor would
-    operate at up to 312.5 GHz.
+    operate at up to 7.8125 GHz.
   }
 \end{enumerate}
 

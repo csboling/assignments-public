@@ -30,7 +30,7 @@
 \subsection*{Ch. II \S 5.1}
 Define
 $$
-b_k
+a_k
 =
 \left\{\begin{array}{l l}
   \frac{1}{k!}, & \quad k \text{ even} \\
@@ -39,12 +39,12 @@ b_k
 $$
 so that
 $$
-f(z) = \sum_{n=0}^{\infty} \frac{z^{2n}}{(2n)!} = \sum_{k=0}^\infty b_k z^k.
+f(z) = \sum_{n=0}^{\infty} \frac{z^{2n}}{(2n)!} = \sum_{k=0}^\infty a_k z^k.
 $$
 Then
 \begin{align*}
    f^{\prime\prime}(z)
-&= \sum_{k=2}^\infty k (k-1) b_k z^{k-2}
+&= \sum_{k=2}^\infty k (k-1) a_k z^{k-2}
 &= \sum_{k \in 2\mathbb{N}} \frac{z^{k-2}}{(k-2)!} \\
 &= \sum_{n \in \mathbb{N}} \frac{z^{2n - 2}}{(2n - 2)!}
 \end{align*}
@@ -56,6 +56,16 @@ under the substitution $k = 2n$, so that
 &= \sum_{n=0}^\infty \frac{z^{2n}}{(2n)!}
  = f(z).
 \end{align*}
+
+We observe also that the series
+$$
+\sum_{n=0}^{\infty} \frac{z^n}{(2n)!}
+$$
+has radius of convergence $\infty$ since
+$$
+\lim \frac{|(2n)!|}{|(2n+1)!} = \frac{1}{2n+1} = 0
+$$
+and so $f(z)$ has radius of convergence $\infty$ as well.
 
 \subsection*{Ch. II \S 5.4}
 Defining
@@ -236,6 +246,44 @@ in $V$, this means $g$ is analytic on $V$.
   \end{enumerate}
 \end{Problem}
 
+\begin{Answer}
+  \begin{enumerate}
+    \item{
+      Since $U$ is nonempty, let $z_0 \in U$.
+
+      If $\mathrm{Im}~z_0 = 0$
+      then $z_0 \in \mathbb{R}$, and since $U$ is open there is a disk
+      $D(z_0, r) \subset U$ for some $r > 0$. Then
+      $$
+        D(z_0, r) \cap \mathbb{R}
+      = \{ z \in \mathbb{R} : |z - z_0| < r \}
+      = (z-r, z+r),
+      $$
+      an open interval in
+      $\mathbb{R} \cap D(z_0, r) \subset \mathbb{R} \cap U$.
+
+      Suppose $\mathrm{Im}~z_0 \neq 0$. Without loss of generality,
+      let $\mathrm{Im}~z_0 > 0$ so that $z_0$ lies in the upper half-plane
+      $\{ z \in \mathbb{C} : \mathrm{Im}~z > 0 \}$. Then
+      by assumption $\bar{z_0} \in U$, and
+      $\mathrm{Im}~\bar{z_0} = -\mathrm{Im}~\bar{z_0}$ so
+      $\bar{z_0} \in \{ z \in \mathbb{C} : \mathrm{Im}~z < 0 \}$.
+      Then since $U$ is open and connected it is path-connected, so
+      there exists a continuous function $\gamma: [0, 1] \to U$ such
+      that $\gamma(0) = z_0$ and $\gamma(1) = \bar{z_0}$. But
+      $\mathrm{Im}$ is continuous and thus so is
+      $\mathrm{Im} \circ \gamma$, so from the intermediate value
+      theorem there must be some $x \in [0, 1]$ such that
+      $\Im(\gamma(x)) = 0$. Then since $\gamma(x) \in U$, the case
+      where $\mathrm{Im}~z_0 = 0$ can be applied to find an open
+      interval $(\gamma(x) - r, \gamma(x) + r)$ for some $r > 0$.
+    }
+    \item{
+
+    }
+  \end{enumerate}
+\end{Answer}
+
 \begin{Problem}
   Show that there does not exist a function which is analytic on
   $\mathbb{C}$ that satisfies
@@ -251,7 +299,8 @@ in $V$, this means $g$ is analytic on $V$.
   \left\{\frac{1}{n} : n \in \mathbb{N} \right\}
   $$
   has an accumulation point at $0 \in \mathbb{C}$. From the uniqueness theorem
-  this means that $f = g$ in $\mathbb{C}$, which is a contradiction.
+  this means that $f = g$ in $\mathbb{C}$, which is a contradiction
+  since $f(-1) = -1 \neq 1 = g(-1)$ by definition.
 \end{Answer}
 
 \end{document}
