@@ -28,34 +28,97 @@
 \section{Textbook Problems}
 
 \subsection*{Ch. II \S 5.1}
-Define
+Let $w = z^2$ so that
 $$
-a_k
-=
-\left\{\begin{array}{l l}
-  \frac{1}{k!}, & \quad k \text{ even} \\
-  0,            & \quad k \text{ odd}
-\end{array}\right.
-$$
-so that
-$$
-f(z) = \sum_{n=0}^{\infty} \frac{z^{2n}}{(2n)!} = \sum_{k=0}^\infty a_k z^k.
+\frac{dz}{dw} = 2z, \quad
+\frac{d^2z}{dw^2} = 2.
 $$
 Then
 \begin{align*}
-   f^{\prime\prime}(z)
-&= \sum_{k=2}^\infty k (k-1) a_k z^{k-2}
-&= \sum_{k \in 2\mathbb{N}} \frac{z^{k-2}}{(k-2)!} \\
-&= \sum_{n \in \mathbb{N}} \frac{z^{2n - 2}}{(2n - 2)!}
+   f(z)
+&= \sum_{n=0}^\infty \frac{(z^2)^n}{(2n)!}
+ = \sum_{n=0}^\infty \frac{w^n}{(2n)!}
 \end{align*}
-under the substitution $k = 2n$, so that
+so that
 \begin{align*}
-   f^{\prime\prime}(z)
-&= \sum_{n=1}^\infty \frac{z^{2n - 2}}{(2n - 2)!}
- = \sum_{n=1}^\infty \frac{z^{2(n-1)}}{(2(n-1))!} \\
-&= \sum_{n=0}^\infty \frac{z^{2n}}{(2n)!}
- = f(z).
+   \frac{d^2 f}{dz^2}
+&= \frac{d^2 f}{dw^2} \left(\frac{dw}{dz}\right)^2
+ + \frac{df}{dw} \frac{d^2w}{dz^2} \\
+&= 4z^2
+   \sum_{n=2}^\infty
+     \frac{n(n-1)}{(2n)!}
+     w^{n-2}
+ + 2
+   \sum_{n=1}^\infty
+     \frac{n}{(2n)!}
+     w^{n-1} \\
+&= 4
+   \sum_{n=2}^\infty
+     \frac{n(n-1)}{(2n)!}
+     w^{n-1}
+ + 2
+   \sum_{n=1}^\infty
+     \frac{n}{(2n)!}
+     w^{n-1} \\
+&= 1
+ + \sum_{n=2}^\infty
+     \left[
+       2\frac{n}{(2n)!}
+       w^{n-1}
+     + 4\frac{n(n-1)}{(2n)!}
+       w^{n-1}
+     \right] \\
+&= 1
+ + 2
+   \sum_{n=2}^\infty
+     \frac{n}{(2n)!}
+     w^{n-1}
+     (1 + 2(n-1)) \\
+&= 1
+ + \sum_{n=2}^\infty
+     \frac{2n}{(2n)!}
+     w^{n-1}
+     (2n-1) \\
+&= 1
+ + \sum_{n=2}^\infty
+     \frac{1}{(2(n-1))!}
+     w^{n-1} \\
+&= 1
+ + \sum_{n=1}^\infty
+     \frac{1}{(2n)!}
+     w^n \\
+&= \sum_{n=0}^\infty
+     \frac{w^n}{(2n)!} \\
+&= f(z).
 \end{align*}
+%Define
+%$$
+%a_k
+%=
+%\left\{\begin{array}{l l}
+%  \frac{1}{k!}, & \quad k \text{ even} \\
+%  0,            & \quad k \text{ odd}
+%\end{array}\right.
+%$$
+%so that
+%$$
+%f(z) = \sum_{n=0}^{\infty} \frac{z^{2n}}{(2n)!} = \sum_{k=0}^\infty a_k z^k.
+%$$
+%Then
+%\begin{align*}
+%   f^{\prime\prime}(z)
+%&= \sum_{k=2}^\infty k (k-1) a_k z^{k-2}
+%&= \sum_{k \in 2\mathbb{N}} \frac{z^{k-2}}{(k-2)!} \\
+%&= \sum_{n \in \mathbb{N}} \frac{z^{2n - 2}}{(2n - 2)!}
+%\end{align*}
+%under the substitution $k = 2n$, so that
+%\begin{align*}
+%   f^{\prime\prime}(z)
+%&= \sum_{n=1}^\infty \frac{z^{2n - 2}}{(2n - 2)!}
+% = \sum_{n=1}^\infty \frac{z^{2(n-1)}}{(2(n-1))!} \\
+%&= \sum_{n=0}^\infty \frac{z^{2n}}{(2n)!}
+% = f(z).
+%\end{align*}
 
 We observe also that under the substitution $w = z^2$ this is
 the series
@@ -109,303 +172,98 @@ and
 &= -\frac{1}{2}
  +  \sum_{n=2}^\infty
       n \frac{(-1)^n}{(n!)^2}
-      (n - 1 + 1) w^{n-1} \\
+      \left(n - 1 + \frac{1}{2}\right)
+      w^{n-1} \\
 &= -\frac{1}{2}
- + \sum_{n=2}^\infty
-   \frac{(-1)^n}{((n-1)!)^2} w^{n-1} \\
-&= -\frac{1}{2}
- + \sum_{n=1}^\infty
-     \frac{(-1)^{n+1}}{(n!)^2}
-     \left(\frac{z}{2}\right)^{2n}
+ +  \sum_{n=2}^\infty
+      n \frac{(-1)^n}{(n!)^2}
+      \left(n - \frac{1}{2}\right)
+      w^{n-1}
 \end{align*}
+Observing next that
+\begin{align*}
+   z^2 J(z)
+&= 4w
+   \sum_{n=0}^\infty
+     \frac{(-1)^n}{(n!)^2} w^n \\
+&= 4w
+ + 4w
+   \sum_{n=1}^\infty
+     \frac{(-1)^n}{(n!)^2}
+     w^n, \\
+   z J^\prime(z)
+&= \frac{z^2}{2}
+   \sum_{n=1}^\infty
+     \frac{n(-1)^n}{(n!)^2} w^{n-1} \\
+&= 2w
+   \sum_{n=1}^\infty
+     \frac{n(-1)^n}{(n!)^2} w^{n-1} \\
+&= 2
+   \sum_{n=1}^\infty
+     \frac{n(-1)^n}{(n!)^2} w^{n} \\
+&= -2w
+ + 2\sum_{n=2}^\infty
+     \frac{n(-1)^n}{(n!)^2}
+     w^n, \\
+   z^2 J^{\prime\prime}(z)
+&= -2w
+ + 4w
+   \sum_{n=2}^\infty
+     n \frac{(-1)^n}{(n!)^2}
+     \left(n - \frac{1}{2}\right)
+     w^{n-1} \\
+&= -2w
+ + 2
+   \sum_{n=2}^\infty
+     n \frac{(-1)^n}{(n!)^2}
+     (2n-1)
+     w^n
+\end{align*}
+so that
+\begin{align*}
+   z J^\prime(z) + z^2 J^{\prime\prime}(z)
+&= -4w
+ + 2
+   \sum_{n=2}^\infty
+     \frac{n(-1)^n}{(n!)^2}
+     w^n(2n - 1 + 1) \\
+&= -4w
+ + 4
+   \sum_{n=2}^\infty
+     \frac{n^2 (-1)^n}{(n!)^2}
+     w^n \\
+&= -4w
+ + 4
+   \sum_{n=2}^\infty
+     \frac{(-1)^n}{((n-1)!)^2}
+     w^n \\
+&= -4w
+ + 4
+   \sum_{n=1}^\infty
+     \frac{(-1)^{n+1}}{(n!)^2} w^{n+1} \\
+&= -4w
+ - 4w
+   \sum_{n=1}^\infty
+     \frac{(-1)^{n+1}}{(n!)^2} w^{n}
+\end{align*}
+so that
+$$
+z^2 J(z) + z J^\prime(z) + z^2 J^{\prime\prime}(z)
+$$
+as desired.
 
-%Letting $w = z^2$, we write
-%$$
-%  \sum_{n=0}^\infty \frac{(-1)^n}{(n!)^2 2^{2n}} z^{2n}
-%= \sum_{n=0}^\infty \frac{(-1)^n}{(n!)^2 2^{2n}} w^n
-%$$
-%and compute
-%\begin{align*}
-%   \frac{dJ}{dw}
-%&= \sum_{n=1}^\infty
-%     n
-%     \frac{(-1)^n}{(n!)^2 2^{2n}} w^{n-1}
-%\end{align*}
-%so that
-%\begin{align*}
-%   \frac{dJ}{dz}
-%&= \frac{dw}{dz}\frac{dJ}{dw}
-% = 2z
-%   \sum_{n=1}^\infty
-%     n
-%     \frac{(-1)^n}{(n!)^2 2^{2n}} z^{2(n-1)} \\
-%&= \sum_{n=1}^\infty
-%     n
-%     \frac{(-1)^n}{(n!)^2 2^{2n-1}} z^{2n-1}.
-%\end{align*}
-%Furthermore we find that
-%\begin{align*}
-%   \frac{d^2 J}{dw^2}
-%&= \sum_{n=2}^\infty
-%     n (n-1)
-%     \frac{(-1)^n}{(n!)^2 2^{2n}}
-%     w^{n-2}
-% = \sum_{n=2}^\infty
-%     n (n-1)
-%     \frac{(-1)^n}{(n!)^2 2^{2n}}
-%     z^{2(n-2)}
-%\end{align*}
-%so that
-%\begin{align*}
-%   \frac{d^2 J}{dz^2}
-%&= \frac{d^2 J}{dw^2} \left(\frac{dw}{dz}\right)^2
-% + \frac{dJ}{dw} \frac{d^2w}{dz^2} \\
-%&= (2z)^2 \frac{d^2J}{dw^2} + 2 \frac{dJ}{dw} \\
-%&= \sum_{n=2}^\infty
-%     n (n-1)
-%     \frac{(-1)^n}{(n!)^2 2^{2n-2}}
-%     z^{2n-2}
-% + 2\sum_{n=1}^\infty
-%      n
-%      \frac{(-1)^n}{(n!)^2 2^{2n}}
-%      z^{2(n-1)} \\
-%&= \sum_{n=2}^\infty
-%     n (n-1)
-%     \frac{(-1)^n}{(n!)^2 2^{2(n-1)}}
-%     z^{2(n-1)}
-% + \frac{1}{2}
-%   \sum_{n=1}^\infty
-%     n
-%     \frac{(-1)^n}{(n!)^2 2^{2(n-1)}}
-%     z^{2(n-1)} \\
-%&= -\frac{1}{2}
-% + \sum_{n=2}^\infty
-%     ((n-1) + 1)
-%     n
-%     \frac{(-1)^n}{(n!)^2 2^{2(n-1)}}
-%     z^{2(n-1)} \\
-%&= -\frac{1}{2}
-% + \sum_{n=2}^\infty
-%     \frac{(-1)^n}{((n-1)!)^2 2^{2(n-1)}}
-%     z^{2(n-1)} \\
-%&= -\frac{1}{2}
-% + \sum_{n=1}^\infty
-%     \frac{(-1)^{n+1}}{(n!)^2 2^{2n}}
-%     z^{2n}.
-%\end{align*}
-%This means that
-%\begin{align*}
-%   z^2 J(z) + z^2 J^{\prime\prime}(z)
-%&= z^2
-%   \sum_{n=0}^\infty
-%     \frac{(-1)^n}{(n!)^2 2^{2n}}
-%     z^{2n}
-% - \frac{z^2}{2}
-% + z^2
-%   \sum_{n=1}^\infty
-%     \frac{(-1)^{n+1}}{(n!)^2 2^{2n}}
-%     z^{2n} \\
-%&= \frac{z^2}{2}
-%\end{align*}
-
-%hen notice
-%begin{align*}
-%  J^\prime(z)
-%= \sum_{n=1}^\infty
-%    n
-%    \frac{(-1)^n}{(n!)^2 2^{2n-1}}
-%    z^{2n-1} \\
-%= \frac{z}{2}
-%  \sum_{n=1}^\infty
-%    \frac{(-1)^n}{n! (n-1)! 2^{2(n-1)}} z^{2(n-1)} \\
-%= \frac{z}{2}
-%  \sum_{n=0}^\infty
-%     \frac{(-1)^{n+1}}{n! (n+1)!}
-%     \left(\frac{z}{2}\right)^{2n} \\
-%= \sum_{n=0}^\infty
-%     \frac{(-1)^{n+1}}{n! (n+1)!}
-%     \left(\frac{z}{2}\right)^{2n+1}
-%end{align*}
-%nd
-%begin{align*}
-%  J^{\prime\prime}(z)
-%= \sum_{n=2}^\infty
-%    n(n-1)
-%    \frac{(-1)^n}{(n!)^2 2^{2(n-1)}} z^{2(n-1)}
-%+ 2\sum_{n=1}^\infty
-%  \\
-%= \sum_{n=1}^\infty
-%    n(n+1)
-%    \frac{(-1)^{n+1}}{((n+1)!)^2}
-%    \left(\frac{z}{2}\right)^{2n}
-%+ 2\sum_{n=1}^\infty \\
-%end{align*}
-%o that
-%begin{align*}
-%& z^2 J^{\prime\prime}(z) + z J^\prime(z) + z^2 J(z) \\
-%&
-%end{align*}
-
-%\begin{align*}
-% &  z^2 J^{\prime\prime}(z) + z J^\prime(z) + z^2 J(z) \\
-%=& \sum_{n=2}^\infty
-%     n(n-1)
-%     \frac{(-1)^n}{(n!)^2 2^{2(n-1)}}
-%     z^{2n}
-%+ \sum_{n=1}^\infty
-%     n
-%     \frac{(-1)^n}{(n!)^2 2^{2n}}
-%     z^{2(n+1)} \\
-%+& \sum_{n=1}^\infty
-%     n
-%     \frac{(-1)^n}{(n!)^2 2^{2n-1}}
-%     z^{2n} \\
-%+& \sum_{n=0}^\infty
-%     \frac{(-1)^n}{(n!)^2 2^{2n}}
-%     z^{2(n+1)} \\
-%=& \sum_{n=2}^\infty
-%     n(n-1)
-%     \frac{(-1)^n}{(n!)^2 2^{2(n-1)}}
-%     z^{2n}
-%+ \left(-\frac{1}{4} z^4\right)
-%+ \sum_{n=2}^\infty
-%    n
-%    \frac{(-1)^n}{(n!)^2 2^{2n}}
-%    z^{2(n+1)} \\
-%+& \left(-\frac{1}{2} z^2\right)
-%+ \sum_{n=2}^\infty
-%    n
-%    \frac{(-1)^n}{(n!)^2 2^{2n-1}}
-%    z^{2n} \\
-%+& z^2
-%- \frac{1}{4} z^4
-%+ \sum_{n=2}^\infty
-%    \frac{(-1)^n}{(n!)^2 2^{2n}}
-%    z^{2(n+1)} \\
-%=& \frac{1}{2} z^2
-%-  \frac{1}{2} z^4
-%+  \sum_{n=2}^\infty
-%     n(n-1)
-%\end{align*}
-
-%Then rearranging,
-%\begin{align*}
-%   J^{\prime}(z)
-%&= 2z \sum_{n=1}^\infty n \frac{(-1)^n}{(n!)^2 2^{2n}} z^{2n-2} \\
-%&= 2z \sum_{n=0}^\infty (n+1) \frac{(-1)^{n+1}}{((n+1)!)^2 2^{2(n+1)}}
-%  (z^2)^n
-%\end{align*}
-%so that
-%$$
-%  z J^\prime(z)
-%= 2w
-%  \sum_{n=0}^\infty
-%    (n+1)
-%    \frac{(-1)^{n+1}}{((n+1)!)^2 2^{2(n+1)}}
-%    w^n
-%$$
-%and so
-%\begin{align*}
-%   J^{\prime\prime}(z)
-%&= \frac{d}{dz}\left(\frac{dJ}{dz}\right)
-% = \frac{d}{dz}\left(\frac{dJ}{dw}\frac{dw}{dz}\right) \\
-%&= \frac{d}{dz}\left(2z J^\prime(w(z))\right)
-% = 2 J^\prime(w) + 2z \frac{dw}{dz} \frac{dJ^\prime}{dw} \\
-%&= 2 \sum_{n=1}^\infty
-%     n
-%     \frac{(-1)^n}{(n!)^2 2^{2n}} w^{n-1}
-% + (2z)^3
-%   \sum_{n=1}^\infty
-%     n (n+1) \frac{(-1)^{n+1}}{((n+1)!)^2 2^{2(n+1)}} w^{n-1} \\
-%&= 2 \sum_{n=1}^\infty
-%     n
-%     \frac{(-1)^n}{(n!)^2 2^{2n}} z^{2(n-1)}
-% + (2z)^3
-%   \sum_{n=1}^\infty
-%     n (n+1) \frac{(-1)^{n+1}}{((n+1)!)^2 2^{2(n+1)}} z^{2(n-1)} \\
-%&= 2 \sum_{n=1}^\infty
-%     n
-%     \frac{(-1)^n}{(n!)^2 2^{2n}} z^{2(n-1)}
-% + 2z
-%   \sum_{n=1}^\infty
-%     n (n+1) \frac{(-1)^{n+1}}{((n+1)!)^2 2^{2n}} z^{2n} \\
-%&= 2 \sum_{n=1}^\infty
-%     n
-%     \frac{(-1)^n}{(n!)^2 2^{2n}} z^{2(n-1)}
-% + 2z
-%   \sum_{n=1}^\infty
-%     \frac{1}{n+1}
-%     n
-%     \frac{(-1)^{n+1}}{(n!)^2 2^{2n}} z^{2n} \\
-%&= 2 \sum_{n=1}^\infty
-%     n
-%     \frac{(-1)^n}{(n!)^2 2^{2n}}
-%     \left[z^{2(n-1)} - \frac{z^{2n+1}}{n+1}\right]
-%\end{align*}
-%
-%so that
-%\begin{align*}
-%   z^2 J^{\prime\prime}(z) + z J^\prime(z) + z^2 J(z)
-%&= 2\sum_{n=1}^\infty
-%      n
-%      \frac{(-1)^n}{(n!)^2 2^{2n}}
-%      z^{2n} \\
-%&+ (2z)^3 \sum_{n=1}^\infty
-%      n (n+1)
-%      \frac{(-1)^{n+1}}{((n+1)!)^2 2^{2(n+1)}} z^{2n} \\
-%&+ \sum_{n=1}^\infty
-%     n
-%     \frac{(-1)^n}{(n!)^2 2^{2n-1}} z^{2n}
-%&+ \sum_{n=0}^\infty
-%     \frac{(-1)^n}{(n!)^2 2^{2n}} z^{2(n+1)}
-%\end{align*}
-
-% Defining
-%$$
-%a_k
-%=
-%\left\{\begin{array}{l l}
-%  \frac{(-1)^{\frac{k}{2}}}{\left(\frac{k}{2}!\right)^2 2^k},
-%    & \quad k \text{ even} \\
-%  0 & \quad k \text{ odd}
-%\end{array}\right.,
-%$$
-%we can write
-%$$
-%  J(z)
-%= \sum_{n=0}^\infty \frac{(-1)^n}{(n!)^2}\left(\frac{z}{2}\right)^{2n}
-%= \sum_{k=0}^\infty a_k z^k
-%$$
-%so that
-%\begin{align*}
-%   J^\prime(z)
-%&= \frac{d}{dz} \sum_{k=0}^\infty a_k z^k
-% = \sum_{k=1}^\infty k a_k z^{k-1} \\
-%&= \sum_{k=2}^\infty k a_k z^{k-1}
-% = \sum_{k \in 2\mathbb{N}} k a_k z^{k-1} \\
-%&= \sum_{k \in 2\mathbb{N}} k \frac{(-1)^{\frac{k}{2}}}{\left(\frac{k}{2}!\right)^2 2^k} z^{k-1}
-%\end{align*}
-%since $a_1 = 0$. But then by substituting $n = 2k$,
-%\begin{align*}
-%   J^\prime(z)
-%&= \sum_{n=1}^\infty 2n \frac{(-1)^{n}}{(n!)^2 2^{2n}} z^{2n-1}
-% = \sum_{n=1}^\infty \frac{(-1)^n}{(n-1)! \cdot n! \cdot 2^{2n-1}} z^{2n-1}.
-%\end{align*}
-%By the same procedure
-%\begin{align*}
-%   J^{\prime\prime}(z)
-%&= \sum_{k=2}^\infty k (k-1) a_k z^{k-2}
-% = \sum_{n=1}^\infty 2n (2n-1) \frac{(-1)^{n}}{(n!)^2 2^{2n}} z^{2n-2} \\
-%&= \sum_{n=1}^\infty (2n-1) \frac{(-1)^n}{(n-1)! \cdot n! \cdot 2^{2n-1}} z^{2n-2}.
-%\end{align*}
-%Then
-%\begin{align*}
-%   z^2 J^{\prime\prime}(z) + z J^\prime(z) + z^2 J(z)
-%&= \sum_{n=1}^\infty (2n-1) \frac{(-1)^n}{(n-1)! \cdot n! \cdot 2^{2n-1}} z^{2n} \\
-%&+ \sum_{n=1}^\infty \frac{(-1)^n}{(n-1)! \cdot n! \cdot 2^{2n-1}} z^{2n} \\
-%&+ \sum_{n=0}^\infty \frac{(-1)^n}{(n!)^2 2^{2n}} z^{2n + 2} \\
-%&= z^2 + \sum_{n=1}^\infty
-%\end{align*}
+We also have that
+\begin{align*}
+   \lim \left|\frac{(-1)^n}{(n+1)!)^2}\right|
+        \left|\frac{(n!)^2}{(-1)}\right|
+&= \lim \frac{n! \cdot n!}{(n+1)! \cdot (n+1)!} \\
+&= \lim \frac{1}{(n+1)^2} = 0
+\end{align*}
+so that $R = \infty$ for the series
+$$
+\sum_{n=0}^\infty \frac{(-1)^n}{(n!)^2} w^n
+$$
+and thus for $J(z)$ as well.
 
 \subsection*{Ch. II \S 5.6(a)}
 Observe that by a change of index $k = n+1$
