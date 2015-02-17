@@ -1,0 +1,274 @@
+
+\documentclass{article}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage{mathtools}
+\usepackage{xfrac}
+\usepackage[lastexercise]{exercise}
+
+\newcommand\dif{\mathop{}\!\mathrm{d}}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+
+\newcounter{Problem}
+\newenvironment{Problem}{\begin{Exercise}[name={Problem},
+                                          counter={Problem}]}
+                        {\end{Exercise}}
+\title{MATH 829 Homework \#5}
+\date{February 18, 2015}
+\author{Sam Boling}
+
+\begin{document}
+
+\begin{titlepage}
+\maketitle
+%TODO -- \S 2.4(c), last part
+%         additional problem
+\end{titlepage}
+
+\section{Textbook Problems}
+
+\subsection*{Ch III, \S 2.4}
+\begin{itemize}
+  \item[(b)]{
+    \begin{enumerate}[label=(\alph*)]
+      \item{
+        \begin{align*}
+           \int_\gamma \bar{z} \dif z
+        &= \int_0^1 \overline{\gamma(t)} \gamma^\prime(t) \dif t \\
+        &= \int_0^1 (1 - it) i \dif t
+         = \int_0^1 t \dif t + i \int_0^1 \dif t \\
+        &= \left.\frac{t^2}{2}\right|_0^1 + i \left.t\right|_0^1\\
+        &= \frac{1}{2} + i.
+        \end{align*}
+      }
+      \item{
+        \begin{align*}
+           \int_\gamma \bar{z} \dif z
+        &= \int_0^1 \overline{\gamma(t)} \gamma^\prime(t) \dif t \\
+        &= \int_0^1 e^{\pi i t} (-\pi i e^{-\pi i t}) \dif t \\
+        &= -\pi i \int_0^1 \dif t = - \pi i.
+        \end{align*}
+      }
+      \item{
+        \begin{align*}
+           \int_\gamma \bar{z} \dif z
+        &= \int_0^1 \overline{\gamma(t)} \gamma^\prime(t) \dif t \\
+        &= \int_0^1 e^{-\pi i t} (\pi i e^{\pi i t}) \dif t \\
+        &= \pi i.
+        \end{align*}
+      }
+      \item{
+        \begin{align*}
+           \int_\gamma \bar{z} \dif z
+        &= \int_0^1 \overline{\gamma(t)} \gamma^\prime(t) \dif t \\
+        &= \int_0^1 (1 + t^2 - it)(2t + i) \dif t \\
+        &= \int_0^1 [(3t + 2t^3) + i(1 - t^2)] \dif t \\
+        &= \left[\frac{3}{2}t^2 + \frac{t^4}{2}\right]_0^1
+         + i\left[t - \frac{t^3}{3}\right]_0^1 \\
+        &= 2 + \frac{2}{3}i.
+        \end{align*}
+      }
+    \end{enumerate}
+  }
+  \item[(c)]{
+    \begin{enumerate}[label=(\alph*)]
+      \item{
+        \begin{align*}
+           \int_\gamma \frac{1}{z} \dif z
+        &= \int_0^1 \frac{1}{\gamma(t)} \gamma^\prime(t) \dif t \\
+        &= \int_0^1 \frac{i}{1 + it} \dif t \\
+        &= \int_0^1 \frac{t}{1 + t^2} \dif t
+         + i\int_0^1 \frac{1}{1 + t^2} \dif t \\
+        &= \left.\frac{1}{2} \log |1 + t^2|\right|_0^1
+         + i\left.\arctan t\right|_0^1 \\
+        &= \frac{\log 2}{2} + i\frac{\pi}{4}.
+        \end{align*}
+        Alternatively since $\gamma$ does not lie on
+        the branch cut of the principal logarithm,
+        $\log z$ is a primitive for $\frac{1}{z}$ on
+        an open set containing $\gamma$ so
+        \begin{align*}
+           \int_{\gamma} \frac{1}{z} \dif z
+        &= \log (\gamma(1)) - \log(\gamma(0))
+         = \log (1 + i) \\
+        &= \frac{\log 2}{2} + i\frac{\pi}{4}.
+        \end{align*}
+      }
+      \item{
+        \begin{align*}
+           \int_\gamma \frac{1}{z} \dif z
+        &= \int_0^1 \frac{1}{\gamma(t)} \gamma^\prime(t) \dif t \\
+        &= \int_0^1 \overline{\gamma(t)} \gamma^\prime(t) \dif t \\
+        &= -\pi i
+        \end{align*}
+        in this case since $\gamma$ lies in the unit circle so
+        $\frac{1}{z} = \bar{z}$.
+      }
+      \item{
+        \begin{align*}
+           \int_\gamma \frac{1}{z} \dif z
+        &= \int_0^1 \frac{1}{\gamma(t)} \gamma^\prime(t) \dif t \\
+        &= \int_0^1 \overline{\gamma(t)} \gamma^\prime(t) \dif t \\
+        &= \pi i
+        \end{align*}
+        in this case since $\gamma$ lies in the unit circle so
+        $\frac{1}{z} = \bar{z}$.
+      }
+      \item{
+        Consider that $\frac{1}{z}$ is continuous on the open set
+        $$
+        U = \mathbb{C} - \{ z \in \mathbb{R} : \mathrm{Re} z \leq 0 \}
+        $$
+        and that $\gamma \in U$, since
+        $$
+        \mathrm{Re} (\gamma(t)) = 1 + t^2 > 0
+        $$
+        for $t \in [0, 1]$. Furthermore the principal logarithm
+        $\mathrm{Log} z \in (-\pi, \pi]$ is a primitive for
+        $\frac{1}{z}$ on $U$ (as seen in Homework 2, additional problem 1).
+        Therefore
+        \begin{align*}
+        \int_\gamma \frac{1}{z} \dif z
+        &=
+        \mathrm{Log}(\gamma(1)) - \mathrm{Log}(\gamma(0))
+         =
+        \mathrm{Log}(2 + i) \\
+        &= (\log \sqrt{5})\left(\arctan \frac{1}{2}\right).
+        \end{align*}
+      }
+    \end{enumerate}
+  }
+\end{itemize}
+
+\subsection*{Ch III, \S 2.6}
+Because $\sin z$ has primitive $-\cos z$ on $\mathbb{C}$,
+we have
+\begin{align*}
+   \int_\gamma \sin z \dif z
+&= -\cos(1 + i) - (-\cos 0)
+ = 1 - \cos (1 + i).
+\end{align*}
+
+\section{Additional Problems}
+
+\begin{Problem}
+Let $a, b \in \mathbb{C}$ and $c \in [a, b]$. Let $f$ be continuous
+on $[a, b]$. Use the definition to show that
+$$
+\int_{[a, b]} f = \int_{[a, c]} f + \int_{[c, b]} f.
+$$
+\end{Problem}
+
+\begin{Answer}
+The curve $[a, b]$ can be parameterized as
+$$
+\gamma(t) = a + t (b - a), \quad t \in [0, 1]
+$$
+so to say that $c \in [a, b]$ means that $c \in \gamma([0, 1])$.
+Therefore $c = a + t_c (b - a)$ for some $t_c \in [0, 1]$.
+
+Next we have that
+$$
+\gamma_{[a,c]}(t) = a + t(c - a), \quad
+\gamma_{[c,b]}(t) = c + t(b - c), \quad
+t \in [0, 1].
+$$
+Define reparameterizations
+$$
+\psi_{[a,c]}(t) = \frac{t}{t_c}, \quad t \in [0, t_c]
+$$
+and
+$$
+\psi_{[c,b]}(t) = \frac{t - t_c}{1 - t_c}, \quad t \in [t_c, 1]
+$$
+so that
+
+\begin{align*}
+   \int_{[a,c]} f
+&= \int_{\gamma_{[a, c]} \circ \psi_{[a,c]}} f \\
+&= \int_0^{t_c}
+     f(\gamma_{[a, c]}(\psi_{[a,c]}(t)))
+     (\gamma_{[a, c]} \circ \psi_{[a,c]})^\prime (t)
+     \dif t \\
+&= \int_0^{t_c}
+     f\left(a + \frac{t}{t_c}(c - a)\right)
+     \frac{1}{t_c}(c - a)
+     \dif t, \\
+   \int_{[c, b]} f
+&= \int_{\gamma_{[c, b]} \circ \psi_{[c, b]}} f \\
+&= \int_0^{t_c}
+     f(\gamma_{[c, b]}(\psi_{[c, b]}(t)))
+     (\gamma_{[c, b]} \circ \psi_{[c, b]})^\prime (t)
+     \dif t \\
+&= \int_{t_c}^{1}
+     f\left(c + \frac{t - t_c}{1 - t_c}(b - c)\right)
+     \frac{1}{1 - t_c}(b - c)
+     \dif t
+\end{align*}
+But from $c = a + t_c(b-a)$ we have
+\begin{align*}
+c - a &= t_c (b - a)
+\end{align*}
+and
+\begin{align*}
+   b - c
+&= b - (a + t_c (b - a)) \\
+&= b - a - t_c(b - a) \\
+&= (1 - t_c)(b - a)
+\end{align*}
+so that
+\begin{align*}
+\int_0^{t_c}
+  f\left(a + \frac{t}{t_c}(c - a)\right)
+  \frac{1}{t_c}(c - a)
+  \dif t
+&=
+\int_0^{t_c}
+  f(a + t(b - a))
+  (b - a)
+  \dif t
+\end{align*}
+and
+\begin{align*}
+\int_{t_c}^{1}
+  f\left(c + \frac{t - t_c}{1 - t_c}(b - c)\right)
+  \frac{1}{1 - t_c}(b - c) \dif t
+&=
+\int_{t_c}^{1}
+  f(c + (t - t_c)(b - a))
+  (b - a)
+  \dif t \\
+&=
+\int_{t_c}^{1}
+  f(a + t(b - a))
+  (b - a)
+  \dif t
+\end{align*}
+so that
+\begin{align*}
+\int_{[a,c]} f + \int_{[c,b]} f
+&=
+\int_0^{t_c}
+  f(a + t(b - a))
+  (b - a)
+  \dif t
++
+\int_{t_c}^{1}
+  f(a + t(b - a))
+  (b - a)
+  \dif t \\
+&=
+\int_0^1
+  f(a + t(b - a))
+  (b - a)
+  \dif t \\
+&=
+\int_{[a, b]} f.
+\end{align*}
+
+\end{Answer}
+
+\end{document}
