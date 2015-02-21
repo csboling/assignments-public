@@ -28,8 +28,6 @@
 %         additional problem
 \end{titlepage}
 
-\section{Textbook Problems}
-
 \section{Additional Problems}
 \begin{Problem}
 Prove that Cauchy's theorem for Jordan curves follows from
@@ -37,6 +35,79 @@ Green's theorem if we assume that $f^\prime$ is continuous.
 \end{Problem}
 
 \begin{Answer}
+Write $z = x + i y$ so that
+$$
+f(z) = f(x + iy) = u(x, y) + i v(x, y).
+$$
+Let $\gamma$ be a closed curve parameterized by
+$$
+\gamma(t) = x(t) + i y(t), \quad t \in [a, b]
+$$
+for some $a, b \in \mathbb{R}$ and some
+$x, y : [a, b] \to \mathbb{R}$.
+Then by definition
+\begin{align*}
+\oint_\gamma f
+&=
+\int_a^b
+  f(\gamma(t)) \gamma^\prime(t)
+  \dif t \\
+&=
+\int_a^b
+  [u(x(t), y(t)) + i v(x(t), y(t))]
+  (x^\prime(t) + i y^\prime(t))
+  \dif t \\
+&=
+\int_a^b
+  [u(x(t), y(t)) x^\prime(t) - v(x(t), y(t)) y^\prime(t)]
+  \dif t
++
+i
+\int_a^b
+  [u(x(t), y(t)) y^\prime(t) - v(x(t), y(t)) x^\prime(t)]
+  \dif t.
+\end{align*}
+Since $\dif x = x^\prime(t) \dif t$ and
+$\dif y = y^\prime(t) \dif t$ we perform substitutions to get
+\begin{align*}
+\oint_\gamma f
+&=
+    \int_{x(a)}^{x(b)} u \dif x
+-   \int_{y(a)}^{y(b)} v \dif y
++ i \int_{y(a)}^{y(b)} u \dif y
++ i \int_{x(a)}^{x(b)} v \dif x,
+\end{align*}
+where $x(a) = x(b)$ and $y(a) = y(b)$ by assumption since
+$\gamma$ is closed. Therefore
+\begin{align*}
+\oint_\gamma f
+&=
+    \oint_\gamma (u \dif x - v \dif y)
++ i \oint_\gamma (v \dif x + u \dif y).
+\end{align*}
+Since $f^\prime$ is continuous, $u$ and $v$ have continuous
+partial derivatives, so applying Green's theorem this means
+\begin{align*}
+\oint_\gamma f
+&=
+\iint_{\mathrm{Int}(\gamma)}
+  \left(
+    \frac{\partial(-v)}{\partial x}
+  - \frac{\partial u}{\partial y}
+  \right)
+  \dif x \dif y
++
+i
+\iint_{\mathrm{Int}(\gamma)}
+  \left(
+    \frac{\partial u}{\partial x}
+  - \frac{\partial v}{\partial y}
+  \right)
+  \dif x \dif y \\
+&= 0
+\end{align*}
+since $f$ is holomorphic and so the
+Cauchy-Riemann equations are satisfied.
 \end{Answer}
 
 \begin{Problem}
@@ -44,6 +115,29 @@ Let $\gamma$ be a positively oriented Jordan curve. Use
 Green's theorem to compute $\int_\gamma \bar{z} \dif z$,
 noting that the conjugate map is not holomorphic.
 \end{Problem}
+
+\begin{Answer}
+We have
+$$
+f(x + i y) = \overline{x + iy} = x - iy
+$$
+so that $u(x, y) = x$, $v(x, y) = -y$,
+$u_x = 1$, $u_y = 0$, $v_x = 0$, $v_y = -1$. Then
+\begin{align*}
+\oint_\gamma f
+&=
+-
+\iint_{\mathrm{Int}(\gamma)}
+ (v_x + u_y) \dif x \dif y
++ i
+\iint_{\mathrm{Int}(\gamma)}
+  (u_x - v_y) \dif x \dif y \\
+&=
+2i
+\iint_{\mathrm{Int}(\gamma)} \dif x \dif y,
+\end{align*}
+i.e. $2i$ times the area bounded by $\gamma$.
+\end{Answer}
 
 \begin{Problem}
 Compute
@@ -60,5 +154,9 @@ for
   }
 \end{enumerate}
 \end{Problem}
+
+\begin{Answer}
+
+\end{Answer}
 
 \end{document}
