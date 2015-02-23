@@ -156,7 +156,31 @@ for
 \end{Problem}
 
 \begin{Answer}
-
+\begin{enumerate}[label=(\alph*)]
+  \item{
+    Here $2 \in \mathrm{Int}(\gamma)$. Let $f(z) = e^{3z}$,
+    so that $f$ is entire. Then we may use the Cauchy formula to write
+    $$
+    f^{(2)}(2)
+    =
+    \frac{2!}{2 \pi i}
+    \int_{\gamma}
+      \frac{f(z)}{(z - 2)^3}
+      \dif z.
+    $$
+    But $f^{(2)}(z) = 9 e^{3z}$, so
+    $$
+    \int_{\gamma}
+      \frac{e^{3z}}{(z - 2)^3}
+    = 9 \pi i e^{3z}.
+    $$
+  }
+  \item{
+    Here $\gamma$ is the unit circle, so $2 \in \mathrm{Ext}(\gamma)$. Therefore
+    $\frac{e^{3z}}{(z - 2)^3}$ is holomorphic on $\mathrm{Int}(\gamma) \cup \gamma$,
+    so $\int_\gamma \frac{e^{3z}}{(z-2)^3} = 0$.
+  }
+\end{enumerate}
 \end{Answer}
 
 \end{document}
