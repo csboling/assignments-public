@@ -2,7 +2,6 @@
 
 \usepackage{amsmath}
 \usepackage{enumitem}
-\usepackage{exercise}
 
 \newcommand\dif{\mathop{}\!\mathrm{d}}
 
@@ -23,23 +22,115 @@ to that capacitor and the path to the load, so we have
 &=
     R_1                     C_1
   + R_1                     C_2
-  + (R_1 + R_3)             C_3
+  + (R_1 + R_3)             C_3 
   + R_1                     C_4
-  + (R_1 + R_3)             C_5
-  + (R_1 + R_3 + R_6)        C_6
+  + (R_1 + R_3)             C_5 \\
+ &+ (R_1 + R_3 + R_6)        C_6
   + (R_1 + R_3)             C_7
   + (R_1 + R_3 + R_6 + R_8) C_8 \\
 &= 2.525 \times 10^{-10} ~\mathrm{s}
- = 0.25 ~\mathrm{ns}.
+ \approx 0.25 ~\mathrm{ns}.
 \end{align*}
 
-
 \section*{Problem \#5.15}
-
-
+\begin{enumerate}[label=(\alph*)]
+  \item{
+    The relative sizing factor is given by
+    $$
+      f 
+    = \sqrt[N]{\frac{C_L}{C_{g,1}}} 
+    = \sqrt[3]{\frac{20 \times 10^{-12}}{10 \times 10^{-15}}}
+    = \sqrt[3]{2000}
+    \approx 12.6
+    $$
+    so that stage 2 should be $12.6$ times larger than stage 1 and
+    stage 3 should be $12.6^2 \approx 158.75$ times larger than stage 1.
+    This achieves a propagation delay of 2.86 ns.
+  }
+  \item{
+    The delay through an optimally sized inverter chain is given by
+    $$
+    t_p = N t_{p0} \left(1 + \frac{\sqrt[N]{F}}{\gamma}\right).
+    $$
+    Numerically, we find that $N = 6$ achieves a minimum delay 
+    of 1.91 ns.
+  }
+  \item{
+    It is possible to achieve superior propagation delay with twice the
+    number of inverters in this case.
+    Since the size of inverters in the chain increase geometrically,
+    the area consumed by the inverter chain grows very fast with $N$.
+    Area is always at a premium in integrated circuits, and furthermore
+    adding increasingly large inverters is likely to cost extra power.
+  }
+  \item{
+    Considering gate capacitances only we have that the load capacitance
+    of the $k$-th stage is $C_{g,k} = C_i f^k$. Summing
+    these load capacitances gives a total capacitance of
+    $$
+      C_{chain}
+    = C_i \sum_{k=1}^{N} f^k
+    = C_i \frac{1 - f^{N}}{1 - f}
+    = C_i \frac{1 - F}{1 - \sqrt[N]{f}}
+    $$
+    so that the dynamic power dissipation is
+    $$
+      P 
+    = C_{chain} V_{DD}^2 f_{0 \to 1}
+    = C_{chain} V_{DD}^2 f_{clk} \alpha_{0 \to 1}
+    $$
+    where $f_{clk}$ is the circuit clock frequency and
+    $\alpha_{0 \to 1}$ is the activity factor.
+    For 3 stages, this yields
+    $$
+      P
+    = 6.25 C_{chain} f_{clk}
+    = 6.25 \cdot (1.72 \times 10^{-12}) f_{clk}
+    = f_{clk} \cdot 10.77 \times 10^{-11}.
+    $$
+  }
+\end{enumerate}
 
 \section*{Problem \#5.16}
-
-
+\begin{enumerate}
+  \item{
+    We have
+    \begin{align*}
+             P_{av} 
+    &=       I_{av} V
+     \propto C_{ox} \frac{W}{L} V^3
+     \propto \frac{1}{t_{ox}} \frac{W}{L} V^3 \\
+    &\propto \frac{1}{1 / S} \frac{W}{1 / S} 
+     =       \frac{W}{S^2},
+    \end{align*}
+    so $W$ must increase by a factor of $S^2$ to keep
+    the power constant as $L$ and $t_{ox}$ are decreased
+    by a factor of $1 / S$.
+  }
+  \item{
+    We have
+    \begin{align*}
+              t_p 
+    &\propto  \frac{C_L V}{I_{av}}
+     \propto  \frac{C_{ox} W L V}{C_{ox} \frac{W}{L} V^2}
+     \propto  \frac{L^2}{V} \\
+    &\propto  \frac{1}{S^2}
+    \end{align*}
+    as the new scaling factor for the intrinsic delay,
+    just the same as in normal fixed-voltage scaling.
+  }
+  \item{
+    In this case
+    \begin{align*}
+               P
+      &=       I_{av} V
+       \propto C_{ox} W V^2
+       \propto \frac{1}{t_{ox}} W
+       \propto \frac{1}{1 / S} W
+    \end{align*}
+    so here scaling the width by $\frac{1}{S}$ maintains constant
+    average power.
+  }
+\end{enumerate}
 
 \end{document}
