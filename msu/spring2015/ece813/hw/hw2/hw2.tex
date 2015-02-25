@@ -1,0 +1,45 @@
+\documentclass{article}
+
+\usepackage{amsmath}
+\usepackage{enumitem}
+\usepackage{exercise}
+
+\newcommand\dif{\mathop{}\!\mathrm{d}}
+
+\title{ECE 813 Homework \#2}
+\author{Sam Boling}
+\date{February 25, 2015}
+
+\begin{document}
+
+\maketitle
+
+\section*{Problem \#4.7}
+A capacitor's contribution to the delay
+is determined by the resistances that are shared by the path
+to that capacitor and the path to the load, so we have
+\begin{align*}
+\tau_{DB}
+&=
+    R_1                     C_1
+  + R_1                     C_2
+  + (R_1 + R_3)             C_3
+  + R_1                     C_4
+  + (R_1 + R_3)             C_5
+  + (R_1 + R_3 + R_6)        C_6
+  + (R_1 + R_3)             C_7
+  + (R_1 + R_3 + R_6 + R_8) C_8 \\
+&= 2.525 \times 10^{-10} ~\mathrm{s}
+ = 0.25 ~\mathrm{ns}.
+\end{align*}
+
+
+\section*{Problem \#5.15}
+
+
+
+\section*{Problem \#5.16}
+
+
+
+\end{document}
