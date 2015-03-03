@@ -34,6 +34,64 @@ polynomial of degree $\leq k$.
 
 \horline
 
+Let $\gamma_R$ denote the circle of radius $R$ centered at zero.
+Let $z \in \gamma_R$, so that $|z| = R$ and
+\begin{align*}
+     \left|  
+       \frac{f(z)}{z^{n+1}}
+     \right|
+\leq \frac{\|f\|_{R}}{R^{n+1}}
+\leq C R^{k - n - 1},
+\end{align*}
+so
+$$
+     \left|
+       \frac{f(z)}{z^{n+1}}
+     \right|
+\leq \frac{C}{R}, \quad
+\forall n \geq k.
+$$
+But then
+\begin{align*}
+       \int_{\gamma_R}
+         \frac{f(z)}{z^{n+1}}
+         \dif z
+& \leq \left|
+         \int_{\gamma_R}
+           \frac{f(z)}{z^{n+1}}
+           \dif z
+       \right|
+  \leq \int_{\gamma_R}
+       \left|
+         \frac{f(z)}{z^{n+1}}         
+       \right|
+       \dif z \\
+& \leq \frac{C}{R}
+       \int_0^{2\pi}
+         i R e^{i t}
+         \dif t \\
+   = 0
+\end{align*}
+for all $n \geq k$.
+Because $f$ is entire we may write
+$$
+  f(w) 
+= \frac{1}{2 \pi i}
+  \sum_{n=0}^\infty 
+    w^n
+    \int_{\gamma_R}
+      \frac{f(z)}{z^{n+1}}
+      \dif z
+= \frac{1}{2 \pi i}
+  \sum_{n=0}^{k-1}
+    w^n
+    \int_{\gamma_R}
+      \frac{f(z)}{z^{n+1}}
+      \dif z,
+$$
+a polynomial of degree $k-1$.
+
+
 \subsection*{Ch. III \S 6.6}
 Let $U$ be a simply connected open set. Let $f$ be analytic on
 $U$ and assume that $f(z) \neq 0$ for all $z \in U$. Show that there
@@ -43,7 +101,11 @@ integer $n$?
 
 \horline
 
-
+Since $f$ is nonzero and analytic on an open set $U$, there is a 
+branch $h$ of $\log f$ in $U$, so that $h$ is a primitive of
+$\frac{f^\prime}{f}$, so $h$ is holomorphic. Then 
+$g = e^\frac{h}{n}$ is holomorphic, and so 
+$g^n = e^h = f$ for any $n \in \mathbb{N}$.
 
 \subsection*{Ch. III \S 1.2}
 Let $U$ be a bounded open connected set, $\{f_n\}$ a sequence of
@@ -365,8 +427,14 @@ $$
 
 \begin{Problem}
 Let $g$ be holomorphic on a simply connected domain $U$. Show that there is a
-holomorphic function $f$ on $U$ such that $g = \frac{f^\prime}{f}$.
+holomorphic function $f$ on $U$ such that $f(z) \neq 0$ and
+$g = \frac{f^\prime}{f}$.
 \end{Problem}
+
+Since $g$ is holomorphic on a simply connected domain, it has a primitive in
+$U$; call it $h$. Then $f(z) = e^{h(z)}$ is holomorphic since $h$ is,
+nonzero since $e^z$ is nonzero on $\mathbb{C}$, and
+$f^\prime(z) = h^\prime(z) e^{h(z)}$ so that $\frac{f^\prime}{f} = h^\prime = g$.
 
 \begin{Problem}
 Find all real-valued $C^2$ functions $h$ on $(0, \infty)$ such that
