@@ -34,53 +34,59 @@ polynomial of degree $\leq k$.
 
 \horline
 
-Let $\gamma_R$ denote the circle of radius $R$ centered at zero.
-Let $z \in \gamma_R$, so that $|z| = R$ and
+Let $\gamma(R)$ denote the circle of radius $R$ centered at zero, and
+let $n \in \mathbb{N} \cup \{ 0 \}$.
+Then
 \begin{align*}
-     \left|
-       \frac{f(z)}{z^{n+1}}
-     \right|
-\leq \frac{\|f\|_{R}}{R^{n+1}}
-\leq C R^{k - n - 1}.
+      \left|
+        \int_{\gamma(R)} 
+          \frac{f(z)}
+               {z^{n+1}} 
+          \dif z
+      \right|
+&\leq \left\|
+        \frac{f(z)}{z^{n+1}}
+      \right\|_{R}
+      L(\gamma(R)) \\
+&=    \frac{\|f(z)\|_{R}}
+           {\|z^{n+1}\|_{R}}
+      2 \pi R
 \end{align*}
-But then
+since $L(\gamma(R)) = 2 \pi R$. Since $|z| = R$ on $\gamma(R)$
+we have $\|z^{n+1}\|_{R} = R^{n+1}$, so
+$$
+      \left|
+        \int_{\gamma(R)} 
+          \frac{f(z)}
+               {z^{n+1}} 
+          \dif z
+      \right|
+\leq  2 \pi R \frac{C R^k}{R^{n+1}} 
+=     2 \pi C R^{k - n}.
+$$
+But since $f$ is entire it is infinitely differentiable
+everywhere, so
 \begin{align*}
-       \left|
-         \int_{\gamma_R}
-           \frac{f(z)}{z^{n+1}}
-           \dif z
-       \right|
-& \leq \int_{\gamma_R}
-       \left|
-         \frac{f(z)}{z^{n+1}}
-       \right|
-       \dif z \\
-& \leq \int_{\gamma_R}
-         C R^{n-k-1}
-         \dif z \\
-& =    C R^{n - k - 1}
-       \oint_{\gamma_R}
-         \dif z \\
-& =    0.
+   |f^{(n)}(w)|
+&= \left|
+     \frac{n!}
+          {2 \pi i}
+     \int_{\gamma(R)}
+       \frac{f(z)}
+            {z^{n+1}}
+       \dif z
+   \right| \\
+&\leq
+   C R^{k - n} n! 
 \end{align*}
-Because $f$ is entire we may write
+for any $R > 0$, and when $n > k$ this means $f^{(n)} \equiv 0$.
+Therefore
 $$
-  f(w)
-= \frac{1}{2 \pi i}
-  \sum_{n=0}^\infty
-    w^n
-    \int_{\gamma_R}
-      \frac{f(z)}{z^{n+1}}
-      \dif z
-= \frac{1}{2 \pi i}
-  \sum_{n=0}^{k-1}
-    w^n
-    \int_{\gamma_R}
-      \frac{f(z)}{z^{n+1}}
-      \dif z,
-$$
-a polynomial of degree $k-1$.
-
+  f(w) 
+= \sum_{n=0}^\infty \frac{f^{(n)}(0)}{n!} z^n 
+= \sum_{n=0}^k     \frac{f^{(n)}(0)}{n!} z^n
+$$ 
+is a polynomial of degree at most $k$.
 
 \subsection*{Ch. III \S 6.6}
 Let $U$ be a simply connected open set. Let $f$ be analytic on
@@ -189,12 +195,12 @@ $i \left( \pi k + \frac{\pi}{2} \right)$ for some $k \in \mathbb{Z}$.
 Since $\sinh z$ and $\cosh z$ are entire, it follows that
 $\tanh z$ is holomorphic on the open disk $D\left(0, \frac{\pi}{2}\right)$
 and not holomorphic on $D(0, r)$ for any $r > \frac{\pi}{2}$.
-Therefore
+Since
 $$
 \tanh z = \sum_{n=0}^\infty \frac{\tanh^{(n)}(0)}{n!} z^n, \quad
 z \in D\left(0, \frac{\pi}{2}\right)
 $$
-and the series converges with radius $\frac{\pi}{2}$.
+the series converges with radius $\frac{\pi}{2}$.
 \end{Answer}
 
 \begin{Problem}
@@ -209,7 +215,7 @@ $\left|\frac{1}{f(z)}\right| < \frac{1}{r}$ since $|f(z)|, r > 0$.
 This means $\frac{1}{f}$ is a bounded entire function and therefore
 $\frac{1}{f} \equiv C$ for some $C \in \mathbb{C} - \{ 0 \}$.
 Note that it cannot be that $C = 0$ for in this case we have
-$1 = C f(z) = 0$. Therefore $f \equiv \frac{1}{C}$ as desired.
+$1 = C f(z) = 0$. Therefore $f \equiv \frac{1}{C}$.
 \end{Answer}
 
 \begin{Problem}
@@ -249,7 +255,7 @@ so the Jacobian is given by
      \end{array}
    \right].
 \end{align*}
-Since
+Since $L(z)$
 is holomorphic in
 $D(0, 1)$, it has the Jacobian
 \begin{align*}
@@ -273,9 +279,13 @@ $D(0, 1)$, it has the Jacobian
      \end{array}
    \right].
 \end{align*}
-Then we have
+Writing 
+$$
+(1 + z)^\alpha = (\exp \circ (\alpha L))(z)
+$$
+we have
 \begin{align*}
-   \mathbf{J}(\exp \circ \alpha L)|_{x + iy}
+   \mathbf{J}(\exp \circ (\alpha L))|_{x + iy}
 &= \left[
      \begin{array}{r r}
        \frac{\partial}{\partial x}
@@ -291,12 +301,13 @@ Then we have
 &= \mathbf{J}(\exp)|_{\alpha L(x + iy)}
    \mathbf{J}(\alpha L)|_{x + iy} \\
 &=
+   \alpha
    \left[
      \begin{array}{r r}
-        \alpha e^{\alpha u} \cos (\alpha v)
-     & -\alpha e^{\alpha u} \sin (\alpha v) \\
-        \alpha e^{\alpha u} \sin (\alpha v)
-     &  \alpha e^{\alpha u} \cos (\alpha v)
+        e^{\alpha u} \cos (\alpha v)
+     & -e^{\alpha u} \sin (\alpha v) \\
+        e^{\alpha u} \sin (\alpha v)
+     &  e^{\alpha u} \cos (\alpha v)
      \end{array}
    \right]
    \left[
@@ -408,7 +419,9 @@ $$
 $$
 so that from Cauchy's formula
 $$
-  f(z)
+  (1 + z)^\alpha
+= e^{\alpha L(z)}
+= f(z)
 = \sum_{n=0}^\infty \frac{f^{(n)}(0)}{n!} z^n
 = \sum_{n=0}^\infty {\alpha \choose n} z^n.
 $$
@@ -440,12 +453,12 @@ $$
 \frac{\partial}{\partial y} h(x^2 + y^2) = 2y h^\prime(x^2 + y^2)
 $$
 so that
-$$
-  \frac{\partial^2}{\partial x^2} h(x^2 + y^2)
-= 2 h^\prime(x^2 + y^2) + (2x)^2 h^{\prime\prime}(x^2 + y^2), \quad
-  \frac{\partial^2}{\partial y^2} h(x^2 + y^2)
-= 2 h^\prime(x^2 + y^2) + (2y)^2 h^{\prime\prime}(x^2 + y^2)
-$$
+\begin{align*}
+   \frac{\partial^2}{\partial x^2} h(x^2 + y^2)
+&= 2 h^\prime(x^2 + y^2) + (2x)^2 h^{\prime\prime}(x^2 + y^2), \\
+   \frac{\partial^2}{\partial y^2} h(x^2 + y^2)
+&= 2 h^\prime(x^2 + y^2) + (2y)^2 h^{\prime\prime}(x^2 + y^2)
+\end{align*}
 and therefore $\Delta f = 0$ requires
 $$
   4 h^\prime (x^2 + y^2)
