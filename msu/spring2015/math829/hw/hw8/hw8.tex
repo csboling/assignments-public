@@ -36,10 +36,18 @@
 \section{Additional Problems}
 \begin{Problem}
 Prove that any positive harmonic function in $\mathbb{R}^2$ is constant.
-Hint: If $f$ is entire with $\mathrm{Re} f > 0$, then consider $e^{-f}$.
 \end{Problem}
 
 \begin{Answer}
+Let $u : \mathbb{R}^2 \to \mathbb{R}$ be harmonic and strictly
+positive. Then $u$ has a harmonic conjugate $v$, so that
+$f = u + i v$ is holomorphic on $\mathbb{C}$. Then
+$e^{-f} = e^{-u} e^{-iv}$ is entire as well, and $|e^{-f}| = e^{-u}$.
+But since $-u < 0$, this means $|e^{-f}| \leq 1$ and so $e^{-f}$
+is bounded and therefore constant. Thus
+$\frac{d}{dz} e^{-f} = -f^\prime e^{-f} \equiv 0$  so $f^\prime \equiv
+0$ and thus $f$ is constant. This means $f \equiv x + i y$ for some
+fixed $x, y$, so $u = \mathrm{Re} f \equiv x$ and thus $u$ is constant.
 \end{Answer}
 
 \begin{Problem}
@@ -48,8 +56,73 @@ for any $c \in \mathbb{R}$, $u^{-1}(\{ c \})$ is unbounded.
 Hint: The set $\{ |z| > R \}$ is connected for any $R$.
 \end{Problem}
 
+\begin{Answer}
+Let $c \in \mathbb{R}$, and suppose by way of contradiction that
+$u^{-1}(\{ c \})$ is unbounded. Then there is some $R > 0$ such that
+$u^{-1}(\{ c \}) \subset D(0, R)$, so $u(z) \neq c$ for any
+$z \in \{ z \in \mathbb{C} : |z| > R \}$. Define
+$U = \{ z \in \mathbb{C} : |z| > R \}$.
+
+Let $z_1, z_2 \in U$ and suppose $u(z_1) < c$, $u(z_2) > c$.
+Since $U$ is connected, there is a path
+$\gamma : [0, 1] \to U$ such that $\gamma(0) = z_1$ and
+$\gamma(1) = z_2$. Then
+$u \circ \gamma : [0, 1] \to \mathbb{R}$ is a continuous
+real function on an interval
+with $(u \circ \gamma)(0) < c$ and
+$(u \circ \gamma)(1) > 1$, so from the intermediate value
+theorem it must be that $u(\gamma(t_0)) = c$ for some
+$t_0 \in [0, 1]$ and thus
+$u(z_0) = c$ for $z_0 = \gamma(t_0) \in C$, a contradiction.
+Therefore it suffices to assume $u(z) < c$
+and observe that the argument is symmetric for $u(z) > c$.
+
+Now since $u$ is continuous on $\bar{D}(0, R + \varepsilon)$
+for any $\varepsilon > 0$, there is a
+point $z_{\max} \in \partial D(0, R + \varepsilon)$ such that
+$$
+u(z_{\max}) = \max\{ u(z) : z \in D(0, R + \varepsilon) \} \geq c.
+$$
+But $\partial D(0, R + \varepsilon) \subset U$ so that
+$z_{\max} \in U$ and $u(z) \leq z_{max}$
+for all $z \in U$, so $u \equiv C$ on $U$ for a constant
+$C \in \mathbb{C}$. Since $u$ is continuous on
+$\bar{U} \subset \mathbb{C}$ it must be that $u \equiv C$ on
+$\partial U$.
+Finally, $\partial U = \partial D(0, R)$, so $u \equiv C$ on
+$\partial D(0, R)$ and therefore $u$ is constant on $D(0, R)$.
+We conclude that $u \equiv C$ on
+$D(0, R) \cup \bar{U} = \mathbb{C}$, a contradiction.
+Therefore $u^{-1}(\{ c \})$ is unbounded.
+\end{Answer}
+
 \begin{Problem}
-Find the winding numbers of the given curve at the given points.
+Find the winding numbers of the curve $\gamma$ at the given points.
 \end{Problem}
+
+\begin{Answer}
+\begin{enumerate}
+  \item{
+    $z_1$ lies in the unbounded component of
+    $\mathbb{C} \backslash \gamma$, so $W(\gamma, z_1) = 0$.
+  }
+  \item{
+    A line segment from $z_1$ to $z_2$ crosses the contour from its
+    right to its left, so $W(\gamma, z_2) = 1 + W(\gamma, z_1) = 1$.
+  }
+  \item{
+    A line segment from $z_1$ to $z_3$ crosses the contour from its
+    left to its right, so $W(\gamma, z_3) = -1 + W(\gamma, z_1) = -1$.
+  }
+  \item{
+    A line segment from $z_3$ to $z_4$ crosses the contour from its
+    right to its left, so $W(\gamma, z_4) = 1 + W(\gamma, z_3) = 0$.
+  }
+  \item{
+    A line segment from $z_4$ to $z_5$ crosses the contour from its
+    left to its right, so $W(\gamma, z_5) = -1 + W(\gamma, z_4) = -1$.
+  }
+\end{enumerate}
+\end{Answer}
 
 \end{document}
