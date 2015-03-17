@@ -15,7 +15,7 @@
                                           counter={Problem}]}
                         {\end{Exercise}}
 \title{MATH 829 Homework \#8}
-\date{March 11, 2015}
+\date{March 18, 2015}
 \author{Sam Boling}
 
 \begin{document}
@@ -27,10 +27,85 @@
 \section{Textbook Problems}
 \subsection*{Ch. VIII \S 1.7}
 \begin{itemize}
-  \item[(a)]{}
-  \item[(b)]{}
-  \item[(c)]{}
-  \item[(e)]{}
+  \item[(a)]{
+    We have
+    $$
+    u_x = 6xy, \quad
+    u_y = 3x^2 - 3y^2
+    $$
+    so
+    $$
+    u_{xx} = 6y, \quad
+    u_{yy} = -6y
+    $$
+    and thus $u_{xx} + u_{yy} = 0$, so $u$ is harmonic. Let $v$
+    be a harmonic conjugate of $u$. Then 
+    $
+    v_x = -u_y = 3y^2 - 3x^2
+    $
+    so 
+    $$
+    v = 3xy^2 - x^3 + h(y)
+    $$
+    for some real differentiable function $h$ and 
+    $$
+    v_y = u_x = 6xy = 6xy + h^\prime(y),
+    $$
+    so $h^\prime(y) = 0$ and therefore
+    $$
+    f = u + i v = (3x^2 y - y^3) + i (3xy^2 - x^3) + C
+    $$
+    is holomorphic for any $C \in \mathbb{C}$.
+  }
+  \item[(b)]{
+    We have
+    $$
+    u_{x} = 1 - y, \quad
+    u_{y} = -x
+    $$
+    so
+    $$
+    u_{xx} = 0, \quad
+    u_{yy} = 0
+    $$
+    and therefore $u$ is harmonic.
+    Let $v$ be a harmonic conjugate of $u$.
+    Then
+    $v_x = -u_y = x$
+    so $v = \frac{x^2}{2} + h(y)$ and
+    $$
+    v_y = u_x = 1 - y = h^\prime(y)
+    $$
+    so that $h(y) = y - \frac{y^2}{2} + C$ for some $C$. Then
+    $$
+    f = u + i v = x - xy + i\left(y - \frac{y^2}{2}\right) + C
+    $$
+    is holomorphic.
+  }
+  \item[(c)]{
+    Observing that $z \bar{z} = |z|^2$,
+    $$
+      \frac{1}{z} 
+    = \frac{\bar{z}}{|z|^2} 
+    = \frac{x}{x^2 + y^2} - i\frac{y}{x^2 + y^2}
+    $$
+    so that
+    $$
+      \frac{i}{z}
+    = \frac{y}{x^2 + y^2} + i\frac{x}{x^2 + y^2}
+    $$
+    has real part $\frac{y}{x^2 + y^2}$ and is holomorphic on
+    $\mathbb{C} \backslash \{ 0 \}$.
+  }
+  \item[(e)]{
+    For $t \in \mathbb{R}$, 
+    $$
+      \mathrm{Re}~\frac{1}{z - t} 
+    = \mathrm{Re}\frac{1}{(x - t) + iy} 
+    = \frac{y}{(x - t)^2 + y^2}
+    $$
+    and $\frac{1}{z - t}$ is analytic except at $z = t$.
+  }
 \end{itemize}
 
 \section{Additional Problems}
@@ -84,9 +159,9 @@ $$
 u(z_{\max}) = \max\{ u(z) : z \in D(0, R + \varepsilon) \} \geq c.
 $$
 But $\partial D(0, R + \varepsilon) \subset U$ so that
-$z_{\max} \in U$ and $u(z) \leq z_{max}$
-for all $z \in U$, so $u \equiv C$ on $U$ for a constant
-$C \in \mathbb{C}$. Since $u$ is continuous on
+$z_{\max} \in U$ and $u(z) < c \leq u(z_{max})$
+for all $z \in D(z_{max}, \varepsilon)$, so $u \equiv C$ on 
+$U$ for a constant $C \in \mathbb{C}$. Since $u$ is continuous on
 $\bar{U} \subset \mathbb{C}$ it must be that $u \equiv C$ on
 $\partial U$.
 Finally, $\partial U = \partial D(0, R)$, so $u \equiv C$ on
