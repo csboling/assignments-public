@@ -78,7 +78,7 @@
     $$
     so that $h(y) = y - \frac{y^2}{2} + C$ for some $C$. Then
     $$
-    f = u + i v = x - xy + i\left(y - \frac{y^2}{2}\right) + C
+    f = u + i v = x - xy + i\left(\frac{x^2}{2} + y - \frac{y^2}{2}\right) + C
     $$
     is holomorphic.
   }
@@ -133,7 +133,7 @@ Hint: The set $\{ |z| > R \}$ is connected for any $R$.
 
 \begin{Answer}
 Let $c \in \mathbb{R}$, and suppose by way of contradiction that
-$u^{-1}(\{ c \})$ is unbounded. Then there is some $R > 0$ such that
+$u^{-1}(\{ c \})$ is bounded. Then there is some $R > 0$ such that
 $u^{-1}(\{ c \}) \subset D(0, R)$, so $u(z) \neq c$ for any
 $z \in \{ z \in \mathbb{C} : |z| > R \}$. Define
 $U = \{ z \in \mathbb{C} : |z| > R \}$.
@@ -145,10 +145,10 @@ $\gamma(1) = z_2$. Then
 $u \circ \gamma : [0, 1] \to \mathbb{R}$ is a continuous
 real function on an interval
 with $(u \circ \gamma)(0) < c$ and
-$(u \circ \gamma)(1) > 1$, so from the intermediate value
+$(u \circ \gamma)(1) > c$, so from the intermediate value
 theorem it must be that $u(\gamma(t_0)) = c$ for some
-$t_0 \in [0, 1]$ and thus
-$u(z_0) = c$ for $z_0 = \gamma(t_0) \in C$, a contradiction.
+$t_0 \in (0, 1)$ and thus
+$u(z_0) = c$ for $z_0 = \gamma(t_0) \in U$, a contradiction.
 Therefore it suffices to assume $u(z) < c$
 and observe that the argument is symmetric for $u(z) > c$.
 
@@ -156,11 +156,15 @@ Now since $u$ is continuous on $\bar{D}(0, R + \varepsilon)$
 for any $\varepsilon > 0$, there is a
 point $z_{\max} \in \partial D(0, R + \varepsilon)$ such that
 $$
-u(z_{\max}) = \max\{ u(z) : z \in D(0, R + \varepsilon) \} \geq c.
+     u(z_{\max}) 
+=    \max\{ u(z) : z \in D(0, R + \varepsilon) \} 
+\geq \max\{ u(z) : z \in u^{-1}(\{c\}) \}
+=    c.
 $$
 But $\partial D(0, R + \varepsilon) \subset U$ so that
 $z_{\max} \in U$ and $u(z) < c \leq u(z_{max})$
-for all $z \in D(z_{max}, \varepsilon)$, so $u \equiv C$ on 
+for all $z \in U$, and in particular for all 
+$z \in D(z_{max}, \varepsilon)$, so $u \equiv C$ on 
 $U$ for a constant $C \in \mathbb{C}$. Since $u$ is continuous on
 $\bar{U} \subset \mathbb{C}$ it must be that $u \equiv C$ on
 $\partial U$.
