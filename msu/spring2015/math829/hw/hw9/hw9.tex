@@ -1,0 +1,218 @@
+
+\documentclass{article}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{enumerate}
+\usepackage[lastexercise]{exercise}
+
+\newcommand\dif{\mathop{}\!\mathrm{d}}
+\newcommand\horline{\noindent\makebox[\linewidth]{\rule{\textwidth}{0.4pt}}}
+
+\newcounter{Problem}
+\newenvironment{Problem}{\begin{Exercise}[name={Problem},
+                                          counter={Problem}]}
+                        {\end{Exercise}}
+\title{MATH 829 Homework \#9}
+\date{March 25, 2015}
+\author{Sam Boling}
+
+\begin{document}
+
+\begin{titlepage}
+\maketitle
+\end{titlepage}
+
+\section{Textbook Problems}
+\subsection{Chapter V, \S 2.8}
+First note that
+$$
+  \frac{1}{(z - 1)(z-2)} 
+= \frac{-1}{z - 1}
++ \frac{1}{z - 2}
+$$
+\begin{enumerate}[(a)]
+  \item{
+    In the disc $|z| < 1$ we have also $\left|\frac{z}{2}\right|$ so we can
+    use the geometric series
+    $$
+      -\frac{1}{z - 1} 
+    =  \frac{1}{1 - z} 
+    =  \sum_{n=0}^\infty z^n, \quad
+      \frac{1}{z - 2} 
+    = \frac{1}{-2(1 - \frac{z}{2})} 
+    = -\frac{1}{2}
+       \sum_{n=0}^\infty 
+         \left(\frac{z}{2}\right)^n
+    $$
+    so that
+    $$
+      \frac{1}{(z-1)(z-2)}
+    = \sum_{n=0}^\infty 
+        \left(
+          1 - \frac{1}{2^{n+1}}
+        \right)
+        z^n.
+    $$
+  }
+  \item{
+    In this annulus we have $1 < |z| < 2$, so 
+    $\left|\frac{1}{z}\right| < 1$ and 
+    $\left|\frac{z}{2}\right| < 1$. Then
+    $$
+      \frac{1}{z - 1} 
+    = \frac{\frac{1}{z}}
+           {1 - \frac{1}{z}}
+    = \frac{1}{z}
+      \sum_{n=0}^\infty 
+        \left(\frac{1}{z}\right)^n
+    = \sum_{n=1}^\infty z^{-n}
+    = \sum_{n=-\infty}^{-1} z^n
+    $$
+    and
+    $$
+      \frac{1}{z - 2}
+    = \frac{\frac{1}{2}}
+           {\frac{z}{2} - 1}
+    = -\frac{1}{2}
+       \frac{1}{1 - \frac{z}{2}}
+    = -\frac{1}{2}
+       \sum_{n=0}^\infty
+         \left(\frac{z}{2}\right)^n
+    $$
+    so that
+    $$
+      \frac{1}{(z-1)(z-2)}
+    = \sum_{n=-\infty}^{-1} (-1) z^n
+    + \sum_{n=0}^\infty \left(-\frac{1}{2^{n+1}}\right) z^n
+    $$
+    on $1 < |z| < 2$.
+  }
+  \item{
+    Here we have $1 < |z|$ and $1 < \left|\frac{z}{2}\right|$, so
+    $$
+      \frac{1}{z - 1} 
+    = \sum_{n=-\infty}^{-1} 
+        z^{n}
+    $$
+    and $\left|\frac{2}{z}\right| < 1$ so that
+    $$
+      \frac{1}{z - 2}
+    = \frac{\frac{1}{z}}{1 - \frac{2}{z}}
+    = \frac{1}{z}
+      \sum_{n=0}^\infty
+        \left(\frac{2}{z}\right)^n
+    = \sum_{n=1}^\infty
+        2^{n-1} z^{-n}
+    = \sum_{n=-\infty}^{-1}
+        2^{1-n} z^n
+    $$
+    so that
+    $$
+      \frac{1}{(z-1)(z-2)}
+    = \sum_{n=-\infty}^{-1}
+        (2^{1-n} - 1) z^n.
+    $$
+  }
+\end{enumerate}
+
+\section{Additional Problems}
+
+\begin{Problem}
+Suppose that $f$ is holomorphic on 
+$A = \{ r < |z| < R \}$, where $0 \leq r < R \leq \infty$.
+Suppose that there are two series of complex numbers 
+$(a_n)_{n \in \mathbb{Z}}$ and $(b_n)_{n \in \mathbb{Z}}$ such that
+$$
+f(z) = \sum_{n=-\infty}^\infty a_n z^n = \sum_{n=-\infty}^\infty b_n z^n
+$$
+for $z \in A$. Show that $a_n = b_n$ for all $n \in \mathbb{Z}$.
+\end{Problem}
+
+\begin{Answer}
+Since under these assumptions
+$$
+  0 
+= f(z) - f(z) 
+= \sum_{n=-\infty}^\infty a_n z^n - \sum_{n=-\infty}^\infty b_n z^n
+= \sum_{n=-\infty}^\infty (a_n - b_n) z^n,
+$$
+it suffices to show that the constant function 0 has all
+Laurent coefficients 0, for in this case $a_n - b_n = 0$ and
+so $a_n = b_n$.
+
+Let
+$$
+  f(z) 
+= \sum_{n=-\infty}^\infty a_n z^n 
+= \sum_{n=-\infty}^{-1} a_n z^n
++ \sum_{n=0}^\infty a_n z^n
+= 0
+$$
+so that
+$$
+   \sum_{n=0}^\infty a_n z^n 
+= -\sum_{n=-\infty}^{-1} a_n z^n.
+$$
+
+\end{Answer}
+
+\begin{Problem}
+Suppose $f$ is holomorphic on $r < |z| < R$. Prove that for any
+$s \in (r, R)$ and $n \in \mathbb{Z}$,
+$$
+   \int_{|z| = s} \frac{f^\prime(z)}{z^n} \dif z
+= n\int_{|z| = s} \frac{f(z)}{z^{n+1}} \dif z
+$$
+\end{Problem}
+
+\begin{Answer}
+Since $f$ is holomorphic on this annulus, its Laurent
+coefficients are given by
+$$
+  a_n 
+= \frac{1}{2 \pi i} 
+  \int_{|z| = s}
+    \frac{f(z)}{z^{n+1}}
+    \dif z
+$$
+so that
+$$
+\int_{|z| = s}
+    \frac{f(z)}{z^{n+1}}
+    \dif z
+= 2 \pi i a_n.
+$$
+Furthermore, we have
+$$
+   f^\prime(z)
+= \sum_{n=-\infty}^\infty n a_n z^{n-1} \\
+= \frac{1}{z} \sum_{n=-\infty}^{\infty} n a_n z^n 
+$$
+which means that
+$$
+z f^\prime(z) = \sum_{n=-\infty}^\infty n a_n z^n
+$$
+so that
+$$
+  n a_n 
+= \frac{1}{2 \pi i}
+  \int_{|z| = s}
+    \frac{z f^\prime(z)}{z^{n+1}}
+    \dif z
+$$
+or
+$$
+  \int_{|z| = s}
+    \frac{f^\prime(z)}{z^n}
+    \dif z
+= n \cdot 2 \pi i a_n
+= n \int_{|z| = s}
+      \frac{f(z)}{z^{n+1}}
+      \dif z.
+$$
+
+\end{Answer}
+
+\end{document}
