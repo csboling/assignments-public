@@ -12,17 +12,15 @@ import ast
 import meta
 import lispify as lpfy
 
-def compose(*args):
-  return reduce(lambda f, g: lambda x: f(g(x)), args)
-
 class Embedding(object):
   '''
   This only operates on ast.Expr, so assignments, return
   expressions, etc. should be excluded. Therefore you
   basically write a 'script' by not assigning any names,
   and interleave this with writing python normally
-  (although you cannot currently extract values back
-  out of the "Lisp" part of the code).
+  (although you cannot extract values back
+  out of the "Lisp" part of the code as this requires
+  running it in the target Lisp implementation).
   To accomplish this we do some tricky things with
   introspection and execution frames.
   '''
@@ -42,7 +40,7 @@ class Embedding(object):
     # Python-style function calls are evaluated
     elif isinstance(x, ast.Call):
       # ew
-      normalized = repr(eval(cls.toSource(x)))      
+      normalized = repr(eval(cls.toSource(x)))
       recur_with = ast.parse(normalized).body[0].value
       return recur(recur_with)
     elif isinstance(x, ast.Num):
@@ -60,11 +58,6 @@ class Embedding(object):
                 recur(x.right)]
     else:
       return cls.toSource(x)
-
-  def visit_Expr(self, node, frame):
-    parsed = self.toList(node.value, frame=frame)
-    self.outf.write(lpfy.lispify(parsed) + '\n')
-    return ast.Expr() # replace with an empty node
 
   @classmethod
   def parse_node(cls, node, frame):
