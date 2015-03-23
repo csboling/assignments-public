@@ -26,7 +26,7 @@ class OceanManager(object):
                                  path(self.path, modelfile)]]
 
 class Ocean(object):
-  def __init__(self, fname, *args, **kwargs):
+  def __init__(self, fname=sys.stdout, *args, **kwargs):
     self.fname = fname
     self.mgr = OceanManager(*args, **kwargs)
 
@@ -55,7 +55,7 @@ class Ocean(object):
              o.mgr.simulator,
              "nom"))
     o(Atom("modelFile"),
-        map(Quote, o.mgr.modelfiles))
+        *map(Quote, o.mgr.modelfiles))
 
 if __name__ == '__main__':
   with Ocean() as o:

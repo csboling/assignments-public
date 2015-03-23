@@ -4,12 +4,7 @@ import os
 import ocean
 from lispify import Atom
 
-def main(script_name, schematic,
-         path=os.path.abspath("."), simpath=None,
-         *args, **kwargs):
-  if simpath == None:
-    simpath = os.path.join(path, 'simulation')
-
+def symmetric_sizing(o):
   designVars = {
     "Beta"   : "2",
     "f_CLK"  : "100M",
@@ -19,12 +14,21 @@ def main(script_name, schematic,
     "V_DD"   : "2.5"
   }
 
-  with ocean.Ocean(fname=script_name, schematic=schematic,
-                   virtuosopath=path, simpath=simpath,
-                   *args, **kwargs) as o:
-    pass
-#    for k, v in designVars.iteritems():
-#      oc.desVar(k, lispify.Atom(v))
+  for k, v in designVars.iteritems():
+    o(Atom("desVar"), k, Atom(v))
+
+def main(script_name, schematic,
+         path=os.path.abspath("."), simpath=None,
+         *args, **kwargs):
+  if simpath == None:
+    simpath = os.path.join(path, 'simulation')
+
+  analyses = [symmetric_sizing]
+  for a in analyses:
+    with ocean.Ocean(fname=script_name, schematic=schematic,
+                     virtuosopath=path, simpath=simpath,
+                     *args, **kwargs) as o:
+      a(o)
 
 if __name__ == '__main__':
   parser = argparse.ArgumentParser(

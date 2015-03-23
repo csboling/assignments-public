@@ -40,9 +40,12 @@ class Embedding(object):
     # Python-style function calls are evaluated
     elif isinstance(x, ast.Call):
       # ew
-      normalized = repr(eval(cls.toSource(x)))
-      recur_with = ast.parse(normalized).body[0].value
-      return recur(recur_with)
+      if x.func.id == 'Quote':
+        return "'" + recur(x.args)
+      else:
+        normalized = repr(eval(cls.toSource(x)))
+        recur_with = ast.parse(normalized).body[0].value
+        return recur(recur_with)
     elif isinstance(x, ast.Num):
       return x.n
     elif isinstance(x, ast.Str):
@@ -90,7 +93,7 @@ def example():
   z = 7*5
   print z
   [y] * z
-  [lispfunc, "x", str(3)]
+  [lispfunc, "x", str(3), Quote(q)]
 
 if __name__ == '__main__':
-  print parse_func(example)
+  sys.stdout.write(parse_func(example))
