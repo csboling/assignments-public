@@ -153,9 +153,43 @@ $$
 so that
 $$
    \sum_{n=0}^\infty a_n z^n 
-= -\sum_{n=-\infty}^{-1} a_n z^n.
+= -\sum_{n=-\infty}^{-1} a_n z^n
+= -\sum_{n=1}^\infty a_{-n} z^{-n}.
 $$
-
+Since $\sum_{n=0}^\infty a_n z^n$ is convergent on $A$, we have an analytic
+function
+$$
+g(z) = \sum_{n=0}^\infty a_n z^n = -\sum_{n=1}^\infty a_{-n} z^{-n}.
+$$
+\begin{itemize}
+  \item{
+    Suppose $|z| \leq 1$. Then
+    $$
+         |g(z)| 
+    =    \left|\sum_{n=0}^\infty a_n z^n\right|
+    \leq \sum_{n=0}^\infty |a_n|
+    $$
+    so that $g$ is bounded. But $g$ is analytic and thus holomorphic
+    so $g$ must be constant.
+  }
+  \item{
+    Suppose $|z| > 1$. Then $z^{-1} \leq 1$ so
+    $$
+         |g(z)|
+    =    \left|-\sum_{n=1}^\infty a_{-n} z^{-n}\right|
+    \leq \sum_{n=1}^\infty |a_{-n}|
+    $$
+    so that $g$ is bounded. But $g$ is analytic and thus holomorphic
+    so $g$ must be constant.
+  }
+\end{itemize}
+Since $g$ is constant we have $a_n = 0$, $n \neq 0$. But then
+$$
+  \sum_{n=0}^\infty a_n z^n 
+= a_0 + \sum_{n=1}^\infty a_n z^n
+= -\sum_{n=-\infty}^{-1} a_n z^n
+$$
+we have $a_0 = 0$ as well.
 \end{Answer}
 
 \begin{Problem}
