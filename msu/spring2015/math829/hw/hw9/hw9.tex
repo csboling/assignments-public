@@ -185,12 +185,16 @@ $$
     \leq \sum_{n=0}^\infty |a_n| |z|^n
     \leq \sum_{n=0}^\infty |a_n|.
     $$
-    But since this power series has an infinite radius of convergence,
-    it converges absolutely, so 
+    
+    But since the power series 
+    $\sum_{n=0}^\infty a_n z^n$ has an infinite radius of convergence,
+    it converges absolutely, so we have a function 
+    $\tilde{g} : \mathbb{C} \to \mathbb{R}$ given by
     $$
-    \sum_{n=0}
+    \tilde{g}(z) = \sum_{n=0}^\infty |a_n||z|^n,
     $$
-    for some $C \in \mathbb{R}$, so that $g$ is bounded.
+    and since $\sum_{n=0}^\infty |a_n| = \tilde{g}(1) < \infty$
+    it follows that $g$ is bounded.
   }
   \item{
     Suppose $|z| > 1$. Then $\left|\frac{1}{z}\right| < 1$ so
@@ -200,15 +204,23 @@ $$
     \leq \sum_{n=1}^\infty 
            |a_{-n}|
            \left|\frac{1}{z}\right|^n
-    \leq \sum_{n=1}^\infty |a_{-n}|
-    =    C
+    \leq \sum_{n=1}^\infty |a_{-n}|.
     $$
-    for some $C \in \mathbb{R}$, so that $g$ is bounded.
+
+    But since the power series 
+    $\sum_{n=1}^\infty a_{-n} \left(\frac{1}{z}\right)^n$ has an infinite
+    radius of convergence, it converges absolutely, so we have a function
+    $\tilde{g} : \mathbb{C} \to \mathbb{R}$ given by
+    $$
+    \tilde{g}(z) = \sum_{n=0}^\infty |a_{-n}|\left|\frac{1}{z}\right|^n,
+    $$
+    and since $\sum_{n=0}^\infty |a_{-n}| = \tilde{g}(1) < \infty$ it follows
+    that $g$ is bounded.
   }
 \end{itemize}
-Therefore $g$ is bounded. But since $g(z) = \sum a_n z^n$ converges everywhere,
-$g(z)$ is a bounded entire function and thus constant.
-Since $g$ is constant we have $a_n = 0$, $n \geq 0$. But then since
+Therefore $g$ is a bounded entire function and thus constant.
+Since $g$ is constant, we have $a_n = 0$ for $n \neq 0$, and 
+since
 $$
   \sum_{n=0}^\infty a_n z^n 
 = a_0 + \sum_{n=1}^\infty a_n z^n
