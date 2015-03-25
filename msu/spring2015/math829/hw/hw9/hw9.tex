@@ -34,7 +34,7 @@ $$
 $$
 \begin{enumerate}[(a)]
   \item{
-    In the disc $|z| < 1$ we have also $\left|\frac{z}{2}\right|$ so we can
+    In the disc $|z| < 1$ we have also $\left|\frac{z}{2}\right| < 1$ so we can
     use the geometric series
     $$
       -\frac{1}{z - 1} 
@@ -45,6 +45,8 @@ $$
     = -\frac{1}{2}
        \sum_{n=0}^\infty 
          \left(\frac{z}{2}\right)^n
+    = -\sum_{n=0}^\infty
+         \frac{1}{2^{n+1}} z^n
     $$
     so that
     $$
@@ -60,16 +62,17 @@ $$
     In this annulus we have $1 < |z| < 2$, so 
     $\left|\frac{1}{z}\right| < 1$ and 
     $\left|\frac{z}{2}\right| < 1$. Then
-    $$
-      \frac{1}{z - 1} 
-    = \frac{\frac{1}{z}}
-           {1 - \frac{1}{z}}
-    = \frac{1}{z}
-      \sum_{n=0}^\infty 
-        \left(\frac{1}{z}\right)^n
-    = \sum_{n=1}^\infty z^{-n}
-    = \sum_{n=-\infty}^{-1} z^n
-    $$
+    \begin{align*}
+       \frac{1}{z - 1} 
+    &= \frac{\frac{1}{z}}
+           {1 - \frac{1}{z}} \\
+    &= \frac{1}{z}
+       \sum_{n=0}^\infty 
+         \left(\frac{1}{z}\right)^n
+     = \sum_{n=0}^\infty z^{-(n+1)}
+     = \sum_{n=1}^\infty z^{-n} \\
+    &= \sum_{n=-\infty}^{-1} z^n
+    \end{align*}
     and
     $$
       \frac{1}{z - 2}
@@ -82,11 +85,20 @@ $$
          \left(\frac{z}{2}\right)^n
     $$
     so that
-    $$
-      \frac{1}{(z-1)(z-2)}
-    = \sum_{n=-\infty}^{-1} (-1) z^n
-    + \sum_{n=0}^\infty \left(-\frac{1}{2^{n+1}}\right) z^n
-    $$
+    \begin{align*}
+       \frac{1}{(z-1)(z-2)}
+    &= \sum_{n=-\infty}^{-1} 
+        (-1) z^n
+     + \sum_{n=0}^\infty 
+        \left(-\frac{1}{2^{n+1}}\right) z^n \\
+    &= -\left[
+          \sum_{n=0}^\infty
+            \frac{1}{2^{n+1}}
+            z^n
+        + \sum_{n=-\infty}^{-1}
+            z^n
+        \right]
+    \end{align*}
     on $1 < |z| < 2$.
   }
   \item{
@@ -96,6 +108,7 @@ $$
     = \sum_{n=-\infty}^{-1} 
         z^{n}
     $$
+    as in part (b)
     and $\left|\frac{2}{z}\right| < 1$ so that
     $$
       \frac{1}{z - 2}
@@ -142,13 +155,13 @@ it suffices to show that the constant function 0 has all
 Laurent coefficients 0, for in this case $a_n - b_n = 0$ and
 so $a_n = b_n$.
 
-Let
+Let $Z$ be the entire function such that 
+$Z(z) = 0$ for all $z \in A$. Consider the Laurent expansion for $Z$ around 0, i.e.
 $$
-  f(z) 
+  0
 = \sum_{n=-\infty}^\infty a_n z^n 
 = \sum_{n=-\infty}^{-1} a_n z^n
 + \sum_{n=0}^\infty a_n z^n
-= 0
 $$
 so that
 $$
@@ -156,7 +169,9 @@ $$
 = -\sum_{n=-\infty}^{-1} a_n z^n
 = -\sum_{n=1}^\infty a_{-n} z^{-n}.
 $$
-Since $\sum_{n=0}^\infty a_n z^n$ is convergent on $A$, we have an analytic
+Since $Z$ is entire, this Laurent expansion holds everywhere, so
+$\sum_{n=0}^\infty a_n z^n$ and $\sum_{n=-\infty}^{-1} a_n z^n$ converge everywhere.
+Since $\sum_{n=0}^\infty a_n z^n$ is convergent, we have an analytic
 function
 $$
 g(z) = \sum_{n=0}^\infty a_n z^n = -\sum_{n=1}^\infty a_{-n} z^{-n}.
@@ -167,23 +182,33 @@ $$
     $$
          |g(z)| 
     =    \left|\sum_{n=0}^\infty a_n z^n\right|
-    \leq \sum_{n=0}^\infty |a_n|
+    \leq \sum_{n=0}^\infty |a_n| |z|^n
+    \leq \sum_{n=0}^\infty |a_n|.
     $$
-    so that $g$ is bounded. But $g$ is analytic and thus holomorphic
-    so $g$ must be constant.
+    But since this power series has an infinite radius of convergence,
+    it converges absolutely, so 
+    $$
+    \sum_{n=0}
+    $$
+    for some $C \in \mathbb{R}$, so that $g$ is bounded.
   }
   \item{
-    Suppose $|z| > 1$. Then $z^{-1} \leq 1$ so
+    Suppose $|z| > 1$. Then $\left|\frac{1}{z}\right| < 1$ so
     $$
          |g(z)|
     =    \left|-\sum_{n=1}^\infty a_{-n} z^{-n}\right|
+    \leq \sum_{n=1}^\infty 
+           |a_{-n}|
+           \left|\frac{1}{z}\right|^n
     \leq \sum_{n=1}^\infty |a_{-n}|
+    =    C
     $$
-    so that $g$ is bounded. But $g$ is analytic and thus holomorphic
-    so $g$ must be constant.
+    for some $C \in \mathbb{R}$, so that $g$ is bounded.
   }
 \end{itemize}
-Since $g$ is constant we have $a_n = 0$, $n \neq 0$. But then
+Therefore $g$ is bounded. But since $g(z) = \sum a_n z^n$ converges everywhere,
+$g(z)$ is a bounded entire function and thus constant.
+Since $g$ is constant we have $a_n = 0$, $n \geq 0$. But then since
 $$
   \sum_{n=0}^\infty a_n z^n 
 = a_0 + \sum_{n=1}^\infty a_n z^n
@@ -226,17 +251,26 @@ $$
 $$
 which means that
 $$
-z f^\prime(z) = \sum_{n=-\infty}^\infty n a_n z^n
+z f^\prime(z) = \sum_{n=-\infty}^\infty n a_n z^n.
 $$
-so that
+
+Since $f$ is holomorphic on $A$, so must $f^\prime$ be, and the
+map $z \mapsto z$ is entire, so the function $z \mapsto z f^\prime(z)$
+is holomorphic on $A$. Therefore $z f^\prime(z)$ has a Laurent expansion on $A$
+given by
+$z f^\prime(z) = \sum_{n=-\infty}^\infty b_n z^n$, where
 $$
-  n a_n 
+  b_n
 = \frac{1}{2 \pi i}
   \int_{|z| = s}
     \frac{z f^\prime(z)}{z^{n+1}}
     \dif z
+= \frac{1}{2 \pi i}
+  \int_{|z| = s}
+    \frac{f^\prime(z)}{z^n}
+    \dif z.
 $$
-or
+But the Laurent expansion is unique, so we must have $b_n = n a_n$, and then
 $$
   \int_{|z| = s}
     \frac{f^\prime(z)}{z^n}
