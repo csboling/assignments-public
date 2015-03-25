@@ -219,12 +219,16 @@ $$
   }
 \end{itemize}
 Therefore $g$ is a bounded entire function and thus constant.
-Since $g$ is constant, we have $a_n = 0$ for $n \neq 0$, and 
-since
+Since $g$ is entire the principal part of the series
+$g(z) = -\sum_{n=-\infty}^{-1} a_n z^n$ must vanish, so that 
+$a_{n} = 0$ for $n < 0$.
+Since $g$ is constant we have $a_n = \frac{g^{(n)}(0)}{n!} = 0$ for
+$n > 0$. But then since
 $$
   \sum_{n=0}^\infty a_n z^n 
 = a_0 + \sum_{n=1}^\infty a_n z^n
 = -\sum_{n=-\infty}^{-1} a_n z^n
+= 0
 $$
 we have $a_0 = 0$ as well.
 \end{Answer}
