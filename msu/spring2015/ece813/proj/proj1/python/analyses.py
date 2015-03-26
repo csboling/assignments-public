@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 from scipy.stats import linregress
 
 from collections import OrderedDict
+from functools import partial
 
 import os
 pathjoin = os.path.join
@@ -15,7 +16,9 @@ import utils
 gridsize = 10e-9
 datadir = utils.mkdir('../data')
 
-def beta_optimization(parameters, ifname, fig, ofname=None, plotdir=None):
+def beta_optimization(parameters, ifname, fig, 
+                      ofname=None, plotdir=None,
+                      *args, **kwargs):
   df = utils.index_dframe(pd.read_csv(ifname)) / 1e-12
   df.index.name = 'beta'
   trace_names = {'t_HL' : r'$t_{pHL}$', 't_LH' : r'$t_{pLH}$'}
@@ -47,7 +50,9 @@ def beta_optimization(parameters, ifname, fig, ofname=None, plotdir=None):
 
   return dict()
 
-def gamma_estimation(parameters, ifname, fig, ofname=None, plotdir=None):
+def gamma_estimation(parameters, ifname, fig, 
+                     ofname=None, plotdir=None,
+                     *args, **kwargs):
   df = utils.index_dframe(pd.read_csv(ifname)) / 1e-12
   df.index_name = 'fanout'
   trace_names = { 't_pLH' : r'$t_{pLH}$' }
@@ -87,7 +92,9 @@ def gamma_estimation(parameters, ifname, fig, ofname=None, plotdir=None):
 
   return dict(t_p0 = t_p0, gamma = gamma)
 
-def Cg1_estimation(parameters, ifname, fig, ofname=None, plotdir=None):
+def Cg1_estimation(parameters, ifname, fig, 
+                   ofname=None, plotdir=None,
+                   *args, **kwargs):
   df = utils.index_dframe(pd.read_csv(ifname)) / 1e-12
   zero_pt = pd.DataFrame([parameters['t_p0']], 
                          index=[0], columns=df.columns)
@@ -131,34 +138,82 @@ def Cg1_estimation(parameters, ifname, fig, ofname=None, plotdir=None):
 
   return dict(C_g1 = C_g1)
 
-def theoretical_opt(parameters, load_cap, *args, **kwargs):
+def theoretical_opt_tp(parameters, load_cap, 
+                       ofname=None,
+                       *args, **kwargs):
   def optimal(N):
     f = F**(1/N)
     tp = N*parameters['t_p0']*(1 + f / parameters['gamma'])
-    return dict(f = f, tp = tp)
+    rounded_f = np.round(f)
+    rounded_tp = N*parameters['t_p0']*(1 + rounded_f / parameters['gamma'])
+    return {'f'        : f,
+            'tp'       : tp, 
+            'int_f'    : rounded_f, 
+            'tp_int_f' : rounded_tp}
 
   F = load_cap / parameters['C_g1']
   N_est = np.log(F) / np.log(4)
-  Nvalues = range(1, int(np.round(N_est*1.5)))
+  print('Estimated number of stages: {}'.format(N_est))
+
+  Nvalues = range(1, int(np.round(N_est*3)))
   df = pd.DataFrame(list(map(optimal, Nvalues)), index=Nvalues)
+  N = df.loc[:, 'tp'].idxmin()
+  f, tp = df.f[N], df.tp[N]
+
   print(df)
-  df.plot()
-  #  print(',\t'.join(['N = {}', 
-  #                    'f = {:.4f}', 
-  #                    'tp = {:.4f} ps']).format(N, f, tp))
-  return dict(N = N, f = f, tp = tp)
+
+  plt.plot(df.index.values, df.tp.values)
+  plt.title('Propagation delay vs. number of inverters')
+  plt.xlabel('Number of inverters N')
+  plt.ylabel(r'$t_{p}$ (ps)')
+
+  if ofname != None:
+    df.to_csv(ofname)
+
+  return dict(N = N, F = F, f = f, tp = tp)
+
+def optimal_fanout(parameters, Wmin, *args, **kwargs):
+  '''
+  Wmin gives the width of a minimum-sized transistor as a multiple of
+  the process grid resolution.
+  '''
+  def approx_fn(f, k):
+    Wn = Wmin * f**k
+    error = np.abs(np.round(Wn) - Wn)
+    return error
+
+  def approx_fp(f, k):
+    Wp = Wmin * parameters['beta'] * f**k
+    error = np.abs(np.round(Wp) - Wp)
+    return error
+
+  f_range = np.linspace(np.floor(parameters['f']), np.ceil(parameters['f']), 100)
+  traces = []
+  for k in range(1, parameters['N']):
+    nfunc, pfunc = partial(approx_fn, k=k), partial(approx_fp, k=k)
+    Wns = np.array(list(map(nfunc, f_range)))
+    print(f_range.shape, Wns.shape)
+    traces.append(dict(x = f_range, y = Wns, 
+                       label = 'k = {}'.format(k)))
+  utils.cycle_plot(traces)
+
+  return dict()
 
 analyses = OrderedDict()
 # analyses[beta_optimization] = dict(
 #                                 ifname = pathjoin(datadir, 'beta_rawdata.csv'), 
 #                                 ofname = pathjoin(datadir, 'tp_vs_beta.csv'),
 #                              )
-analyses[gamma_estimation]  = dict(
-                               ifname = pathjoin(datadir, 'tp_vs_fanout_rawdata.csv'),
-                              )
-analyses[Cg1_estimation]    = dict(
-                                ifname = pathjoin(datadir, 'tp_vs_Cext_rawdata.csv'),
-                              )
-analyses[theoretical_opt]   = dict(
-                                load_cap = 25e-12,
-                              )
+analyses[gamma_estimation]   = dict(
+                                 ifname = pathjoin(datadir, 'tp_vs_fanout_rawdata.csv'),
+                               )
+analyses[Cg1_estimation]     = dict(
+                                 ifname = pathjoin(datadir, 'tp_vs_Cext_rawdata.csv'),
+                               )
+analyses[theoretical_opt_tp] = dict(
+                                 load_cap = 25e-12,
+                                 ofname = pathjoin(datadir, 'stages_and_fanout.csv')
+                               )
+analyses[optimal_fanout]     = dict(
+                                 Wmin = 25,
+                               )

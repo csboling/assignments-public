@@ -18,7 +18,7 @@ if __name__ == '__main__':
                 fig=plt.figure(), plotdir=plotdir,
                 **kwargs
               )
-    print(parameters, results)
     parameters.update(results)
-    print(parameters)
     plt.show()
+  print(parameters)
+
