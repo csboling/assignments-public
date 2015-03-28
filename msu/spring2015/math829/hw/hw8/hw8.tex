@@ -121,8 +121,9 @@ $e^{-f} = e^{-u} e^{-iv}$ is entire as well, and $|e^{-f}| = e^{-u}$.
 But since $-u < 0$, this means $|e^{-f}| \leq 1$ and so $e^{-f}$
 is bounded and therefore constant. Thus
 $\frac{d}{dz} e^{-f} = -f^\prime e^{-f} \equiv 0$  so $f^\prime \equiv
-0$ and thus $f$ is constant. This means $f \equiv x + i y$ for some
-fixed $x, y$, so $u = \mathrm{Re} f \equiv x$ and thus $u$ is constant.
+0$ and thus $f$ is constant.
+This means $f \equiv x + i y$ for some
+fixed $x, y$, so $u = \mathrm{Re}~f \equiv x$ and thus $u$ is constant.
 \end{Answer}
 
 \begin{Problem}
@@ -162,10 +163,10 @@ $$
 =    c.
 $$
 But $\partial D(0, R + \varepsilon) \subset U$ so that
-$z_{\max} \in U$ and $u(z) < c \leq u(z_{max})$
-for all $z \in U$, and in particular for all 
-$z \in D(z_{max}, \varepsilon)$, so $u \equiv C$ on 
-$U$ for a constant $C \in \mathbb{C}$. Since $u$ is continuous on
+$z_{\max} \in U$ and $u(z) \leq u(z_{max})$
+on the neighborhood $D(z_{\max}, \varepsilon)$,
+so $u \equiv C$ on $U$ for a constant
+$C \in \mathbb{C}$. Since $u$ is continuous on
 $\bar{U} \subset \mathbb{C}$ it must be that $u \equiv C$ on
 $\partial U$.
 Finally, $\partial U = \partial D(0, R)$, so $u \equiv C$ on
