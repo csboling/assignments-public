@@ -1,10 +1,11 @@
 
+
 \documentclass{article}
 
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amssymb}
-\usepackage{enumitem}
+\usepackage{enumerate}
 \usepackage[lastexercise]{exercise}
 
 \newcommand\dif{\mathop{}\!\mathrm{d}}
@@ -17,7 +18,7 @@
                                           counter={Problem}]}
                         {\end{Exercise}}
 \title{MATH 829 Homework \#10}
-\date{March 11, 2015}
+\date{April 1, 2015}
 \author{Sam Boling}
 
 \begin{document}
@@ -28,8 +29,6 @@
 
 \section{Textbook Problems}
 \subsection*{Chapter VI, \S1.12}
-$\Res_0 \frac{e^z}{z^4}$
-
 Since
 $$
 e^z = \sum_{n=0}^\infty \frac{z^n}{n!}
@@ -119,16 +118,15 @@ Therefore
     $z_2 = 1 - i\frac{\sqrt{3}}{2}$ does not. Therefore from problem 18,
     \begin{align*}
        \int_C \frac{1}{z^2 - z + 1} \dif z
-    &= \int_C \frac{1}{(z - z_1)(z - z_2) \dif z
+    &= \int_C \frac{1}{(z - z_1)(z - z_2)} \dif z
      = 2 \pi i \frac{1}{z_1 - z_2} \\
     &= 2 \pi i \frac{1}{-i \sqrt{3}}
-     = -\frac{2 \pi}{\sqrt{3} = -\frac{2}{3} \sqrt{3} \pi.
+     = -\frac{2 \pi}{\sqrt{3}} = -\frac{2}{3} \sqrt{3} \pi.
     \end{align*}
   }
 \end{enumerate}
 
 \subsection*{Chapter VI, \S1.26}
-$C = \{ |z| = 8 \}$
 \begin{enumerate}
   \item[(a)]{
     $\sin z$ has zeros at $z_k = k \pi$, $k \in \mathbb{Z}$, so at
@@ -141,7 +139,7 @@ $C = \{ |z| = 8 \}$
     Therefore $\ord_{z_k} \sin = 1$ for each $k$, so
     $$
       \Res_{z_k} \frac{1}{\sin z} 
-    = \frac{1}{\cos(k\pi)
+    = \frac{1}{\cos(k\pi)}
     = (-1)^k.
     $$
     Since $2 \pi < 7$ and $3 \pi > 9$, the poles of $\frac{1}{\sin z}$
@@ -197,13 +195,42 @@ $C = \{ |z| = 8 \}$
     as $f$ inside $\{|z| = 1\}$, namely 4.
   }
   \item{
-    In this case we have
+    Observe that
     $$
-         |P(z) - f(z)|
-    \leq |z|^{87} + |36||z|^{57} + |z|^3 + |-z| + |1|
+    Q(z) = z^{87} + 36z^{57} = z^{57}(z^{30} + 36)
     $$
+    has 57 zeros at $z = 0$, and that $z^{30} + 36$ has
+    30 zeros, the 30th roots of -36, each with magnitude 
+    $\sqrt[30]{36} < 2$,
+    so $Q(z)$ has 87 zeros inside $D(0, 2)$.
+    Then we see that
+    $$
+         |P(z) - Q(z)| 
+    \leq 71 \cdot 2^4 + 2^3 - 2 + 1
+    =    1143
+    $$
+    on the circle of radius 2, 
+    which is many orders of magnitude smaller than
+    $|Q(z)| = |2|^{57} \cdot \sqrt[30]{36}$. Therefore
+    from Rouche's theorem, $P(z)$ has 87 zeros inside $D(0, 2)$.
   }
   \item{
+    Observe that $Q(z) = 2z^5 - 6z^2 = 2z^2(z^3 - 3)$ has 2 zeros at zero and
+    3 zeros at the cube roots of 3, so it has 2 zeros within the unit circle
+    and 3 roots in the annulus in question since 
+    $\sqrt[3]{3} > 1$.
+
+    On the circle of radius 1 we have
+    $$
+    |(2z^5 - 6z^2 + z + 1) - (2z^5 - 6z^2)| \leq |1| + |1| = 2
+    $$
+    whereas $|Q(z)| = 2 |1 - 3| = 4$. On the circle of radius 2 we
+    have instead
+    $$
+    |(2z^5 - 6z^2 + z + 1) - (2z^5 - 6z^2)| \leq |2| + |1| = 3
+    $$
+    whereas $|Q(z)| = 2 \cdot 4 |8 - 3| = 40$. Therefore 
+    $2z^5 - 6z^2 + z + 1$ has 3 zeros on the annulus $1 \leq |z| \leq 2$.
   }
 \end{enumerate}
 
@@ -231,11 +258,86 @@ $\mathrm{Int}(\partial\bar{D}(0, R)) = D(0, R)$.
 
 \subsection*{Chapter VI, \S1.35}
 Since $e^z = \sum_{k=0}^\infty \frac{z^k}{k!}$, we have
-$$
-  \left|e^z - P_n(z)\right|
-= \left|\sum_{k=n+1}^\infty \frac{z^k}{k!}\right|
-$$
+\begin{align*}
+   \left|e^z - P_{n-1}(z)\right|
+&= \left|
+     \sum_{k=0}^\infty \frac{z^k}{k!}
+   - \sum_{k=0}^{n-1} \frac{z^k}{k!}
+   \right|
+ = \left|
+     \sum_{k=n}^\infty 
+       \frac{z^k}{k!}
+   \right|
+ = \left|
+     \sum_{k=n}^\infty 
+       \frac{z^{k-n} z^n}
+            {(k-n)!}
+       \frac{(k-n)!}{k!}
+   \right| \\
+&= |z|^n
+   \left|
+     \sum_{k=n}^\infty 
+       \frac{z^{k-n}}
+            {(k-n)!}
+       \frac{1}{\prod_{j=k-n}^k j}
+   \right|.
+\end{align*}
 
+\begin{itemize}
+  \item{
+    If $R \leq 1$ then
+    $\frac{|z|^n}{\prod_{j=k-n}^k j} < 1$ when $|z| = R$
+    for any $n$ and any $k > n$.
+  }
+  \item{
+     Suppose $R > 1$. Then
+     \begin{align*}
+           \log_R \left(
+             \prod_{j=k-n}^k j
+           \right)
+     &=    \frac{1}{\log(R)}
+           \sum_{j=k-n}^k 
+             \log(j)
+      =    \frac{1}{\log R}
+           \sum_{j=0}^n
+             \log(k - j) \\
+     &\geq n \frac{\log(k)}{\log (R)}
+      \geq \frac{1}{\log R} n \log n
+      >    n
+     \end{align*}
+     for a sufficiently large choice of $n$ since $k \geq n$.
+     But then we have
+     $$
+       n 
+     < \log_R \left(
+         \prod_{j=k-n}^k j
+       \right)
+     $$
+     or
+     $$
+       R^n
+     < \prod_{j=k-n}^k j
+     $$
+     so that $\frac{R^n}{\prod_{j=k-n}^k j}$ in this case as well.
+  }
+\end{itemize}
+
+Therefore we have
+$$
+  |e^z - P_{n-1}(z)| 
+< \left|
+    \sum_{k=n}^\infty
+      \frac{z^{k-n}}
+           {(k-n)!}
+  \right|
+= \left|
+    \sum_{k=n}^\infty
+      \frac{z^{k-n}}
+           {(k-n)!}
+  \right|
+= |e^z|
+$$
+on the disk $|z| = R$ under the change of index $m = k - n$.
 
 \section{Additional Problems}
 \begin{Problem}
@@ -244,5 +346,33 @@ $\lim_{|z| \to \infty} |f(z)| = \infty$. Show that $f$ is a polynomial.
 Hint: Consider the type of the singularity of $g(z) = f(\frac{1}{z})$
 at 0.
 \end{Problem}
+
+\begin{Answer}
+Since $f$ is entire, we may expand $f$ around 0 to write
+$$
+  f(z) 
+= \sum_{n=0}^\infty a_n z^n 
+= a_0 + \sum_{n=1}^\infty a_n z^n
+$$
+for some $a_n$. Then
+$$
+  g(z)
+= f\left(\frac{1}{z}\right) 
+= f(z^{-1}) 
+= a_0 + \sum_{n=-\infty}^{-1} a_{-m} z^n.
+$$
+However, by definition, $\lim _{z \to \infty} |f(z)| = \infty$ means that
+$\lim_{|z| \to 0} \left|f\left(\frac{1}{z}\right)\right| = \infty$. 
+Therefore 0 is a pole of $g$, so it must be
+that this Laurent expansion of $g$ has a finite $m = \ord_{0} g$
+such that $a_{m} \neq 0$ and $a_{-n} = 0$ for $-n < m$, i.e.
+$a_n = 0$ for $n > -m$. Therefore 
+$$
+  f(z) 
+= \sum_{n=0}^\infty a_n z^n
+= \sum_{n=0}^{-\ord_0 g} a_n z^n 
+$$
+is a polynomial.
+\end{Answer}
 
 \end{document}
