@@ -1,0 +1,59 @@
+
+\documentclass{article}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage[lastexercise]{exercise}
+
+\newcommand\dif{\mathop{}\!\mathrm{d}}
+\newcommand\horline{\noindent\makebox[\linewidth]{\rule{\textwidth}{0.4pt}}}
+
+\newcounter{Problem}
+\newenvironment{Problem}{\begin{Exercise}[name={Problem},
+                                          counter={Problem}]}
+                        {\end{Exercise}}
+\title{MATH 829 Homework \#11}
+\date{Apr 8, 2015}
+\author{Sam Boling}
+
+\begin{document}
+
+\begin{titlepage}
+\maketitle
+\end{titlepage}
+
+\section{Textbook Problems}
+\subsection*{Chapter V, \S 3.7}
+
+\subsection*{Chapter VI, \S 2.2}
+
+\subsection*{Chapter VI, \S 2.8(a)}
+
+\subsection*{Chapter VI, \S 2.9}
+
+\section{Additional Problems}
+\begin{Problem}
+Let $f_1, f_2$ be analytic isomorphisms. Show that
+$f_1^{-1}$ and $f_1 \circ f_2$ are analytic isomorphisms.
+\end{Problem}
+
+\begin{Problem}
+Suppose $f$ is analytic on $D(z_0, R) \backslash \{ z_0 \}$
+and $z_0$ is a pole of $f$. Prove that for any $r \in (0, R)$
+there is $M \in (0, \infty)$ such that
+$f(D(z_0, r)) \supset \{ z \in \mathbb{C} : |z| > M \}$.
+\end{Problem}
+
+\begin{Problem}
+Let $f$ be analytic on a domain $U$, $z_0 \in U$, and $w_0 = f(z_0)$.
+Suppose that $\ord_{z_0} (f - w_0) = m \in \mathbb{N}$. Prove that
+there exists an open set $U_0$ with $z_0 \in U_0 \subset U$ such that
+$f^{-1}(w_0) \cap U_0 = \{ z_0 \}$, and $f^{-1}(w) \cap U_0$ contains
+exactly $m$ elements (without repetition) for all
+$w \in f(U_0) \backslash \{ w_0 \}$. This means that $f|_{U_0}$ is
+$m-to1$ except at $z_0$.
+\end{Problem}
+
+\end{document}

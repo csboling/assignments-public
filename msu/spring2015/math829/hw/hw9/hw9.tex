@@ -28,7 +28,7 @@
 \subsection{Chapter V, \S 2.8}
 First note that
 $$
-  \frac{1}{(z - 1)(z-2)} 
+  \frac{1}{(z - 1)(z-2)}
 = \frac{-1}{z - 1}
 + \frac{1}{z - 2}
 $$
@@ -37,13 +37,13 @@ $$
     In the disc $|z| < 1$ we have also $\left|\frac{z}{2}\right| < 1$ so we can
     use the geometric series
     $$
-      -\frac{1}{z - 1} 
-    =  \frac{1}{1 - z} 
+      -\frac{1}{z - 1}
+    =  \frac{1}{1 - z}
     =  \sum_{n=0}^\infty z^n, \quad
-      \frac{1}{z - 2} 
-    = \frac{1}{-2(1 - \frac{z}{2})} 
+      \frac{1}{z - 2}
+    = \frac{1}{-2(1 - \frac{z}{2})}
     = -\frac{1}{2}
-       \sum_{n=0}^\infty 
+       \sum_{n=0}^\infty
          \left(\frac{z}{2}\right)^n
     = -\sum_{n=0}^\infty
          \frac{1}{2^{n+1}} z^n
@@ -51,7 +51,7 @@ $$
     so that
     $$
       \frac{1}{(z-1)(z-2)}
-    = \sum_{n=0}^\infty 
+    = \sum_{n=0}^\infty
         \left(
           1 - \frac{1}{2^{n+1}}
         \right)
@@ -59,15 +59,15 @@ $$
     $$
   }
   \item{
-    In this annulus we have $1 < |z| < 2$, so 
-    $\left|\frac{1}{z}\right| < 1$ and 
+    In this annulus we have $1 < |z| < 2$, so
+    $\left|\frac{1}{z}\right| < 1$ and
     $\left|\frac{z}{2}\right| < 1$. Then
     \begin{align*}
-       \frac{1}{z - 1} 
+       \frac{1}{z - 1}
     &= \frac{\frac{1}{z}}
            {1 - \frac{1}{z}} \\
     &= \frac{1}{z}
-       \sum_{n=0}^\infty 
+       \sum_{n=0}^\infty
          \left(\frac{1}{z}\right)^n
      = \sum_{n=0}^\infty z^{-(n+1)}
      = \sum_{n=1}^\infty z^{-n} \\
@@ -87,9 +87,9 @@ $$
     so that
     \begin{align*}
        \frac{1}{(z-1)(z-2)}
-    &= \sum_{n=-\infty}^{-1} 
+    &= \sum_{n=-\infty}^{-1}
         (-1) z^n
-     + \sum_{n=0}^\infty 
+     + \sum_{n=0}^\infty
         \left(-\frac{1}{2^{n+1}}\right) z^n \\
     &= -\left[
           \sum_{n=0}^\infty
@@ -104,8 +104,8 @@ $$
   \item{
     Here we have $1 < |z|$ and $1 < \left|\frac{z}{2}\right|$, so
     $$
-      \frac{1}{z - 1} 
-    = \sum_{n=-\infty}^{-1} 
+      \frac{1}{z - 1}
+    = \sum_{n=-\infty}^{-1}
         z^{n}
     $$
     as in part (b)
@@ -133,9 +133,9 @@ $$
 \section{Additional Problems}
 
 \begin{Problem}
-Suppose that $f$ is holomorphic on 
+Suppose that $f$ is holomorphic on
 $A = \{ r < |z| < R \}$, where $0 \leq r < R \leq \infty$.
-Suppose that there are two series of complex numbers 
+Suppose that there are two series of complex numbers
 $(a_n)_{n \in \mathbb{Z}}$ and $(b_n)_{n \in \mathbb{Z}}$ such that
 $$
 f(z) = \sum_{n=-\infty}^\infty a_n z^n = \sum_{n=-\infty}^\infty b_n z^n
@@ -144,110 +144,131 @@ for $z \in A$. Show that $a_n = b_n$ for all $n \in \mathbb{Z}$.
 \end{Problem}
 
 \begin{Answer}
-Since under these assumptions
+We have that $\sum_{n=0}^\infty c_n z^n$ converges in $\{ |z| < R \}$
+and $\sum_{n=-\infty}^{-1} c_n z^n$ converges in $\{ |z| > r \}$.
+Let
 $$
-  0 
-= f(z) - f(z) 
-= \sum_{n=-\infty}^\infty a_n z^n - \sum_{n=-\infty}^\infty b_n z^n
-= \sum_{n=-\infty}^\infty (a_n - b_n) z^n,
+  f(z)
+= \left\{\begin{array}{c c}
+           \sum_{n=0}^\infty c_n z^n, & \quad |z| < R \\
+           \sum_{n=-\infty}^{-1} c_n z^n, & \quad |z| > R
+         \end{array}\right.
 $$
-it suffices to show that the constant function 0 has all
-Laurent coefficients 0, for in this case $a_n - b_n = 0$ and
-so $a_n = b_n$.
-
-Let $Z$ be the entire function such that 
-$Z(z) = 0$ for all $z \in A$. Consider the Laurent expansion for $Z$ around 0, i.e.
+Then $f$ is well-defined and
 $$
-  0
-= \sum_{n=-\infty}^\infty a_n z^n 
-= \sum_{n=-\infty}^{-1} a_n z^n
-+ \sum_{n=0}^\infty a_n z^n
+  \lim_{|z| \to \infty} f(z)
+= \lim_{w \to 0} f\left(\frac{1}{w}\right)
+= \lim_{w \to 0} -\sum_{n=1}^\infty c_n z^n
 $$
-so that
-$$
-   \sum_{n=0}^\infty a_n z^n 
-= -\sum_{n=-\infty}^{-1} a_n z^n
-= -\sum_{n=1}^\infty a_{-n} z^{-n}.
-$$
-Since $Z$ is entire, this Laurent expansion holds everywhere, so
-$\sum_{n=0}^\infty a_n z^n$ and $\sum_{n=-\infty}^{-1} a_n z^n$ converge everywhere.
-Since $\sum_{n=0}^\infty a_n z^n$ is convergent, we have an analytic
-function
-$$
-g(z) = \sum_{n=0}^\infty a_n z^n = -\sum_{n=1}^\infty a_{-n} z^{-n}.
-$$
-\begin{itemize}
-  \item{
-    Suppose $|z| \leq 1$. Then
-    $$
-         |g(z)| 
-    =    \left|\sum_{n=0}^\infty a_n z^n\right|
-    \leq \sum_{n=0}^\infty |a_n| |z|^n
-    \leq \sum_{n=0}^\infty |a_n|.
-    $$
-    
-    But since the power series 
-    $\sum_{n=0}^\infty a_n z^n$ has an infinite radius of convergence,
-    it converges absolutely, so we have a function 
-    $\tilde{g} : \mathbb{C} \to \mathbb{R}$ given by
-    $$
-    \tilde{g}(z) = \sum_{n=0}^\infty |a_n||z|^n,
-    $$
-    and since $\sum_{n=0}^\infty |a_n| = \tilde{g}(1) < \infty$
-    it follows that $g$ is bounded.
-  }
-  \item{
-    Suppose $|z| > 1$. Then $\left|\frac{1}{z}\right| < 1$ so
-    $$
-         |g(z)|
-    =    \left|-\sum_{n=1}^\infty a_{-n} z^{-n}\right|
-    \leq \sum_{n=1}^\infty 
-           |a_{-n}|
-           \left|\frac{1}{z}\right|^n
-    \leq \sum_{n=1}^\infty |a_{-n}|.
-    $$
-
-    But since the power series 
-    $\sum_{n=1}^\infty a_{-n} \left(\frac{1}{z}\right)^n$ has an infinite
-    radius of convergence, it converges absolutely, so we have a function
-    $\tilde{g} : \mathbb{C} \to \mathbb{R}$ given by
-    $$
-    \tilde{g}(z) = \sum_{n=0}^\infty |a_{-n}|\left|\frac{1}{z}\right|^n,
-    $$
-    and since $\sum_{n=0}^\infty |a_{-n}| = \tilde{g}(1) < \infty$ it follows
-    that $g$ is bounded.
-  }
-\end{itemize}
-Therefore $g$ is a bounded entire function and thus constant.
-Since $g$ is entire the principal part of the series
-$g(z) = -\sum_{n=-\infty}^{-1} a_n z^n$ must vanish, so that 
-$a_{n} = 0$ for $n < 0$.
-Since $g$ is constant we have $a_n = \frac{g^{(n)}(0)}{n!} = 0$ for
-$n > 0$. But then since
-$$
-  \sum_{n=0}^\infty a_n z^n 
-= a_0 + \sum_{n=1}^\infty a_n z^n
-= -\sum_{n=-\infty}^{-1} a_n z^n
-= 0
-$$
-we have $a_0 = 0$ as well.
+which has no constant terms and is thus 0. We can then
+show that $f$ is bounded.
 \end{Answer}
 
-\begin{Problem}
-Suppose $f$ is holomorphic on $r < |z| < R$. Prove that for any
-$s \in (r, R)$ and $n \in \mathbb{Z}$,
-$$
-   \int_{|z| = s} \frac{f^\prime(z)}{z^n} \dif z
-= n\int_{|z| = s} \frac{f(z)}{z^{n+1}} \dif z
-$$
-\end{Problem}
+% \begin{Answer}
+% Since under these assumptions
+% $$
+%   0
+% = f(z) - f(z)
+% = \sum_{n=-\infty}^\infty a_n z^n - \sum_{n=-\infty}^\infty b_n z^n
+% = \sum_{n=-\infty}^\infty (a_n - b_n) z^n,
+% $$
+% it suffices to show that the constant function 0 has all
+% Laurent coefficients 0, for in this case $a_n - b_n = 0$ and
+% so $a_n = b_n$.
+
+% Let $Z$ be the entire function such that
+% $Z(z) = 0$ for all $z \in A$. Consider the Laurent expansion for $Z$ around 0, i.e.
+% $$
+%   0
+% = \sum_{n=-\infty}^\infty a_n z^n
+% = \sum_{n=-\infty}^{-1} a_n z^n
+% + \sum_{n=0}^\infty a_n z^n
+% $$
+% so that
+% $$
+%    \sum_{n=0}^\infty a_n z^n
+% = -\sum_{n=-\infty}^{-1} a_n z^n
+% = -\sum_{n=1}^\infty a_{-n} z^{-n}.
+% $$
+% Since $Z$ is entire, this Laurent expansion holds everywhere, so
+% $\sum_{n=0}^\infty a_n z^n$ and $\sum_{n=-\infty}^{-1} a_n z^n$ converge everywhere.
+% Since $\sum_{n=0}^\infty a_n z^n$ is convergent, we have an analytic
+% function
+% $$
+% g(z) = \sum_{n=0}^\infty a_n z^n = -\sum_{n=1}^\infty a_{-n} z^{-n}.
+% $$
+% \begin{itemize}
+%   \item{
+%     Suppose $|z| \leq 1$. Then
+%     $$
+%          |g(z)|
+%     =    \left|\sum_{n=0}^\infty a_n z^n\right|
+%     \leq \sum_{n=0}^\infty |a_n| |z|^n
+%     \leq \sum_{n=0}^\infty |a_n|.
+%     $$
+
+%     But since the power series
+%     $\sum_{n=0}^\infty a_n z^n$ has an infinite radius of convergence,
+%     it converges absolutely, so we have a function
+%     $\tilde{g} : \mathbb{C} \to \mathbb{R}$ given by
+%     $$
+%     \tilde{g}(z) = \sum_{n=0}^\infty |a_n||z|^n,
+%     $$
+%     and since $\sum_{n=0}^\infty |a_n| = \tilde{g}(1) < \infty$
+%     it follows that $g$ is bounded.
+%   }
+%   \item{
+%     Suppose $|z| > 1$. Then $\left|\frac{1}{z}\right| < 1$ so
+%     $$
+%          |g(z)|
+%     =    \left|-\sum_{n=1}^\infty a_{-n} z^{-n}\right|
+%     \leq \sum_{n=1}^\infty
+%            |a_{-n}|
+%            \left|\frac{1}{z}\right|^n
+%     \leq \sum_{n=1}^\infty |a_{-n}|.
+%     $$
+
+%     But since the power series
+%     $\sum_{n=1}^\infty a_{-n} \left(\frac{1}{z}\right)^n$ has an infinite
+%     radius of convergence, it converges absolutely, so we have a function
+%     $\tilde{g} : \mathbb{C} \to \mathbb{R}$ given by
+%     $$
+%     \tilde{g}(z) = \sum_{n=0}^\infty |a_{-n}|\left|\frac{1}{z}\right|^n,
+%     $$
+%     and since $\sum_{n=0}^\infty |a_{-n}| = \tilde{g}(1) < \infty$ it follows
+%     that $g$ is bounded.
+%   }
+% \end{itemize}
+% Therefore $g$ is a bounded entire function and thus constant.
+% Since $g$ is entire the principal part of the series
+% $g(z) = -\sum_{n=-\infty}^{-1} a_n z^n$ must vanish, so that
+% $a_{n} = 0$ for $n < 0$.
+% Since $g$ is constant we have $a_n = \frac{g^{(n)}(0)}{n!} = 0$ for
+% $n > 0$. But then since
+% $$
+%   \sum_{n=0}^\infty a_n z^n
+% = a_0 + \sum_{n=1}^\infty a_n z^n
+% = -\sum_{n=-\infty}^{-1} a_n z^n
+% = 0
+% $$
+% we have $a_0 = 0$ as well.
+% \end{Answer}
+
+% \begin{Problem}
+% Suppose $f$ is holomorphic on $r < |z| < R$. Prove that for any
+% $s \in (r, R)$ and $n \in \mathbb{Z}$,
+% $$
+%    \int_{|z| = s} \frac{f^\prime(z)}{z^n} \dif z
+% = n\int_{|z| = s} \frac{f(z)}{z^{n+1}} \dif z
+% $$
+% \end{Problem}
 
 \begin{Answer}
 Since $f$ is holomorphic on this annulus, its Laurent
 coefficients are given by
 $$
-  a_n 
-= \frac{1}{2 \pi i} 
+  a_n
+= \frac{1}{2 \pi i}
   \int_{|z| = s}
     \frac{f(z)}{z^{n+1}}
     \dif z
@@ -263,7 +284,7 @@ Furthermore, we have
 $$
    f^\prime(z)
 = \sum_{n=-\infty}^\infty n a_n z^{n-1} \\
-= \frac{1}{z} \sum_{n=-\infty}^{\infty} n a_n z^n 
+= \frac{1}{z} \sum_{n=-\infty}^{\infty} n a_n z^n
 $$
 which means that
 $$
