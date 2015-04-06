@@ -1,12 +1,16 @@
-
 \documentclass{article}
 
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amssymb}
-\usepackage{enumitem}
+\usepackage{enumerate}
 \usepackage[lastexercise]{exercise}
 
+\newcommand\id{\mathrm{id}}
+\newcommand\ord{\mathrm{ord}}
+\newcommand\Res{\mathrm{Res}}
+\renewcommand\Im{\mathrm{Im}}
+\renewcommand\Re{\mathrm{Re}}
 \newcommand\dif{\mathop{}\!\mathrm{d}}
 \newcommand\horline{\noindent\makebox[\linewidth]{\rule{\textwidth}{0.4pt}}}
 
@@ -26,12 +30,452 @@
 
 \section{Textbook Problems}
 \subsection*{Chapter V, \S 3.7}
+First we observe that for any $w \in U$,
+$$
+  (\varphi \circ \varphi^{-1})^\prime(w)
+= (\varphi^\prime \circ \varphi^{-1})(w)
+  (\varphi^{-1})^\prime(w).
+$$
+But since $\varphi$ is an analytic isomorphism,
+$\varphi^{-1}$ is as well, so
+$(\varphi^{-1})^\prime(w) \neq 0$ for any $w \in U$.
+Furthermore
+$(\varphi \circ \varphi^{-1})(w) = w$ so that
+$(\varphi \circ \varphi^{-1})^\prime \equiv 1$.
+Therefore
+$$
+  \frac{1}
+       {(\varphi^{-1})^\prime(w)}
+= \varphi^\prime(z)
+$$
+so that since
+$$
+  (f \circ \varphi)^\prime(z)
+= (f^\prime \circ \varphi)(z)
+  \varphi^\prime(z)
+$$
+we have
+$$
+  (f^\prime \circ \varphi)(z)
+= \frac{(f \circ \varphi)^\prime(z)}
+       {\varphi^\prime(z)}
+= (f \circ \varphi)^\prime(z)
+  (\varphi^{-1})^\prime(w)
+$$
+for any $f : U \to \mathbb{C}$.
+
+Since $f$ has order $n$ at $w_0$, we have an analytic function
+$g$ such that
+$$
+f(w) = \frac{g(w)}{(w - w_0)^n}
+$$
+for $w \in U - \{ w_0 \}$, where $g(w_0) \neq 0$.
+Then
+$$
+  (f \circ \varphi)(z)
+= f(\varphi(z))
+= \frac{(g(\varphi(z))}
+       {(\varphi(z) - \varphi(z_0))^n}
+$$
+and then
+$$
+  (\varphi(z) - \varphi(z_0))^n
+  (f \circ \varphi)(z)
+= (g \circ \varphi)(z).
+$$
+Taking a derivative on both sides gives
+\begin{align*}
+   (g \circ \varphi)^\prime(z)
+&= \left[
+     \frac{d}{dz}
+     (\varphi(z) - \varphi(z_0))^n
+   \right]
+   (f \circ \varphi)(z) \\
+&+ (\varphi(z) - \varphi(z_0))^n
+   (f \circ \varphi)^\prime(z) \\
+&= n(\varphi(z) - \varphi(z_0))^{n-1}
+   \varphi^\prime(z)
+   (f \circ \varphi)(z) \\
+&+ (\varphi(z) - \varphi(z_0))^n
+   (f^\prime \circ \varphi)(z)
+   \varphi^\prime(z)
+\end{align*}
+or
+\begin{align*}
+   \varphi^\prime(z)(g^\prime \circ \varphi)(z)
+&= \varphi^\prime(z)
+   n(\varphi(z) - \varphi(z_0))^{n-1}
+   (f \circ \varphi)(z) \\
+&+ \varphi^\prime(z)
+   (\varphi(z) - \varphi(z_0))^n
+   (f^\prime \circ \varphi)(z)
+\end{align*}
+so that
+\begin{align*}
+   (g^\prime \circ \varphi)(z)
+&= n(\varphi(z) - \varphi(z_0))^{n-1}
+   (f \circ \varphi)(z) \\
+&+ (\varphi(z) - \varphi(z_0))^n
+   (f^\prime \circ \varphi)(z).
+\end{align*}
+Then
+$$
+  \frac{(g^\prime \circ \varphi)(z)}
+       {(\varphi(z) - \varphi(z_0))^{n-1}}
+- (\varphi(z) - \varphi(z_0))
+  (f^\prime \circ \varphi)(z)
+= n (f \circ \varphi)(z).
+$$
+Since $\varphi$ is bijective, we may
+write $w = \varphi(z)$ for a unique $z \in U$ for each
+$w \in V$. This gives
+$$
+  n (f \circ \varphi)(z)
+= \frac{g^\prime(w)}
+       {(w - w_0)^{n-1}}
+- (w - w_0)(f^\prime(w))
+$$
+
 
 \subsection*{Chapter VI, \S 2.2}
+\begin{enumerate}[(a)]
+  \item{
+    Let $f(z) = \frac{z^2}{z^4 + 1}$.
+    First observe that
+    $$
+      f(-z)
+    = \frac{(-z)^2}{(-z)^4 + 1}
+    = \frac{z^2}{z^4 + 1}
+    = f(z)
+    $$
+    so that this is an even function, the poles of which are
+    at $\pm \frac{\sqrt{2}}{2} \pm i \frac{\sqrt{2}}{2}$. Consider
+    $\Gamma = [-R, R] \oplus S_R$ where $S_R$ is a positively oriented
+    semicircle of radius $R$ in the upper half-plane. Then
+    \begin{align*}
+          \left|
+            \int_{S_R} f
+          \right|
+    &\leq \left\|
+            \frac{z^2}{z^4 + 1}
+          \right\|_{S_R}
+          L(S_R)
+     \leq \frac{|z|^2}{|z|^4 - 1} \pi R
+     =    \frac{\pi R^3}{R^4 - 1}
+     \to 0
+    \end{align*}
+    as $R \to \infty$, since $|z^4 + 1| \geq |z|^4 - 1$.
+
+    Then
+    \begin{align*}
+       \lim_{R \to \infty}
+       \int_\Gamma
+         f
+    &= \lim_{R \to \infty}
+       \left[
+         \int_{[-R, R]}
+           \frac{z^2}{z^4 + 1}
+           \dif z
+       + \int_{S_R}
+           f
+       \right]
+     = \mathrm{P.V.}
+         \int_{-\infty}^\infty
+           \frac{x^2}{x^4 + 1}
+           \dif x \\
+    &= 2 \pi i
+       ( \Res_{\frac{\sqrt{2}}{2}(1 + i)} f
+       + \Res_{\frac{\sqrt{2}}{2}(-1 + i)} f).
+    \end{align*}
+    We have also
+    $$
+      \Res_{z_k} \frac{z^2}{z^4 + 1}
+    = \frac{z_k^2}
+           {(z^4 + 1)^\prime(z_k)}
+    = \frac{z_k^2}
+           {4z_k^3}
+    = \frac{1}{4 z_k}
+    $$
+    so that
+    $$
+      \mathrm{P.V.}
+      \int_{-\infty}^\infty
+        \frac{x^2}{x^4 + 1}
+        \dif x
+    = \frac{2 \pi i}{4}
+      \frac{2}{\sqrt{2}}
+      \left(
+        \frac{1}
+             {1 + i}
+      + \frac{1}
+             {-1 + i}
+      \right)
+    = \frac{\pi}{\sqrt{2}}
+    = \frac{\pi \sqrt{2}}{2}.
+    $$
+    Since the integrand is an even function,
+    the integral is equal to its principal value,
+    so
+    $$
+      \int_{-\infty}^\infty
+        \frac{x^2}
+             {x^4 + 1} \dif x
+    = \frac{\pi \sqrt{2}}{2}
+    $$
+    as desired.
+  }
+  \item{
+    Let
+    $$
+    f(z) = \frac{z^2}{z^6 + 1}
+    $$
+    and observe that
+    $$
+      f(-z)
+    = \frac{(-z)^2}{(-z)^6 + 1}
+    = \frac{z^2}{z^6 + 1}
+    = f(z)
+    $$
+    so that $f$ is an even function with poles at the
+    sixth roots of $-1$, of which three lie in the
+    upper half-plane, namely
+    $z_1 = e^{i\frac{\pi}{6}}$, $z_2 = i$, and $z_3 = e^{i\frac{\pi}{3}}$.
+
+    Next observe that on the semicircle $S_R$,
+    since $|z^6 + 1| \geq |z|^6 - 1$ we have
+    $$
+         \left|
+           \int_{S_R}
+             \frac{z^2}{z^6 + 1}
+         \right|
+    \leq \frac{|R|^2}{R^6 - 1}  L(S_R)
+    =    \frac{\pi R^3}{R^6}
+    \to  0
+    $$
+    as $R \to \infty$. Therefore since the integrand
+    is even we have
+    \begin{align*}
+        \int_{-\infty}^\infty
+          \frac{x^2}{x^6 + 1}
+          \dif x
+     &= \int_{[-R, R] \oplus S_R}
+          \frac{z^2}{z^6 + 1}
+          \dif z
+      = 2 \pi i
+        \sum_{k=1}^3
+          \Res_{z_k} \frac{z^2}{z^6 + 1} \\
+     &= 2 \pi i
+         \sum_{k=1}^3
+           \frac{z_k^2}{6z_k^5}
+      = \frac{\pi i}{3}
+          \sum_{k=1}^3
+            \frac{1}{z_k^{3}} \\
+      = \frac{\pi i}{3}
+          ( e^{-i \frac{\pi}{2}}
+          + e^{-i 2 \pi}
+          + e^{-i \pi})
+      = \frac{\pi}{3}
+    \end{align*}
+    so that
+    $ \int_{0}^\infty \frac{x^2}{x^6 + 1} \dif x
+    = \frac{1}{2}\int_{-\infty}^\infty \frac{x^2}{x^6 + 1} \dif x
+    = \frac{\pi}{6}$.
+  }
+\end{enumerate}
 
 \subsection*{Chapter VI, \S 2.8(a)}
+The function
+$$
+f(z) = \frac{e^{iz}}{(z^2 + a^2)^2}
+$$
+has poles at $\pm i a$, each of order 2, and
+$$
+  \frac{e^{iz}}{(z^2 + a^2)^2}
+= \frac{\cos z}{(z^2 + a^2)^2}
++ i \frac{\sin z}{(z^2 + a^2)^2}.
+$$
+Since
+$$
+  i\frac{\sin (-z)}{((-z)^2 + a^2)^2}
+= i\frac{-\sin z}{(z^2 + a^2)^2},
+$$
+this term is an odd function, so that
+$$
+  \int_{-R}^R
+    \frac{e^{ix}}{(x^2 + a^2)^2}
+    \dif x
+= \int_{-R}^R
+    \frac{\cos x}{(x^2 + a^2)^2}
+    \dif x
++ i \int_{-R}^R
+    \frac{\sin x}{(x^2 + a^2)^2}
+    \dif x
+= \int_{-R}^R
+    \frac{\cos x}{(x^2 + a^2)^2}
+    \dif x.
+$$
+On the semicircle $S_R$, we have
+$$
+     \left|
+       \int_{S_R} f
+     \right|
+\leq \left\|
+       \frac{e^{iz}}
+            {(a^2 + z^2)^2}
+     \right\|
+     L(S_R).
+$$
+Since $|e^{iz}| = e^{\Re(iz)}$ and
+$\Im(z) \geq 0$ on $S_R$,
+$\Re(iz) \leq 0$ so that $|e^{iz}| \leq 1$.
+Since $|z^2 + a^2| \geq |z|^2 - a^2$, whenever
+$R > |a|$ this means that
+$$
+     \left|
+       \frac{e^{iz}}
+            {(z^2 + a^2)^2}
+     \right| L(S_R)
+\leq \frac{\pi R}{(R^2 - a^2)^2}
+\to  0.
+$$
+Therefore since $\frac{\cos x}{(x^2 + a^2)^2}$ is an
+even function,
+\begin{align*}
+    \int_{-\infty}^\infty
+      \frac{\cos x}
+           {(x^2 + a^2)^2}
+&= 2 \pi i \cdot
+   \Res_{ia} \frac{e^{iz}}{(z^2 + a^2)^2}.
+\end{align*}
+To compute this residue, we expand $e^{iz}$ around $z = ia$
+by first computing
+$$
+  \left.\frac{d^k}{dz^k} e^{iz}\right|_{z = ia}
+= i^k e^{-a}
+$$
+so that
+\begin{align*}
+  e^{iz}
+&= \sum_{k=0}^\infty
+     \frac{i^k e^{-a}}{k!}
+     (z - ia)^k
+\end{align*}
+
+We also see that
+$$
+   z^2 + a^2
+ = (z - ia)(z + ia)
+$$
+so
+\begin{align*}
+   \frac{e^{iz}}{(z^2 + a^2)^2}
+&= \frac{1}{(z + ia)^2}
+   \sum_{k=0}^\infty
+     \frac{i^k e^{-a}}{k!}
+     (z - ia)^{k-2} \\
+&= \left(
+     \frac{1}{4}
+     \sum_{k=0}^\infty
+       \frac{i^{k+2}}{a^{k+2} k!}
+       (z - ia)^k
+   \right)
+   \left(
+     \sum_{k=0}^\infty
+       \frac{i^k e^{-a}}{k!}
+       (z - ia)^{k-2}
+   \right) \\
+&= \frac{-e^{-a}}{4a^2 (z - ia)^2}
+   \left(
+     \sum_{k=0}^\infty
+       \frac{i^k}{a^k k!}
+       (z - ia)^k
+   \right)
+   \left(
+     \sum_{k=0}^\infty
+       \frac{i^k}{k!}
+       (z - ia)^{k}
+   \right) \\
+&= \frac{-e^{-a}}{4a^2 (z - ia)^2}
+   \sum_{k=0}^\infty
+     \left(
+       \sum_{j=0}^k
+         \frac{i^j}
+              {a^j j!}
+         \frac{i^{k-j}}
+              {(k - j)!}
+     \right)
+     (z - ia)^k,
+\end{align*}
+using the expansion
+$$
+  \frac{1}{(z + ia)^2}
+= \frac{1}{4}
+     \sum_{k=0}^\infty
+       \frac{i^{k+2}}{a^{k+2} k!}
+       (z - ia)^k.
+$$
+
+Then by definition
+\begin{align*}
+   \Res_{ia} f(z)
+&= \frac{-e^{-a}}{4a^2}
+   i^1
+   \sum_{j=0}^1
+     \frac{1}
+          {a^j j! (k - j)!}
+ = -\frac{i e^{-a}}{4a^2}
+   \left(
+     \frac{1}{a} + 1
+   \right) \\
+&= -\frac{i}{4}
+   \frac{1}{a^3 e^a}
+    (1 + a)
+\end{align*}
+and therefore
+$$
+  \int_{-\infty}^\infty
+    \frac{\cos x}
+         {(x^2 + a^2)^2}
+    \dif x
+= 2 \pi i \cdot \Res_{ia} f(z)
+= \frac{\pi (1 + a)}
+       {2 a^3 e^a}
+$$
+as desired.
 
 \subsection*{Chapter VI, \S 2.9}
+First we see that
+\begin{align*}
+   1 - e^{2 i z}
+&= 1 - (e^{iz})^2
+ = 1 - (\cos z + i \sin z)^2 \\
+&= 1 - (\cos^2 z + 2 i \sin z \cos z - \sin^2 z) \\
+&= 1 - \cos^2 z + i \sin 2z + \sin^2 z
+ = 2 \sin^2 z + i \sin 2z,
+\end{align*}
+and $i \sin 2z$ is an even function. Therefore since
+$f(z) = \frac{\sin^2 z}{z^2}$ is an even function,
+$$
+  \int_{-\infty}^\infty
+    \frac{\sin^2 x}{x^2}
+    \dif x
+= \int_{-\infty}^\infty
+    \frac{1 - e^{2ix}}{x^2}
+    \dif x.
+$$
+This integrand $f(z) = \frac{1 - e^{2 i z}}{z^2}$
+has a pole of order 2 at 0.
+Using the positively oriented semicircle $S_R$ of radius $R$
+and the negatively oriented semicircle $S_\varepsilon^{-}$ of radius
+$\varepsilon$, we can write
+$$
+  0
+= \int_{S_R} f
+- \int_{S_\varepsilon^{-}} f
++ \int_{[\varepsilon, R]} f(z) \dif z
++ \int_{[-R, -\varepsilon]} f(z) \dif z
+$$
+\end{align*}
 
 \section{Additional Problems}
 \begin{Problem}
@@ -39,11 +483,38 @@ Let $f_1, f_2$ be analytic isomorphisms. Show that
 $f_1^{-1}$ and $f_1 \circ f_2$ are analytic isomorphisms.
 \end{Problem}
 
+\begin{Answer}
+For the composition $f_1 \circ f_2$ to be well-defined,
+we have analytic functions $f_2 : U \to f_2(U)$ and
+$f_1 : f_2(U) \to f_1(f_2(U))$ for some open set $U$.
+
+By assumption, $f_1$'s inverse $f_1^{-1}$ is analytic.
+Furthermore $f_1 \circ f_1^{-1} = \id_{f_2(U)} = f_1^{-1} \circ f_1$,
+so $f_1$ is an analytic inverse of $f_1^{-1}$, hence
+$f_1^{-1}$ is an analytic isomorphism.
+
+Since $f_1, f_2$ are analytic, so is $f_1 \circ f_2$.
+Furthermore we have analytic functions $f_1^{-1}$, $f_2^{-1}$,
+so $f_2^{-1} \circ f_1^{-1}$ is analytic and so
+\begin{align*}
+  (f_2^{-1} \circ f_1^{-1}) \circ (f_1 \circ f_2)
+&= f_2^{-1} \circ (f_1^{-1} \circ f_1) \circ f_2)
+ = f_2^{-1} \circ \id_{f_2(U)} \circ f_2 \\
+&= f_2^{-1} \circ f_2
+ = \id_U
+\end{align*}
+since function composition is associative. Therefore
+$f_2^{-1} \circ f_1^{-1}$ is an analytic inverse of $f_1 \circ f_2$,
+so $f_1 \circ f_2$ is an analytic isomorphism.
+\end{Answer}
+
 \begin{Problem}
 Suppose $f$ is analytic on $D(z_0, R) \backslash \{ z_0 \}$
 and $z_0$ is a pole of $f$. Prove that for any $r \in (0, R)$
 there is $M \in (0, \infty)$ such that
-$f(D(z_0, r)) \supset \{ z \in \mathbb{C} : |z| > M \}$.
+$f(D(z_0, r) \backslash \{z_0\})
+ \supset
+ \{ z \in \mathbb{C} : |z| > M \}$.
 \end{Problem}
 
 \begin{Problem}
