@@ -606,9 +606,21 @@ $z$ sufficiently close to $z_0$, $f$ is not constant on
 $U = D(z_0, r) \setminus \{ z_0 \}$. Therefore $f(U)$ is open,
 and so its complement $f(U)^c = \mathbb{C} \setminus f(U)$ is closed.
 
-Let $\bar{A}$ denote the closed annulus
-$\{ z \in \mathbb{C} : r \leq |z| \leq R \}$, which is closed and
-bounded and therefore compact.
+Let $\varepsilon > 0$, and let $\bar{A}_\varepsilon$ denote the closed annulus
+$\{ z \in \mathbb{C} : \varepsilon \leq |z - z_0| \leq r \}$, which is closed and
+bounded and therefore compact. Then $f(\bar{A}_\varepsilon)$ is compact since $f$
+is holomorphic on $\bar{A}$ and thus continuous. Therefore
+$\min \{ |w - f(z)| : w \in f(U)^c, z \in \bar{A}_\varepsilon \}$ exists, and if
+it is equal to 0 then $f(U)^c \cap f(\bar{A}_\varepsilon) \neq \varnothing$. But
+$f(U)^c$ has no intersection with $f(U)$ by definition, so
+$f(U)^c \cap f(\bar{A})$ must lie in $f(\partial \bar{A}_\varepsilon)$, which is
+the continuous image of a compact set and thus compact. It follows
+that $f(U)^c$ is bounded.
+
+It remains to show that
+$\inf \{ |w - f(z)| : w \in f(U)^c, z \in \bar{A}_\varepsilon \} = 0$
+for some choice of $\varepsilon$. Roughly,
+$f(z)$ can be made arbitrarily close to an arbitrarily large number.
 \end{Answer}
 
 \begin{Problem}
@@ -620,5 +632,80 @@ exactly $m$ elements (without repetition) for all
 $w \in f(U_0) \backslash \{ w_0 \}$. This means that $f|_{U_0}$ is
 $m$-to-1 except at $z_0$.
 \end{Problem}
+
+\begin{Answer}
+By assumption we can write
+$$
+f(z) - f(z_0) = (z - z_0)^m h(z)
+$$
+for an analytic function $h$ with $h(z_0) \neq 0$. Then since $h$ is
+continuous, there is a $\delta > 0$ such that
+$|h(z) - h(z_0)| < \frac{|h(z_0)|}{2}$ when $|z - z_0| < \delta$, i.e.
+$h$ is nonzero on $D(z_0, \delta)$. Therefore
+$\frac{f(z) - f(z_0)}{(z - z_0)^m}$ is nonzero on
+$D(z_0, \delta) \setminus \{ z_0 \}$, so $f - f(z_0) = f - w_0$
+has no zero but $z_0$, i.e.
+$f^{-1}(w_0) \cap D(z_0, \delta) = \{ z_0 \}$.
+
+As in the proof of the open mapping theorem,
+where $g(z) = w_0 + a_m (z - z_0)^m$,
+for any choice of $w \in f(D(z_0, \delta) \setminus \{ z_0 \})$
+the function $g_w = g - w$ has $m$ zeros in
+$D(z_0, r) \subset D(z_0, \delta)$
+for an appropriate choice of $r$, so we may choose
+$U_0 = D(z_0, r) \subset D(z_0, \delta)$ so that we still have
+$U_0 \cap f^{-1}(w_0) = \{ z_0 \}$. Then
+$|g_w(z) - f_w(z)| < |g_w(z)|$, where $f_w(z) = f(z) - w$, so that
+$f - w$ has $m$ zeros in $U_0$.
+
+To show that these
+zeros of $f - w$ are not repeated, and thus that
+$f^{-1}(w) \cap U_0$ has exactly $m$ elements, it suffices to show
+that each zero $z_k$ of $f - w$ has order 1, i.e. that
+$f(z) - f(z_k) = (z - z_k)\varphi(z)$ for some analytic function $\varphi$ with
+$\varphi(z_k) \neq 0$. But
+\begin{align*}
+   f(z) - f(z_k)
+&= f(z) - (f(z_k) - f(z_0)) - f(z_0)
+ = (f - w_0)(z) - (f - w_0)(z_k) \\
+&= \sum_{n=m}^\infty a_n (z - z_0)^n
+ - \sum_{n=m}^\infty a_n (z_k - z_0)^n \\
+&= \sum_{n=m}^\infty
+     a_n
+     \left[
+       (z - z_0)^n - (z_k - z_0)^n
+     \right] \\
+&= \sum_{n=m}^\infty
+      a_n
+      ((z - z_0) - (z_k - z_0))
+      \sum_{j=0}^{n-1}
+        (z_k - z_0)^{n - j - 1}
+        (z - z_0)^{j} \\
+&= (z - z_k)
+   \sum_{n=m}^\infty
+     a_n
+     \sum_{j=0}^{n-1}
+       (z_k - z_0)^{n - j - 1}
+       (z - z_0)^{j} \\
+&= (z - z_k) \varphi(z)
+\end{align*}
+so that
+\begin{align*}
+   \varphi(z_k)
+&= \sum_{n=m}^\infty
+     a_n
+     \sum_{j=0}^{n-1}
+       (z_k - z_0)^j
+       (z_k - z_0)^{n - j - i} \\
+&= \sum_{n=m}^\infty
+     a_n
+     \sum_{j=0}^{n-1}
+       (z_k - z_0)^{n-1} \\
+&= \sum_{n=m}^\infty
+     a_n \cdot n (z_k - z_0)^{n-1}
+ = f^\prime(z_k) \neq 0,
+\end{align*}
+since $f - w_0$ is nonzero except at $z_0$. This completes the proof.
+\end{Answer}
 
 \end{document}
