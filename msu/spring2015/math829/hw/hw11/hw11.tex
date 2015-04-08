@@ -399,13 +399,158 @@ has a pole of order 2 at 0.
 Using the positively oriented semicircle $S_R$ of radius $R$
 and the negatively oriented semicircle $S_\varepsilon^{-}$ of radius
 $\varepsilon$, we can write
-% $$
-%   0
-% = \int_{S_R} f
-% - \int_{S_\varepsilon^{-}} f
-% + \int_{[\varepsilon, R]} f(z) \dif z
-% + \int_{[-R, -\varepsilon]} f(z) \dif z
-% $$
+$$
+  \Gamma
+= [\varepsilon, R] \oplus
+  S_R \oplus
+  [-R, -\varepsilon] \oplus
+  S_\varepsilon^{-}
+$$
+so that $\int_\Gamma f = 0$. We note that
+\begin{align*}
+   \int_{[\varepsilon, R]} f
+&= \int_\varepsilon^R
+     \left(
+       \frac{1 - e^{2ix}}
+            {x^2}
+     \right)
+     \dif x
+  = \int_\varepsilon^R
+      \left(
+        \frac{1 - \cos 2x - i \sin 2x}
+             {x^2}
+      \right)
+      \dif x, \\
+   \int_{[-R, -\varepsilon]} f
+&= \int_{-R}^{-\varepsilon}
+     \left(
+       \frac{1 - e^{2ix}}
+            {x^2}
+     \right)
+     \dif x
+  = \int_{-R}^{-\varepsilon}
+      \left(
+        \frac{1 - \cos 2x - i \sin 2x}
+             {x^2}
+      \right)
+      \dif x,
+\end{align*}
+and we can observe that $\frac{1}{x^2}$ and
+$\frac{\cos 2x}{x^2}$ are even while $\frac{\sin 2x}{x^2}$ is
+odd so that
+$$
+  \int_{[-R, -\varepsilon]} f
++ \int_{[\varepsilon, R]} f
+= 2
+  \int_{\varepsilon}^{R}
+    \left(
+      \frac{1 - \cos 2x}{x^2}
+    \right)
+    \dif x
+= 4
+  \int_\varepsilon^R
+    \frac{\sin^2 x}{x^2}
+    \dif x,
+$$
+which in the limit as $\varepsilon \to 0$ and $R \to \infty$ is
+the integral we wish to evaluate. Therefore
+$$
+  \int_0^\infty
+    \frac{\sin^2 x}{x^2}
+    \dif x
+= \frac{1}{4}
+  \lim_{\substack{R \to \infty \\ \varepsilon \to 0}}
+  \left(
+    -\int_{S_R} f
+    -\int_{S_\varepsilon^{-}} f
+  \right)
+= \frac{1}{4}
+  \lim_{\substack{R \to \infty \\ \varepsilon \to 0}}
+  \left(
+    \int_{S_\varepsilon} f
+  - \int_{S_R} f.
+  \right)
+$$
+
+Next we see that
+$$
+   \int_{S_R} f
+=  \int_{S_R}
+     \frac{1}{z^2}
+     \dif z
+-  \int_{S_R}
+     \frac{e^{iz}}{z^2}
+     \dif z
+$$
+and
+$$
+     \left|
+       \int_{S_R}
+         \frac{\dif z}{z^2}
+     \right|
+\leq \left\|
+       \frac{1}{z^2}
+     \right\|_{S_R}
+     L(S_R)
+=    \frac{\pi R}{R^2}
+\to  0,
+$$
+\begin{align*}
+      \left|
+        \int_{S_R}
+          \frac{e^{iz}}{z^2}
+          \dif z
+      \right|
+&\leq \left\|
+        \frac{e^{iz}}{z^2}
+      \right\|_{S_R}
+      L(S_R)
+ =    \|e^{iz}\|_{S_R} \frac{\pi R}{R^2}.
+\end{align*}
+But $|e^{iz}| = e^{-\Im(z)}$, and on $S_R$ we have
+$\Im(z) > 0$ so that $e^{-\Im(z)} < 1$. Therefore
+$\int_{S_R} f \to 0$ as $R \to \infty$.
+
+Next we observe that on the circle
+$$
+\gamma(t) = \varepsilon e^{i t}, \quad
+0 \leq t \leq 2 \pi
+$$
+we have
+\begin{align*}
+   \int_{S_\varepsilon} f
+&= \frac{1}{2}
+   \int_\gamma f
+ = \frac{2 \pi i}{2}
+   \left(
+     \Res_0 \frac{1}{z^2}
+   + \Res_0 \left(
+       -\frac{e^{2 i z}}{z^2}
+     \right)
+   \right).
+\end{align*}
+$\frac{1}{z^2}$ is its own Laurent series around 0 and so
+$\Res_0 \frac{1}{z^2} = 0$. Meanwhile
+$$
+\frac{d}{dz} e^{2 i z} = 2 i e^{2 i z}
+$$
+so that
+$$
+e^{2 i z} = 1 + 2 i z + \cdots
+$$
+and so $\Res_0 \frac{e^{2 i z}}{z^2} = 2 i$.
+Therefore $\int_\gamma f = 4 \pi$ and it follows that
+$$
+  \int_0^\infty
+    \frac{\sin^2 x}{x^2}
+    \dif x
+= \frac{1}{4}
+  \left(
+    \frac{1}{2}
+    \int_\gamma f
+  \right)
+= \frac{\pi}{2}.
+$$
 
 \section{Additional Problems}
 \begin{Problem}
@@ -448,6 +593,14 @@ $f(D(z_0, r) \setminus \{z_0\})
 \end{Problem}
 
 \begin{Answer}
+Let $U = D(z_0, r) \setminus \{ z_0 \}$.
+Showing that
+$f(U) \supset \{ |z| > M \}$
+is equivalent to showing that
+$w \notin f(U)$ implies
+$|w| \leq M$, or that
+$\mathbb{C} \setminus f(U) = f(U)^c$ is bounded.
+
 Since $|f(z)|$ can be made arbitrarily large by choosing
 $z$ sufficiently close to $z_0$, $f$ is not constant on
 $U = D(z_0, r) \setminus \{ z_0 \}$. Therefore $f(U)$ is open,
