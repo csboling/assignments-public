@@ -26,12 +26,298 @@
 
 \begin{titlepage}
 \maketitle
+% TODO: 6.2.14(b), 7.2.1
 \end{titlepage}
 
 \section{Textbook Problems}
+\subsection{Ch. 6 \S 2.14(b)}
+
+\subsection{Ch. 6 \S 2.19}
+First observe that
+$$
+  Q(\cos \theta, \sin \theta)
+= \frac{1}{3 + 2 \cos \theta}
+$$
+is even and so
+$$
+  \int_0^\pi
+    Q(\cos \theta, \sin \theta)
+    \dif \theta
+= \frac{1}{2}
+  \int_{-\pi}^{\pi}
+    Q(\cos \theta, \sin \theta)
+    \dif \theta.
+$$
+If we consider
+\begin{align*}
+   f(z)
+&= \frac{
+     Q
+     \left(
+       \frac{1}{2}
+       \left(
+         z + \frac{1}{z}
+       \right),
+       \frac{1}{2i}
+       \left(
+         z - \frac{1}{z}
+       \right)
+     \right)
+   }
+   {i z}
+ = \frac{1}{iz}
+   \frac{1}{3 + z + \frac{1}{z}} \\
+&= \frac{1}{i}
+   \frac{1}{z^2 + 3z + 1}.
+\end{align*}
+The polynomial $z^2 + 3z + 1$ has zeros at
+$$
+z_1 = \frac{1}{2}(\sqrt{5} - 3), \quad
+z_2 = \frac{1}{2}(-\sqrt{5} - 3),
+$$
+where $|z_1| < 1$ and $|z_2| > 1$.
+We can write
+$$
+  \frac{1}{z^2 + 3z + 1}
+= \frac{1}{\sqrt{5}}
+  \frac{1}{z - z_1}
+- \frac{1}{\sqrt{5}}
+  \frac{1}{z - z_2},
+$$
+and since $\frac{1}{z - z_2}$ is holomorphic
+at $z_1$, the Laurent expansion of this term around
+$z_1$ has no negative terms, so
+$$
+  \Res_{z_1}
+    \frac{1}{z^2 + 3z + 1}
+= \frac{1}{\sqrt{5}}.
+$$
+Therefore
+\begin{align*}
+   \int_0^\pi
+     Q(\cos \theta, \sin \theta)
+     \dif \theta
+&= \frac{1}{2}
+   \int_{|z| = 1}
+     \frac{1}{i}
+     \frac{1}{z^2 + 3z + 1}
+     \dif z \\
+&= \frac{1}{2i} \cdot
+   2 \pi i \cdot
+   \Res_{z_1}
+     \frac{1}{z^2 + 3z + 1}
+ = \frac{\pi}{\sqrt{5}}
+\end{align*}
+as desired.
+
+\subsection{Ch. 6\S 24}
+First let $n \geq 0$. We have
+\begin{align*}
+   \int_0^{2\pi}
+     (\cos \theta)^n
+     \dif \theta
+&= \int_{|z| = 1}
+     \frac{1}{iz}
+     \left[
+       \frac{1}{2}
+       \left(
+         z + \frac{1}{z}
+       \right)
+     \right]^n
+     \dif z \\
+&= \frac{1}{i 2^n}
+   \int_{|z| = 1}
+     \frac{1}{z}
+     \sum_{k = 0}^{n}
+       {n \choose k}
+       z^{n - k}
+       (z^{-1})^k
+     \dif z \\
+&= \frac{1}{i 2^n}
+   \sum_{k = 0}^n
+     {n \choose k}
+     \int_{|z| = 1}
+       z^{n - 2k - 1}
+       \dif z \\
+&= \frac{\pi}{2^{n-1}}
+   \sum_{k = 0}^n
+     {n \choose k}
+     \Res_0 z^{-2k}.
+\end{align*}
+Since $n$ is even we can write $n = 2m$ for some nonnegative
+integer $m$, and observe that
+$2m - 2k - 1 = 2(m - k) - 1 > 0$ for $m > k$, and
+$2(m - k) - 1 = -1$ for $m = k$. But nonnegative powers of
+$z$ are entire, so
+$$
+  \Res_0 z^{n - 2k - 1}
+= \left\{
+    \begin{array}{c c}
+      0, & \quad k \neq \frac{n}{2} \\
+      1, & \quad k = \frac{n}{2}
+    \end{array}
+  \right..
+$$
+Then
+\begin{align*}
+   \int_0^{2\pi}
+     (\cos \theta)^n
+     \dif \theta
+&= \frac{\pi}{2^{n-1}}
+     {n \choose \frac{n}{2}}
+ = \frac{\pi}{2^{n-1}}
+ = \frac{\pi}{2^{n-1}}
+     \frac{n!}
+          {\left(\frac{n}{2}\right)!
+           \left(n - \frac{n}{2}\right)!} \\
+&= \frac{\pi}{2^{n-1}}
+     \frac{n!}
+          {\left[
+             \left(\frac{n}{2}\right)!
+           \right]^2}
+, \quad n \geq 0.
+\end{align*}
+If $n < 0$ then $(\cos \theta)^n = (\sec \theta)^{-n} > 0$, since
+$\sec \theta$ is strictly positive and $-n > 0$. But $\sec \theta$
+is unbounded on any open neighborhood of $\frac{\pi}{2}$, so in this
+case the integral $\int_0^{2\pi} (\cos \theta)^n \dif \theta$ does not
+exist.
+
 \subsection{Ch. 7 \S 2.1}
+Without loss of generality, suppose $b \neq 0$.
+Since $|f(z)| < 1$, $f(\mathbb{D}) \subset \mathbb{D}$.
+If $a = 0$ then $f(0) = 0$, and we may apply the Schwarz lemma
+to see that since $b \in \mathbb{D} \setminus \{ 0 \}$ and
+$f(b) = b$ that $f = \mathrm{id}$. Therefore let $a, b \neq 0$.
+
+Consider the function
+$$
+  g(z)
+= \frac{a - f(a - z)}
+       {2}
++ \frac{f(z + b) - b}
+       {2}.
+$$
+% FIXME: show that g(\mathbb{D}) \subset \mathbb{D}
+Then
+$$
+  g(0)
+= \frac{a - f(a)}{2}
++ \frac{f(b) - b}{2}
+= 0
+$$
+and
+$$
+  g(a - b)
+= \frac{a - f(b)}{2}
++ \frac{f(a) - b}{2}
+= a - b
+$$
+so that $g(z) = z$. But then for all $z \in \mathbb{D}$
+we have
+$$
+2z = a - b + f(z + b) - f(a - z).
+$$
+In particular, for $z = a$,
+$$
+2a - a + b = a + b = f(a + b) - f(0)
+$$
 
 \subsection{Ch. 7 \S 2.2}
+We define
+$$
+g(z) = \frac{a - z}
+            {1 - \bar{a} z}
+$$
+and
+$$
+h(z) = \frac{f(a) - z}
+            {1 - \overline{f(a)} z}
+$$
+so that
+\begin{align*}
+   F(z)
+&= (h \circ f \circ g)(z)
+ = \frac{f(a) - f(g(z))}
+        {1 - \overline{f(a)} f(g(z))} \\
+&= \frac{ f(a)
+        - f\left(
+             \frac{a - z}
+                  {1 - \bar{a} z}
+           \right)}
+        { 1
+        - \overline{f(a)}
+          f\left(
+            \frac{a - z}
+                 {1 - \bar{a} z}
+          \right)}
+\end{align*}
+and in particular $F(0) = 0$. From the Schwarz lemma,
+$|F^\prime(z)| \leq 1$, and we have
+\begin{align*}
+   F^\prime
+&= (h \circ (f \circ g))^\prime
+ = (h^\prime \circ (f \circ g)) \cdot (f \circ g)^\prime \\
+&= (h^\prime \circ (f \circ g)) \cdot
+   (f^\prime \circ g) \cdot
+   g^\prime
+\end{align*}
+and since
+\begin{align*}
+  g^\prime(z)
+&= \frac{(1 - \bar{a} z)(-1) - (a - z)(-\bar{a})}
+        {(1 - \bar{a} z)^2}
+ = \frac{-1 + \bar{a} z + \bar{a} a - \bar{a} z}
+        {(1 - \bar{a} z)^2} \\
+&= \frac{|a|^2 - 1}
+        {(1 - \bar{a} z)^2},
+\end{align*}
+\begin{align*}
+   (f^\prime \circ g)(z)
+&= f^\prime\left(\frac{a - z}{1 - \bar{a} z}\right),
+\end{align*}
+\begin{align*}
+  (h^\prime \circ f \circ g)(z)
+= h^\prime\left(f\left(\frac{a - z}{1 - \bar{a}z}\right)\right)
+= \frac{ -|f(a)|^2
+       + 2 \overline{f(a)}
+           f\left(\frac{a - z}{1 - \bar{a}z}\right)
+       - 1}
+       {\left(
+          1
+        - \overline{f(a)}
+          f\left(\frac{a - z}{1 - \bar{a} z}\right)
+        \right)^2},
+\end{align*}
+we have
+\begin{align*}
+   F^\prime(0)
+&= \left[
+     \frac{-|f(a)|^2 + 2|f(a)|^2 - 1}
+          {(1 - \overline{f(a)} f(a))^2}
+   \right]
+   \cdot
+   f^\prime(a)
+   \cdot
+   (|a|^2 - 1) \\
+&= \frac{(|f(a)|^2 - 1)(|a|^2 - 1)}
+         {(1 - |f(a)|^2)^2}
+    f^\prime(a) \\
+&= \frac{|a|^2 - 1}
+        {1 - |f(a)|^2}
+   f^\prime(a).
+\end{align*}
+But from the Schwarz lemma, $|F^\prime(0)| \leq 1$,
+and since the image of $f$ lies in the unit disk we have
+$|f(a)| < 1$, whence $|f(a)|^2 < 1$, so $1 - |f(a)|^2 > 0$
+and thus $|1 - |f(a)|^2| = 1 - |f(a)|^2$. Similarly since
+$a \in \mathbb{D}$, $|1 - |a|^2| = 1 - |a|^2$. It follows
+that
+$$
+     \frac{|f^\prime(a)|}
+          {1 - |f(a)|^2}
+\leq \frac{1}{1 - |a|^2}.
+$$
 
 \section{Additional Problems}
 
@@ -39,6 +325,156 @@
   Find the coefficients of the Laurent series of
   $\cot z$ centered at $0$ up to $z^3$.
 \end{Problem}
+
+\begin{Answer}
+Since $\cot z = \frac{\cos z}{\sin z}$, we first expand
+these functions around 0:
+\begin{align*}
+   \cos z
+&= \sum_{n=0}^\infty
+     \frac{(-1)^{n}}
+          {(2n)!}
+     z^{2n}
+ = \sum_{n=0}^\infty
+     a_n z^n, \\
+   \sin z
+&= \sum_{n=0}^\infty
+     \frac{(-1)^{n}}
+          {(2n + 1)!}
+     z^{2n + 1}
+ = \sum_{n=0}^\infty
+     b_n z^n
+\end{align*}
+where
+\begin{align*}
+   a_n
+&= \left\{
+     \begin{array}{c c}
+       \frac{(-1)^{\frac{n}{2}}}{n!}, & \quad n \text{ even} \\
+       0,                          & \quad n \text{ odd}
+     \end{array}
+   \right., \\
+   b_n
+&= \left\{
+     \begin{array}{c c}
+       \frac{(-1)^\frac{n-1}{2}}{n!}, & \quad n \text{ odd} \\
+       0,                            & \quad n \text{ even}
+     \end{array}
+   \right.. \\
+\end{align*}
+Since $\cos(0) = 1$, $\sin(0) = 0$, and
+$\sin^\prime(0) = 1$,
+the pole of $\cot z$ at 0 has order 1, so
+$\ord_0 \cot = -1$, and we can write
+$\cot z = \sum_{n=-1}^\infty c_n z^n$ for some
+coefficients $c_n$. Since
+$\cot z \cdot \sin z = \cos z$, we have
+\begin{align*}
+   \cos z
+&= \left(
+     \sum_{n=0}^\infty
+       b_n
+       z^n
+   \right)
+   \cdot
+   \left(
+     \sum_{n=-1}^\infty
+       c_n
+       z^n
+   \right) \\
+&= \left(
+     \sum_{n=0}^\infty
+       b_n
+       z^n
+   \right)
+   \cdot
+   \left(
+     \sum_{n=0}^\infty
+       c_{n-1}
+       z^{n-1}
+   \right) \\
+&= \frac{1}{z}
+   \sum_{n=0}^\infty
+     \left(
+       \sum_{k=0}^n
+         b_{n-k}
+         c_{k-1}
+     \right)
+     z^n \\
+\end{align*}
+so that
+\begin{align*}
+   \sum_{n=0}^\infty
+     \left(
+       \sum_{k=0}^n
+         b_{n-k}
+         c_{k-1}
+     \right)
+     z^n
+&= z \cos z
+ = \sum_{n=0}^\infty
+     a_n z^{n+1} \\
+&= \sum_{n=1}^\infty
+     a_{n-1} z^n.
+\end{align*}
+Then we have
+\begin{align*}
+  b_0 c_{-1}
+&= 0 \cdot c_{-1}
+ =  a_{-1}
+ =  0, \\
+   b_1 c_{-1}
+ + b_0 c_0
+&= c_{-1}
+ =  a_0  = 1, \\
+   b_2 c_{-1}
+ + b_1 c_0
+ + b_0 c_1
+&= c_0
+ =  a_1 =  0, \\
+   b_3 c_{-1}
+ + b_2 c_0
+ + b_1 c_1
+ + b_0 c_2
+&= b_3 c_{-1}
+ + b_1 c_1 \\
+&= -\frac{1}{6} c_{-1}
+   + c_1
+ =  a_2 = -\frac{1}{2}, \\
+   b_4 c_{-1}
+ + b_3 c_0
+ + b_2 c_1
+ + b_1 c_2
+ + b_0 c_3
+&= b_3 c_0
+ + b_1 c_2 \\
+&=  -\frac{1}{6} c_0
+ + c_2
+ =  a_3 = 0, \\
+   b_5 c_{-1}
+ + b_4 c_0
+ + b_3 c_1
+ + b_2 c_2
+ + b_1 c_3
+ + b_0 c_4
+&= b_5 c_{-1}
+ + b_3 c_1
+ + b_1 c_3 \\
+&= \frac{1}{5!} c_{-1}
+ - \frac{1}{6} c_1
+ + c_3
+ =  a_4 = \frac{1}{4!}
+\end{align*}
+which can be recursively solved to find
+\begin{align*}
+c_{-1} &= 1, \\
+c_0   &= 0, \\
+c_1   &= -\frac{1}{3}, \\
+c_2   &= 0, \\
+c_3   &= \frac{1}{4!} - \frac{1}{18} - \frac{1}{5!}
+       = -\frac{1}{45}.
+\end{align*}
+\end{Answer}
 
 \begin{Problem}
   \begin{enumerate}[(i)]
@@ -60,6 +496,7 @@
       $\sum_{n=1}^\infty \frac{1}{n^4}$. Note: You need to prove
       that $\int_{\partial S} f \to 0$ as $N \to \infty$, and give an answer.
     }
+  \end{enumerate}
 \end{Problem}
 
 \begin{Problem}
@@ -67,5 +504,51 @@ Let $f \in \mathrm{Iso}(\mathbb{D}, U)$. Show that if
 $D(f(0), R) \subset U$, then $R \leq |f^\prime(0)|$.
 Hint: Consider the restriction of $f^{-1}$ to $D(f(0), R)$.
 \end{Problem}
+
+\begin{Answer}
+Note that the function
+$$
+g(z) = R z + f(0)
+$$
+is holomorphic and satisfies
+$$
+  |g(z) - f(0)|
+= |Rz|
+< R
+$$
+whenever $|z| < 1$, and thus this function maps $\mathbb{D}$ to
+$D_f = D(f(0), R)$. Thus we have a holomorphic function
+$$
+h = f^{-1} \big|_{D_f} \circ g : \mathbb{D} \to \mathbb{D}
+$$
+with
+$$
+  h(0)
+= f^{-1}(0 + f(0))
+= 0
+$$
+so that $|h^\prime(z)| \leq 1$. But
+\begin{align*}
+   h^\prime(z)
+&= (f^{-1}\big|_{D_f} \circ g)^\prime(z)
+ = [ ((f^{-1}\big|_{D_f})^\prime
+     \circ g)
+     \cdot g^\prime](z) \\
+&= (f^{-1}\big|_{D_f})^\prime(Rz + f(0)) \cdot R.
+\end{align*}
+In particular,
+$$
+     |h^\prime(0)|
+=    R |(f^{-1})^\prime(f(0))|
+\leq 1,
+$$
+or $R \leq \frac{1}{|(f^{-1})^\prime(f(0))|}$.
+But $f$ is an isomorphism, so
+$$
+  f^\prime(0)
+= \frac{1}{(f^{-1})^\prime(f(0))}
+$$
+and therefore $R \leq |f^\prime(0)|$.
+\end{Answer}
 
 \end{document}
