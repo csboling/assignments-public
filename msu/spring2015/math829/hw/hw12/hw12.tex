@@ -5,10 +5,12 @@
 \usepackage{amssymb}
 \usepackage{enumerate}
 \usepackage[lastexercise]{exercise}
+\usepackage{polynom}
 
 \newcommand\id{\mathrm{id}}
 \newcommand\ord{\mathrm{ord}}
 \newcommand\Res{\mathrm{Res}}
+\newcommand\Log{\mathrm{Log}}
 \renewcommand\Im{\mathrm{Im}}
 \renewcommand\Re{\mathrm{Re}}
 \newcommand\dif{\mathop{}\!\mathrm{d}}
@@ -31,6 +33,306 @@
 
 \section{Textbook Problems}
 \subsection{Ch. 6 \S 2.14(b)}
+Let $\theta \in [0, 2 \pi)$, $R, \varepsilon > 0$.
+Define curves by
+\begin{align*}
+   S_R(t)
+&= R e^{i t},
+&  \quad \theta \leq t \leq 2 \pi - \theta, \\
+   S_\varepsilon(t)
+&= \varepsilon e^{i t},
+&  \quad \theta \leq t \leq 2 \pi - \theta, \\
+   L_+(t)
+&= t e^{i \theta}, \quad \varepsilon \leq t \leq R \\
+   L_-(t)
+&= t e^{i(2 \pi - \theta)}, \varepsilon \leq t \leq R
+\end{align*}
+and a contour $\Gamma$ by
+\begin{align*}
+       \Gamma
+&=      S_R
+ \oplus [R e^{i(2 \pi - \theta)}, \varepsilon e^{i(2 \pi - \theta)}]
+ \oplus S_\varepsilon^{-}
+ \oplus [\varepsilon e^{i \theta}, R e^{i \theta}] \\
+&=      S_R
+ \oplus L_-^{-}
+ \oplus S_\varepsilon^{-}
+ \oplus L_+.
+\end{align*}
+We observe that with
+$$
+  f(z)
+= \frac{\Log(z)}{(z^2 + 1)^2}
+$$
+
+The poles of the function
+$$
+  f(z)
+= \frac{1}{(z^2 + 1)^2}
+$$
+that lie in $\mathrm{Int}(\Gamma)$ are at $\pm i$. Here we choose
+$\Log(z)$ to be the branch of the logarithm holomorphic on
+$\mathbb{C} \setminus \{ \Re(z) \geq 0 \}$ with $\arg z \in [0, 2\pi)$
+so that $f$ is holomorphic except for at these poles. We note
+that
+\begin{align*}
+      \left|
+        \int_{S_R}
+          f
+      \right|
+&\leq \left\|
+        \frac{\Log z}
+             {(z^2 + 1)^2}
+      \right\|
+      L(S_R)
+ \leq \left|
+        \frac{\Log (Re^{it})}
+             {(R^2e^{2it} + 1)^2}
+      \right|
+      2(\pi - \theta)R \\
+&=    \left|
+        \frac{\log R + it}
+             {(R^2e^{2it} + 1)^2}
+      \right|
+      2(\pi - \theta)R
+&\leq \frac{2 \pi R \log R}
+           {(R^2 + 1)^2}
+ \to  0
+\end{align*}
+since $R \log R < (R^2 + 1)^2$ and
+\begin{align*}
+      \left|
+        \int_{S_\varepsilon}
+          f
+        \right|
+&\leq 2 (\pi - \theta) \varepsilon
+      \frac{\log \varepsilon + it}
+           {(1 + \varepsilon^2 e^{it})^2}
+ \to  \frac{2 \pi \varepsilon i t}
+           {1}
+ \to  0.
+\end{align*}
+We also see that
+\begin{align*}
+   \int_{L_+}
+     f \cdot \Log
+ + \int_{L_-^-}
+     f \cdot \Log
+&= \int_{L_+}
+     f \cdot \Log
+ - \int_{L_-}
+     f \cdot \Log \\
+&= \int_\varepsilon^R
+     f(t e^{i\theta})
+     \Log(t e^{i\theta})
+     e^{i\theta}
+     \dif t \\
+&- \int_\varepsilon^R
+     f(t e^{i(2\pi - \theta)})
+     \Log(t e^{i (2 \pi - \theta)})
+     e^{i(2\pi - \theta)}
+     \dif t \\
+&= \int_\varepsilon^R
+     f(x)
+     [ \Log (t e^{i \theta})
+       e^{i \theta}
+     - \Log (t e^{i (2 \pi - \theta)})
+       e^{i (2\pi - \theta)}
+     ] \\
+&=   \int_\varepsilon^R
+       f(x)
+       [ e^{i \theta} (\log x + i \theta)
+       - e^{i (2\pi - \theta)} (\log x + i (2\pi - \theta)) ]
+       \dif x \\
+&\to \int_\varepsilon^R
+       f(x) [ \log x (1 - e^{i 2 \pi}) - 2 \pi i e^{i 2 \pi} ]
+       \dif x \\
+&=   e^{i \pi}
+     \int_\varepsilon^R
+       f(x) \log x (e^{-i \pi} - e^{i \pi})
+       \dif x
+   - 2 \pi i
+     \int_\varepsilon^R
+       f(x) \dif x \\
+&=   -\sin(\pi)
+
+% &= \int_\varepsilon^R
+%      \frac{\Log (t e^{i\theta})}
+%           {(t^2 e^{2 i \theta} + 1)^2}
+%      e^{i \theta}
+%      \dif t
+%  - \int_\varepsilon^R
+%      \frac{\Log (t e^{i(2\pi - \theta)})}
+%           {(t^2 e^{2i(2\pi - \theta)} + 1)^2}
+%      \dif t \\
+% &= \int_\varepsilon^R
+%      \left[
+%        \frac{\log t + i \theta}
+%             {t^2 e^{2 i \theta} + 1}
+%        e^{i \theta}
+%      - \frac{\log t + i (2 \pi - \theta)}
+%             {(t^2 e^{2i(2\pi - \theta)})
+%      \right]
+%     \dif t
+\end{align*}
+
+On the other hand
+\begin{align*}
+   \int_\Gamma
+     f
+&= \int_{\gamma_R}
+     f
+ + \int_{[R e^{i(2 \pi - \theta)},
+          \varepsilon e^{i(2 \pi - \theta)}]}
+     f
+ - \int_{\gamma_\varepsilon}
+     f
+ + \int_{[\varepsilon e^{i \theta},
+          R e^{i \theta}]}
+     f \\
+&= 2 \pi i
+   \left(
+     \Res_{-i} f
+   + \Res_i f
+   \right).
+\end{align*}
+
+We see that
+\begin{align*}
+   \frac{\dif}{\dif z}
+   \frac{\Log~z}{(z + i)^2}
+&= \frac{(z + i)^2 z^{-1} - 2(z + i)\Log~z}
+        {(z + i)^4}, \\
+   \frac{\dif}{\dif z}
+   \frac{\Log~z}{(z - i)^2}
+&= \frac{(z - i)^2 z^{-1} - 2(z - i)\Log~z}
+        {(z - i)^4}
+\end{align*}
+so that
+\begin{align*}
+   \frac{\Log~z}{(z + i)^2}
+&= \frac{\Log(i)}{(2i)^2}
+ + \frac{(2i)^2 i^{-1} - 2(2i)\Log(i)}
+        {(2i)^4}
+   (z - i)
+ + \cdots \\
+&= -i\frac{\pi}{8}
+ + \frac{4i - 4i \cdot i \frac{\pi}{2}}
+        {16}
+   (z - i)
+ + \cdots \\
+&= -\frac{\pi}{8}
+ + \frac{4i + 2 \pi}{16} (z - i)
+ + \cdots \\
+   \frac{\Log~z}{(z - i)^2}
+&= \frac{\Log(-i)}{(-2i)^2}
+ + \frac{(-2i)^2 (-i)^{-1} - 2(-2i) \Log(-i)}
+        {(-2i)^4}
+   (z + i) \\
+&= -i\frac{3 \pi}{8}
+ + \frac{-4i - 4i \cdot i \frac{3 \pi}{2}}
+        {16}
+   (z + i) \\
+&= -i\frac{3 \pi}{8}
+ + \frac{-4i + 6 \pi}{16} (z + i)
+\end{align*}
+so that
+\begin{align*}
+   \Res_i \frac{\Log~z}{(z - i)^2 (z + i)^2}
+&= \frac{4i + 2 \pi}{16}
+ = \frac{\pi}{8} + \frac{i}{4}, \\
+   \Res_i \frac{\Log~z}{(z - i)^2 (z + i)^2}
+&= \frac{-4i + 6 \pi}{16}
+ = \frac{3 \pi}{8} - \frac{i}{4}
+\end{align*}
+and hence
+$$
+  \int_\Gamma f
+= 2 \pi i \cdot \frac{\pi}{2}
+= i \pi^2.
+$$
+
+% We expand $\Log(z)$ at $\pm i$ by finding
+% \begin{align*}
+%    \frac{\dif}{\dif z} \Log(z)
+% &= z^{-1}
+% \end{align*}
+% so that
+% \begin{align*}
+%    \frac{\dif^k}{\dif z^k} \Log(z)
+% &= (-1)^{k+1} (k - 1)! z^{-k}, \quad
+%    k \geq 1
+% \end{align*}
+% and
+% \begin{align*}
+%    \Log(z)
+% &= \Log(i)
+%  + \sum_{k=1}^\infty
+%      (-1)^{k+1}
+%      \frac{(k - 1)!}{k!}
+%      i^{-k}
+%      (z - i)^k \\
+% &= i\frac{\pi}{2}
+%  + \sum_{k=1}^\infty
+%      \frac{(-1)^{k+1} (-i)^k}{k}
+%      (z - i)^k \\
+% &= i\frac{\pi}{2}
+%  + \sum_{k=1}^\infty
+%      \frac{(-1)^{2k + 1} i^k}{k}
+%      (z - i)^k \\
+% &= i \frac{\pi}{2}
+%  - \sum_{k=1}^\infty
+%      \frac{i^k}{k}
+%      (z - i)^k \\
+% &= i \frac{\pi}{2}
+%  - i           (z - i)
+%  + \frac{1}{2} (z - i)^2
+%  + \frac{i}{3} (z - i)^3
+%  + \cdots \quad |z - i| < 2, \\
+%    \Log(z)
+% &= \Log(-i)
+%  + \sum_{k=1}^\infty
+%      (-1)^{k+1}
+%      \frac{(k - 1)!}{k!}
+%      (-i)^{-k}
+%      (z + i)^k \\
+% &= i\frac{3 \pi}{2}
+%  + \sum_{k=1}^\infty
+%      \frac{(-1)^{k+1} i^k}{k}
+%      (z + i)^k \\
+% &= i\frac{3 \pi}{2}
+%  + i           (z + i)
+%  + \frac{1}{2} (z + i)^2
+%  - \frac{i}{3} (z + i)^3
+%  + \cdots \quad |z - (-i)| < 2
+% \end{align*}
+% Furthermore we have
+% \begin{align*}
+%    (z - i)^2
+% &= (-2i)^2
+%  + 2(-2i)       (z + i)
+%  + \frac{2}{2}  (z + i)^2 \\
+% &= -4
+%  -  4i          (z + i)
+%  +              (z + i)^2, \\
+%    (z + i)^2
+% &= (2i)^2
+%  + 2(2i)        (z - i)
+%  + \frac{2}{2}  (z - i)^2 \\
+% &= -4
+%  +  4i          (z - i)
+%  +              (z - i)^2
+% \end{align*}
+% so that at $z = i$ we have
+% $$
+% \polylongdiv{ 1 \frac{\pi}{2}
+%             - 1           X
+%             + \frac{1}{2} X^2
+%             + \frac{1}{3} X^3}
+%             { -4
+%               -4  X
+%               +   X^2 }
+% $$
 
 \subsection{Ch. 6 \S 2.19}
 First observe that
@@ -610,9 +912,9 @@ c_3   &= \frac{1}{4!} - \frac{1}{18} - \frac{1}{5!}
                + \cos^2 x \sinh^2 y
               }},
       \end{align*}
-      and on the sides of the square $S_N$ we have
+      and on the sides of the square $S_N^{\pm 1}$ we have
       $x = \pi\left(N + \frac{1}{2}\right)$ so that $\cos x = 0$. Then
-      on this region
+      on these segments
       $$
         |\cot (x + i y)|
       = \frac{\sqrt{\sin^2 x \sinh^2 y}}
@@ -625,7 +927,7 @@ c_3   &= \frac{1}{4!} - \frac{1}{18} - \frac{1}{5!}
            \left\|\frac{\cot z}{z^2}\right\|_{\partial S_N^{\pm 1}}
            L(\partial S_N^{\pm 1})
       \leq \frac{\tanh y}{C_N^2} 2 C_N
-      \leq \frac{1}{C_N} \to 0.
+      <    \frac{2}{C_N} \to 0.
       $$
 
       On the top of the square $\partial S_N^{+i}$
@@ -727,7 +1029,8 @@ c_3   &= \frac{1}{4!} - \frac{1}{18} - \frac{1}{5!}
                \frac{\cot z}{z^2}
          + \sum_{n=1}^N
              \Res_{-\pi n}
-               \frac{\cot z}{z^2}\\
+               \frac{\cot z}{z^2}
+         \right) \\
       &= 2 \pi i
          \left(
          - \frac{1}{45}
